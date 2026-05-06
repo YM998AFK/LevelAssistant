@@ -943,58 +943,40 @@ class ToolBox:
         return {"ok": True, "count": len(results), "results": results}
 
 
-    def run_subagent(
+    def pause_and_ask(self, question: str, context: str = "") -> dict:
+        """[子 agent 专用] 遇到 MCP 失败或需要主 agent 决策时调用，暂停执行并上报问题。
+        调用后子 agent 应立即停止（不再调用其他工具）。
+        主 agent 收到 paused=True 的结果后，通过 resume_subagent 注入指示并恢复执行。
+        question: 需要主 agent 回答的问题（含失败工具名、报错信息、可能的处理方案）
+        context: 当前执行进度（已完成哪些改动、卡在第几步）
+        """
+        # 此方法在 _run_subagent_loop 里被拦截，不会真正执行到这里。
+        # 若主 agent 误调（不在子 agent 内部），返回明确错误。
+        return {"error": "pause_and_ask 只能在子 agent 内部使用（需通过 run_subagent 启动）"}
+
+    def _run_subagent_loop(
         self,
-        task: str,
-        context: str = "",
+        system: str,
+        messages: list,
+        client,
+        tools: list,
         max_iterations: int = 30,
     ) -> dict:
-        """启动一个独立子 Agent 完成指定子任务，返回其最终文字输出。
-        子 Agent 与主 Agent 共享同一工作目录和可读根目录，但上下文完全隔离。
-        适合将复杂任务拆分为：分析子任务 / 修改子任务 / 校验子任务等。
+        """子 agent 核心执行循环（run_subagent / resume_subagent 共用）。
+        支持 pause_and_ask：检测到该工具调用时，序列化对话历史到工作目录，
+        返回 {"ok": True, "paused": True, "resume_id": ..., "question": ...}。
         """
-        from .config import (
-            ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, CLAUDE_USER_AGENT,
-            DEFAULT_MODEL, output_dir, skills_dir, cursor_skills_dir, mcp_dir,
-        )
-        import anthropic as _anthropic
+        from .config import DEFAULT_MODEL as _DEFAULT_MODEL
         import json as _json
-
-        system = "\n".join([
-            "你是一个专注执行子任务的 Agent，由主 Agent 启动。",
-            "",
-            "## 强制规则（违反 = 任务失败）",
-            "1. 所有工具调用结束后，**最后一条消息必须是纯文字**，包含完整的结构化结论（Markdown 格式）。",
-            "2. 不允许以工具调用结束任务——必须在最终 end_turn 消息里输出结论。",
-            "3. 不需要打包，不需要向用户确认，只需输出结论文字。",
-            "4. 如果脚本/工具输出了数据，必须将关键数据整理后写入最终回复，不能只说「已完成」。",
-            "",
-            "## 路径",
-            f"- 工作目录：`{self.workspace}`",
-            f"- 产出目录：`{output_dir()}`",
-            f"- Skill 目录：`{cursor_skills_dir()}`",
-            f"- MCP 目录：`{mcp_dir()}`",
-            f"- 公共资源目录：`{skills_dir()}`",
-        ])
-
-        user_content = f"{context}\n\n{task}".strip() if context else task
-        messages: list = [{"role": "user", "content": user_content}]
-
-        client = _anthropic.Anthropic(
-            api_key=ANTHROPIC_API_KEY,
-            base_url=ANTHROPIC_BASE_URL,
-            default_headers={"User-Agent": CLAUDE_USER_AGENT},
-        )
-        tools = tool_definitions()
-        # 移除 run_subagent / run_subagents_parallel，防止子 Agent 无限递归
-        tools = [t for t in tools if t["name"] not in ("run_subagent", "run_subagents_parallel")]
+        import uuid as _uuid
+        import re as _re
 
         full_text: list[str] = []
 
         for _ in range(max_iterations):
             try:
                 with client.messages.stream(
-                    model=DEFAULT_MODEL,
+                    model=_DEFAULT_MODEL,
                     max_tokens=8000,
                     system=system,
                     tools=tools,
@@ -1025,6 +1007,32 @@ class ToolBox:
             if stop_reason != "tool_use":
                 break
 
+            # ── 检查是否有 pause_and_ask 调用 ──────────────────────────────
+            pause_block = next(
+                (b for b in resp.content
+                 if b.type == "tool_use" and b.name == "pause_and_ask"),
+                None,
+            )
+            if pause_block:
+                resume_id = str(_uuid.uuid4())[:8]
+                state = {
+                    "system": system,
+                    "messages": messages,       # 包含本轮 assistant 消息（含 pause_and_ask tool_use）
+                    "tool_use_id": pause_block.id,
+                }
+                state_file = self.workspace / f".pause_state_{resume_id}.json"
+                state_file.write_text(
+                    _json.dumps(state, ensure_ascii=False), encoding="utf-8"
+                )
+                return {
+                    "ok": True,
+                    "paused": True,
+                    "resume_id": resume_id,
+                    "question": pause_block.input.get("question", ""),
+                    "context": pause_block.input.get("context", ""),
+                }
+
+            # ── 普通工具调用 ───────────────────────────────────────────────
             tool_results = []
             for block in resp.content:
                 if block.type != "tool_use":
@@ -1049,7 +1057,7 @@ class ToolBox:
 
         output = "".join(full_text).strip()
 
-        # 兜底：如果流式捕获的文字过短（只有开场白），从 messages 最后一条 assistant 消息里捞文本
+        # 兜底：流式捕获文字过短时，从最后一条 assistant 消息捞文本
         if len(output) < 100 and messages and messages[-1]["role"] == "assistant":
             last_texts = [
                 b["text"] for b in messages[-1]["content"]
@@ -1062,9 +1070,7 @@ class ToolBox:
 
         result: dict = {"ok": True, "output": output, "output_length": len(output)}
 
-        # 审查员 FAIL 检测：若子 agent 输出包含明确失败标记，注入硬警告
-        # 让主 agent 工具结果里直接看到强制重做提示，无法无视
-        import re as _re
+        # 审查员 FAIL 检测
         _FAIL_PATTERNS = [
             r"总体[：:]\s*FAIL",
             r"总体判定[：:]\s*FAIL",
@@ -1078,8 +1084,102 @@ class ToolBox:
                 "不允许自行宣判「可豁免」。"
                 "如需跳过某条 FAIL，必须先向用户说明原因并获得明确 OK。"
             )
-
         return result
+
+    def run_subagent(
+        self,
+        task: str,
+        context: str = "",
+        max_iterations: int = 30,
+    ) -> dict:
+        """启动一个独立子 Agent 完成指定子任务，返回其最终文字输出。
+        子 Agent 与主 Agent 共享同一工作目录和可读根目录，但上下文完全隔离。
+        适合将复杂任务拆分为：分析子任务 / 修改子任务 / 校验子任务等。
+
+        若子 Agent 调用 pause_and_ask，返回：
+          {"ok": True, "paused": True, "resume_id": "...", "question": "..."}
+        主 Agent 决策后调用 resume_subagent(resume_id, instruction) 继续。
+        """
+        from .config import (
+            ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, CLAUDE_USER_AGENT,
+            DEFAULT_MODEL, output_dir, skills_dir, cursor_skills_dir, mcp_dir,
+        )
+        import anthropic as _anthropic
+
+        system = "\n".join([
+            "你是一个专注执行子任务的 Agent，由主 Agent 启动。",
+            "",
+            "## 强制规则（违反 = 任务失败）",
+            "1. 所有工具调用结束后，**最后一条消息必须是纯文字**，包含完整的结构化结论（Markdown 格式）。",
+            "2. 不允许以工具调用结束任务——必须在最终 end_turn 消息里输出结论。",
+            "3. 不需要打包，不需要向用户确认，只需输出结论文字。",
+            "4. 如果脚本/工具输出了数据，必须将关键数据整理后写入最终回复，不能只说「已完成」。",
+            "5. **遇到 MCP 工具失败、或无法自行决策时**：调用 `pause_and_ask` 工具（说明问题和当前进度），"
+            "   然后立即停止（不再调用其他工具）。主 Agent 会通过 `resume_subagent` 提供指示后恢复执行。",
+            "",
+            "## 路径",
+            f"- 工作目录：`{self.workspace}`",
+            f"- 产出目录：`{output_dir()}`",
+            f"- Skill 目录：`{cursor_skills_dir()}`",
+            f"- MCP 目录：`{mcp_dir()}`",
+            f"- 公共资源目录：`{skills_dir()}`",
+        ])
+
+        user_content = f"{context}\n\n{task}".strip() if context else task
+        messages: list = [{"role": "user", "content": user_content}]
+
+        client = _anthropic.Anthropic(
+            api_key=ANTHROPIC_API_KEY,
+            base_url=ANTHROPIC_BASE_URL,
+            default_headers={"User-Agent": CLAUDE_USER_AGENT},
+        )
+        # 子 agent 不能递归调用 run_subagent / run_subagents_parallel / resume_subagent
+        _SUBAGENT_BLOCKED = {"run_subagent", "run_subagents_parallel", "resume_subagent"}
+        tools = [t for t in tool_definitions() if t["name"] not in _SUBAGENT_BLOCKED]
+
+        return self._run_subagent_loop(system, messages, client, tools, max_iterations)
+
+    def resume_subagent(self, resume_id: str, instruction: str) -> dict:
+        """恢复一个因 pause_and_ask 暂停的子 Agent，注入主 Agent 指示后继续执行。
+        resume_id : run_subagent 返回结果中的 resume_id 字段。
+        instruction: 主 Agent 的指示（直接回答子 agent 的问题，说明如何处理）。
+        """
+        from .config import (
+            ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, CLAUDE_USER_AGENT,
+        )
+        import anthropic as _anthropic
+        import json as _json
+
+        state_file = self.workspace / f".pause_state_{resume_id}.json"
+        if not state_file.exists():
+            return {"error": f"暂停状态不存在：resume_id={resume_id}（文件 .pause_state_{resume_id}.json 未找到）"}
+
+        state = _json.loads(state_file.read_text(encoding="utf-8"))
+        state_file.unlink()  # 用完即删，避免残留
+
+        system = state["system"]
+        messages = state["messages"]
+        tool_use_id = state["tool_use_id"]
+
+        # 将主 Agent 的指示作为 pause_and_ask 的工具结果注入
+        messages.append({
+            "role": "user",
+            "content": [{
+                "type": "tool_result",
+                "tool_use_id": tool_use_id,
+                "content": f"[主 Agent 指示] {instruction}",
+            }],
+        })
+
+        client = _anthropic.Anthropic(
+            api_key=ANTHROPIC_API_KEY,
+            base_url=ANTHROPIC_BASE_URL,
+            default_headers={"User-Agent": CLAUDE_USER_AGENT},
+        )
+        _SUBAGENT_BLOCKED = {"run_subagent", "run_subagents_parallel", "resume_subagent"}
+        tools = [t for t in tool_definitions() if t["name"] not in _SUBAGENT_BLOCKED]
+
+        return self._run_subagent_loop(system, messages, client, tools, max_iterations=30)
 
     def run_subagents_parallel(
         self,
@@ -1785,6 +1885,51 @@ def tool_definitions() -> list:
                     },
                 },
                 "required": ["tasks"],
+            },
+        },
+        {
+            "name": "pause_and_ask",
+            "description": (
+                "[子 agent 专用] 遇到 MCP 工具失败、路径找不到、或需要主 Agent 决策时调用。"
+                "调用后子 agent 暂停执行，主 Agent 收到 {paused: true, resume_id, question} 的结果。"
+                "主 Agent 通过 resume_subagent(resume_id, instruction) 注入指示后，子 agent 从断点继续。"
+                "调用后必须立即停止（不得再调用其他任何工具）。"
+            ),
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "question": {
+                        "type": "string",
+                        "description": "向主 Agent 提出的问题（包含：失败工具名、报错信息、可选处理方案）",
+                    },
+                    "context": {
+                        "type": "string",
+                        "description": "当前执行进度（已完成哪些步骤、卡在第几步）",
+                    },
+                },
+                "required": ["question"],
+            },
+        },
+        {
+            "name": "resume_subagent",
+            "description": (
+                "恢复一个因 pause_and_ask 暂停的子 Agent，注入主 Agent 指示后从断点继续执行。"
+                "resume_id 来自 run_subagent 返回的 paused=true 结果中的 resume_id 字段。"
+                "子 Agent 会收到主 Agent 的 instruction 作为 pause_and_ask 的工具结果，然后继续工作。"
+            ),
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "resume_id": {
+                        "type": "string",
+                        "description": "子 agent pause_and_ask 返回的 resume_id（8位字符串）",
+                    },
+                    "instruction": {
+                        "type": "string",
+                        "description": "主 Agent 的指示（明确告知子 agent 如何处理遇到的问题）",
+                    },
+                },
+                "required": ["resume_id", "instruction"],
             },
         },
     ]

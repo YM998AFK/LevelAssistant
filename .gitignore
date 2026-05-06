@@ -1,0 +1,33 @@
+# 运行时产出（日志、工作区、输出包）
+dist/
+output/
+workspaces/
+build/
+build.log
+build_output.txt
+
+# PyInstaller 产物
+*.spec
+*.exe
+*.lnk
+output.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+*.egg-info/
+
+# MCP 编译缓存
+skills/mcp/hetu_mcp/definitions/__pycache__/
+skills/mcp/hetu_mcp/handlers/__pycache__/
+skills/mcp/hetu_mcp/**/__pycache__/
+skills/mcp/temp/
+
+# 编辑器
+.cursor/
+*.swp
+.DS_Store
+Thumbs.db

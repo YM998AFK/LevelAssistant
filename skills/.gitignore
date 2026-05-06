@@ -1,0 +1,61 @@
+# === 产物与原始素材（按约定不入库） ===
+output/
+backup/
+input/
+*-extracted/
+参考/
+参考-extracted/
+关卡输出/
+输入/
+输出/
+
+# === scripts 下的临时文件 / 分析产物 ===
+scripts/_tmp_*
+scripts/_lvl6_*
+scripts/analysis_report.txt
+
+# === NavMesh 导出缓存(单场景 JSON,~50MB) ===
+scripts/navmesh/navmesh_cache/
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# === 编辑器 / IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === 操作系统 ===
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# === 打包 / 压缩中间产物 ===
+*.zip.tmp
+*.tmp
+*.bak
+*.log
+
+# === 机密 ===
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+secrets.json

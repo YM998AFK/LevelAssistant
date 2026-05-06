@@ -1,0 +1,1151 @@
+{
+  "__meta__": {
+    "source": "参考-extracted/*.ws",
+    "levels_scanned": 27,
+    "distinct_defines": 142,
+    "min_strict_sightings": 3,
+    "rule": {
+      "strict": "only one params_count seen AND sightings >= min_strict_sightings",
+      "variable": "multiple params_counts seen",
+      "rare": "total sightings < min_strict_sightings"
+    }
+  },
+  "entries": {
+    "09c264dd7fab4e08b2968afd8408d113/myblockdefine": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 6,
+      "distribution": {
+        "0": 6
+      }
+    },
+    "0ff75c32497d4ad9bbe9486112ed8913/myblockdefine": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 4,
+      "distribution": {
+        "0": 4
+      }
+    },
+    "1d475715dbe240c2a7b337000d4f1b2c/myblockdefine": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "0": 2
+      }
+    },
+    "4f6415af1e564a9f8fbd8b37b7bea20a/myblockdefine": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 6,
+      "distribution": {
+        "0": 6
+      }
+    },
+    "6377b110e62644a28570625c30d5c6ad/myblockdefine": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 8,
+      "distribution": {
+        "0": 8
+      }
+    },
+    "69213c10d8f24a8db805bb4312f94e74/myblockdefine": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "0": 2
+      }
+    },
+    "76c8407d27004b0da47a4480a96f4a7d/myblockdefine": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "0": 2
+      }
+    },
+    "Add": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 132,
+      "distribution": {
+        "3": 132
+      }
+    },
+    "And": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 33,
+      "distribution": {
+        "3": 33
+      }
+    },
+    "AskAndWait": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "BroadcastMessage": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 134,
+      "distribution": {
+        "1": 134
+      }
+    },
+    "BroadcastMessageAndWait": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 612,
+      "distribution": {
+        "1": 612
+      }
+    },
+    "CameraFollow": {
+      "kind": "strict",
+      "expect": 4,
+      "total": 4,
+      "distribution": {
+        "4": 4
+      }
+    },
+    "ChangeCameraFOV": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "ChangePosX": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 52,
+      "distribution": {
+        "2": 52
+      }
+    },
+    "ChangePosY": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 61,
+      "distribution": {
+        "2": 61
+      }
+    },
+    "ChangePosZ": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 7,
+      "distribution": {
+        "2": 7
+      }
+    },
+    "ChangeSize": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 66,
+      "distribution": {
+        "2": 66
+      }
+    },
+    "ChangeVolumeBy": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "CreateCloneOf": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 27,
+      "distribution": {
+        "1": 27
+      }
+    },
+    "DeleteThisClone": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 10,
+      "distribution": {
+        "0": 10
+      }
+    },
+    "DistanceTo": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "Divide": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 11,
+      "distribution": {
+        "3": 11
+      }
+    },
+    "EndRun": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 48,
+      "distribution": {
+        "2": 48
+      }
+    },
+    "FollowAndKeepDistance": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "FollowNode": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "Forever": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 27,
+      "distribution": {
+        "0": 27
+      }
+    },
+    "GetDaysSince2000": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "0": 1
+      }
+    },
+    "GetPosX": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 21,
+      "distribution": {
+        "1": 21
+      }
+    },
+    "GetPosY": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 7,
+      "distribution": {
+        "1": 7
+      }
+    },
+    "GetPosZ": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 3,
+      "distribution": {
+        "1": 3
+      }
+    },
+    "GetPropertyOf": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "2": 2
+      }
+    },
+    "GlideSecsToPosition2D": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 9,
+      "distribution": {
+        "3": 9
+      }
+    },
+    "GlideSecsToPosition3D": {
+      "kind": "strict",
+      "expect": 4,
+      "total": 21,
+      "distribution": {
+        "4": 21
+      }
+    },
+    "GlideSecsToPosition3DAndSetRotation": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "7": 1
+      }
+    },
+    "GlideSecsToTarget": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 30,
+      "distribution": {
+        "2": 30
+      }
+    },
+    "GotoFrontBack": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 17,
+      "distribution": {
+        "1": 17
+      }
+    },
+    "GotoPosition2D": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 256,
+      "distribution": {
+        "2": 256
+      }
+    },
+    "GotoPosition3D": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 268,
+      "distribution": {
+        "3": 268
+      }
+    },
+    "GotoProject": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "GotoTarget": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 18,
+      "distribution": {
+        "1": 18
+      }
+    },
+    "Hide": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 390,
+      "distribution": {
+        "1": 390
+      }
+    },
+    "HideVar": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "If": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 852,
+      "distribution": {
+        "1": 852
+      }
+    },
+    "IfElse": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 235,
+      "distribution": {
+        "1": 235
+      }
+    },
+    "IncVar": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 133,
+      "distribution": {
+        "2": 133
+      }
+    },
+    "IsEqual": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 1082,
+      "distribution": {
+        "3": 1082
+      }
+    },
+    "IsGreator": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 39,
+      "distribution": {
+        "3": 39
+      }
+    },
+    "IsKeyPressed": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "IsLess": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 76,
+      "distribution": {
+        "3": 76
+      }
+    },
+    "IsMouseDown": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "0": 2
+      }
+    },
+    "IsTouching": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "KeepNDecimalPlaces": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "ListAdd": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 229,
+      "distribution": {
+        "2": 229
+      }
+    },
+    "ListDeleteALl": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 51,
+      "distribution": {
+        "1": 51
+      }
+    },
+    "ListGetItemAt": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 266,
+      "distribution": {
+        "2": 266
+      }
+    },
+    "ListGetLength": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 20,
+      "distribution": {
+        "1": 20
+      }
+    },
+    "MathFunc": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 19,
+      "distribution": {
+        "2": 19
+      }
+    },
+    "Mod": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 17,
+      "distribution": {
+        "2": 17
+      }
+    },
+    "MouseX": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "MouseY": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "Multiply": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 73,
+      "distribution": {
+        "3": 73
+      }
+    },
+    "Not": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 63,
+      "distribution": {
+        "1": 63
+      }
+    },
+    "Or": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 69,
+      "distribution": {
+        "3": 69
+      }
+    },
+    "PickRandom": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 35,
+      "distribution": {
+        "2": 35
+      }
+    },
+    "PlayAnimation": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 301,
+      "distribution": {
+        "1": 301
+      }
+    },
+    "PlayAnimationUntil": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 88,
+      "distribution": {
+        "1": 88
+      }
+    },
+    "PlayBGM": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 5,
+      "distribution": {
+        "2": 5
+      }
+    },
+    "PlayDialogueGroup": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "PlayEmotionAnimation": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "PlaySound": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 210,
+      "distribution": {
+        "1": 210
+      }
+    },
+    "PlaySoundUntil": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 60,
+      "distribution": {
+        "1": 60
+      }
+    },
+    "PlayTransitEffect": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "PointInDirection": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 144,
+      "distribution": {
+        "2": 144
+      }
+    },
+    "PointInPitch": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 3,
+      "distribution": {
+        "2": 3
+      }
+    },
+    "PointTowards": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "Repeat": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 155,
+      "distribution": {
+        "1": 155
+      }
+    },
+    "RepeatUntil": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "ResetTimer": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "0": 1
+      }
+    },
+    "Round": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 3,
+      "distribution": {
+        "1": 3
+      }
+    },
+    "RunToTarget": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "RunToTargetAndWait": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 29,
+      "distribution": {
+        "1": 29
+      }
+    },
+    "Say": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "SaySeconds": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 154,
+      "distribution": {
+        "2": 154
+      }
+    },
+    "SetAnimationSpeed": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 38,
+      "distribution": {
+        "1": 38
+      }
+    },
+    "SetCameraFOV": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 15,
+      "distribution": {
+        "1": 15
+      }
+    },
+    "SetControllerState": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 48,
+      "distribution": {
+        "2": 48
+      }
+    },
+    "SetDialogueCamera": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "SetDialoguePlayMode": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "1": 2
+      }
+    },
+    "SetDialogueStyle": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "SetDialogueTypingSpeed": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "SetPosX": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 3,
+      "distribution": {
+        "2": 3
+      }
+    },
+    "SetPosY": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 4,
+      "distribution": {
+        "2": 4
+      }
+    },
+    "SetPosZ": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "SetSaySkin": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "1": 2
+      }
+    },
+    "SetSize": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 258,
+      "distribution": {
+        "2": 258
+      }
+    },
+    "SetSpeedMul": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 4,
+      "distribution": {
+        "1": 4
+      }
+    },
+    "SetThinkSkin": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "SetTitle": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 147,
+      "distribution": {
+        "1": 147
+      }
+    },
+    "SetVar": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 1085,
+      "distribution": {
+        "2": 1085
+      }
+    },
+    "SetVolumeTo": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 4,
+      "distribution": {
+        "1": 4
+      }
+    },
+    "Show": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 426,
+      "distribution": {
+        "1": 426
+      }
+    },
+    "ShowLabel": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 3,
+      "distribution": {
+        "1": 3
+      }
+    },
+    "ShowVar": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "SizeOp": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "StartWalk": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "StopAllSound": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 9,
+      "distribution": {
+        "0": 9
+      }
+    },
+    "StopAnimation": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 52,
+      "distribution": {
+        "1": 52
+      }
+    },
+    "StopScript": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 78,
+      "distribution": {
+        "1": 78
+      }
+    },
+    "StopWalk": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "StrContains": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 12,
+      "distribution": {
+        "2": 12
+      }
+    },
+    "StrJoin": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 163,
+      "distribution": {
+        "2": 163
+      }
+    },
+    "StrLength": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 73,
+      "distribution": {
+        "1": 73
+      }
+    },
+    "StrLetterOf": {
+      "kind": "strict",
+      "expect": 2,
+      "total": 131,
+      "distribution": {
+        "2": 131
+      }
+    },
+    "Subtract": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 40,
+      "distribution": {
+        "3": 40
+      }
+    },
+    "SwitchCostume": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 75,
+      "distribution": {
+        "1": 75
+      }
+    },
+    "Think": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "ThinkSeconds": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "TransitProject": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "3": 1
+      }
+    },
+    "TransitToCameraPreset": {
+      "kind": "strict",
+      "expect": 3,
+      "total": 48,
+      "distribution": {
+        "3": 48
+      }
+    },
+    "TurnLeft": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "TurnRight": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "TurnToAngleInSecs": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "TurnToTargetInSecs": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "Variable": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 1927,
+      "distribution": {
+        "1": 1927
+      }
+    },
+    "WaitSeconds": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 584,
+      "distribution": {
+        "1": 584
+      }
+    },
+    "WaitUntil": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 21,
+      "distribution": {
+        "1": 21
+      }
+    },
+    "WalkToTarget": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "WalkToTargetAndWait": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "1": 1
+      }
+    },
+    "WhenCollisionDetected": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 3,
+      "distribution": {
+        "1": 3
+      }
+    },
+    "WhenGameStarts": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 115,
+      "distribution": {
+        "0": 115
+      }
+    },
+    "WhenIStartAsAClone": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 22,
+      "distribution": {
+        "0": 22
+      }
+    },
+    "WhenKeyPressed": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "1": 2
+      }
+    },
+    "WhenLoudnessOrTimer": {
+      "kind": "rare",
+      "expect": null,
+      "total": 1,
+      "distribution": {
+        "2": 1
+      }
+    },
+    "WhenReceiveMessage": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 1234,
+      "distribution": {
+        "1": 1234
+      }
+    },
+    "WhenStartup": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 33,
+      "distribution": {
+        "0": 33
+      }
+    },
+    "WhenThisSpriteClicked": {
+      "kind": "strict",
+      "expect": 1,
+      "total": 3,
+      "distribution": {
+        "1": 3
+      }
+    },
+    "a04c3d0860504276ae73340af3feba3d/myblockdefine": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "0": 2
+      }
+    },
+    "a2a7941eff7e4ce7a016aa59bd5bcb3a/myblockdefine": {
+      "kind": "rare",
+      "expect": null,
+      "total": 2,
+      "distribution": {
+        "0": 2
+      }
+    },
+    "b90d9073be0941c3b03c0465edb92092/myblockdefine": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 4,
+      "distribution": {
+        "0": 4
+      }
+    },
+    "c77b301df1be4eb49260ebf4f391f23f/myblockdefine": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 8,
+      "distribution": {
+        "0": 8
+      }
+    },
+    "e70f5778fcde43e6b28a2fd521505404/myblockdefine": {
+      "kind": "strict",
+      "expect": 0,
+      "total": 12,
+      "distribution": {
+        "0": 12
+      }
+    }
+  }
+}

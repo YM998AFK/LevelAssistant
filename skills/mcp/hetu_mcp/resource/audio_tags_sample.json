@@ -1,0 +1,225 @@
+[
+  {
+    "resource_id": 28968,
+    "name": "cin输入值",
+    "resource_type": "Sound",
+    "category": "关卡通用音效",
+    "features": {
+      "duration": 0.5,
+      "rms": 0.0466,
+      "zcr": 0.1025,
+      "centroid": 2017.3,
+      "bpm": 0.0,
+      "harmonic_ratio": 0.07
+    },
+    "tags": {
+      "type": "SFX",
+      "duration_s": 0.5,
+      "length": "中等",
+      "emotion": "中性提示",
+      "trigger": "数值UI"
+    }
+  },
+  {
+    "resource_id": 30838,
+    "name": "乌拉乎惨叫-1s",
+    "resource_type": "Sound",
+    "category": "关卡通用音效",
+    "features": {
+      "duration": 1.06,
+      "rms": 0.078,
+      "zcr": 0.1372,
+      "centroid": 2518.5,
+      "bpm": 99.4,
+      "harmonic_ratio": 0.47
+    },
+    "tags": {
+      "type": "SFX",
+      "duration_s": 1.06,
+      "length": "中等",
+      "tempo": "中",
+      "bpm": 99.4,
+      "emotion": "待确认",
+      "trigger": "数值UI"
+    }
+  },
+  {
+    "resource_id": 28972,
+    "name": "凸显",
+    "resource_type": "Sound",
+    "category": "关卡通用音效",
+    "features": {
+      "duration": 1.25,
+      "rms": 0.0283,
+      "zcr": 0.4637,
+      "centroid": 5004.2,
+      "bpm": 287.1,
+      "harmonic_ratio": 0.34
+    },
+    "tags": {
+      "type": "SFX",
+      "duration_s": 1.25,
+      "length": "中等",
+      "tempo": "快",
+      "bpm": 287.1,
+      "emotion": "中性提示",
+      "trigger": "屏幕/弹窗"
+    }
+  },
+  {
+    "resource_id": 29278,
+    "name": "升温",
+    "resource_type": "Sound",
+    "category": "关卡通用音效",
+    "features": {
+      "duration": 2.93,
+      "rms": 0.0148,
+      "zcr": 0.4618,
+      "centroid": 5433.3,
+      "bpm": 234.9,
+      "harmonic_ratio": 0.47
+    },
+    "tags": {
+      "type": "SFX",
+      "duration_s": 2.93,
+      "length": "中等",
+      "tempo": "快",
+      "bpm": 234.9,
+      "emotion": "待确认",
+      "trigger": "特效"
+    }
+  },
+  {
+    "resource_id": 29258,
+    "name": "变身",
+    "resource_type": "Sound",
+    "category": "关卡通用音效",
+    "features": {
+      "duration": 1.34,
+      "rms": 0.0156,
+      "zcr": 0.4841,
+      "centroid": 5645.7,
+      "bpm": 172.3,
+      "harmonic_ratio": 0.35
+    },
+    "tags": {
+      "type": "SFX",
+      "duration_s": 1.34,
+      "length": "中等",
+      "tempo": "快",
+      "bpm": 172.3,
+      "emotion": "中性提示",
+      "trigger": "角色动作"
+    }
+  },
+  {
+    "resource_id": 28979,
+    "name": "冒险探索1",
+    "resource_type": "Music",
+    "category": "关卡通用BGM",
+    "features": {
+      "duration": 29.88,
+      "rms": 0.0179,
+      "zcr": 0.0446,
+      "centroid": 1056.0,
+      "bpm": 92.3,
+      "harmonic_ratio": 0.79
+    },
+    "tags": {
+      "type": "BGM",
+      "duration_s": 29.88,
+      "length": "长",
+      "tempo": "中",
+      "bpm": 92.3,
+      "mood": "温馨/舒缓"
+    }
+  },
+  {
+    "resource_id": 28977,
+    "name": "冒险探索2",
+    "resource_type": "Music",
+    "category": "关卡通用BGM",
+    "features": {
+      "duration": 31.39,
+      "rms": 0.0208,
+      "zcr": 0.042,
+      "centroid": 942.1,
+      "bpm": 112.3,
+      "harmonic_ratio": 0.85
+    },
+    "tags": {
+      "type": "BGM",
+      "duration_s": 31.39,
+      "length": "长",
+      "tempo": "中",
+      "bpm": 112.3,
+      "mood": "温馨/舒缓"
+    }
+  },
+  {
+    "resource_id": 28976,
+    "name": "冒险探索3",
+    "resource_type": "Music",
+    "category": "关卡通用BGM",
+    "features": {
+      "duration": 20.83,
+      "rms": 0.0345,
+      "zcr": 0.0795,
+      "centroid": 2032.7,
+      "bpm": 107.7,
+      "harmonic_ratio": 0.67
+    },
+    "tags": {
+      "type": "BGM",
+      "duration_s": 20.83,
+      "length": "长",
+      "tempo": "中",
+      "bpm": 107.7,
+      "mood": "温馨/舒缓"
+    }
+  },
+  {
+    "resource_id": 28980,
+    "name": "冒险探索4",
+    "resource_type": "Music",
+    "category": "关卡通用BGM",
+    "features": {
+      "duration": 35.86,
+      "rms": 0.0237,
+      "zcr": 0.0331,
+      "centroid": 603.1,
+      "bpm": 117.5,
+      "harmonic_ratio": 0.91
+    },
+    "tags": {
+      "type": "BGM",
+      "duration_s": 35.86,
+      "length": "长",
+      "tempo": "中",
+      "bpm": 117.5,
+      "mood": "温馨/舒缓"
+    }
+  },
+  {
+    "resource_id": 28983,
+    "name": "温馨治愈1",
+    "resource_type": "Music",
+    "category": "关卡通用BGM",
+    "features": {
+      "duration": 30.82,
+      "rms": 0.0231,
+      "zcr": 0.0767,
+      "centroid": 1498.1,
+      "bpm": 112.3,
+      "harmonic_ratio": 0.9
+    },
+    "tags": {
+      "type": "BGM",
+      "duration_s": 30.82,
+      "length": "长",
+      "tempo": "中",
+      "bpm": 112.3,
+      "mood": "温馨/舒缓"
+    }
+  }
+]

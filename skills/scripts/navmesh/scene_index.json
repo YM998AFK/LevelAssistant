@@ -1,0 +1,1828 @@
+{
+  "_meta": {
+    "catalog_source": ".cursor/skills/level-common/asset_catalog.md",
+    "unity_scene_root": "D:\\meishu\\Assets\\BundleResources\\ide\\scene",
+    "counts": {
+      "catalog_rows": 181,
+      "fs_unity_files": 170,
+      "indexed_scenes": 181,
+      "with_navmesh": 160,
+      "missing_unity": 15,
+      "missing_navmesh": 6,
+      "ambiguous": 0,
+      "orphan_unity": 4
+    }
+  },
+  "scenes": {
+    "11199": {
+      "asset_id": 11199,
+      "name": "yuandan",
+      "category": "test",
+      "unity_file": "level_house_sunday_builtin_yuandan.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1703581130682-1-129009.79999999702-4306303.gif"
+    },
+    "11309": {
+      "asset_id": 11309,
+      "name": "plaza_night",
+      "category": "test",
+      "unity_file": "level_plaza_sunday_builtin_night.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1705290102920-1-170751.5-984952.png"
+    },
+    "11389": {
+      "asset_id": 11389,
+      "name": "level_modun_dust",
+      "category": "test",
+      "unity_file": "level_modun_dust.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1711530041176-1-63128.5-846824.png"
+    },
+    "11391": {
+      "asset_id": 11391,
+      "name": "Event61",
+      "category": "test",
+      "unity_file": "level_61.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1711681979671-1-125983.60000000149-541600.png"
+    },
+    "11392": {
+      "asset_id": 11392,
+      "name": "empty",
+      "category": "test",
+      "unity_file": "empty.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\Empty\\empty.unity",
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1712728315203-1-53440.89999997616-1050873.png"
+    },
+    "11410": {
+      "asset_id": 11410,
+      "name": "ac1",
+      "category": "test",
+      "unity_file": "ac-1.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1718874000413-1-269196472.6-1405507.png"
+    },
+    "11411": {
+      "asset_id": 11411,
+      "name": "ac-2",
+      "category": "test",
+      "unity_file": "ac-2.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1718874195078-1-269391138.79999995-1471366.png"
+    },
+    "11412": {
+      "asset_id": 11412,
+      "name": "ac-3",
+      "category": "test",
+      "unity_file": "ac-3.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1718874325886-1-269521946.70000005-1402293.png"
+    },
+    "11413": {
+      "asset_id": 11413,
+      "name": "ac-4",
+      "category": "test",
+      "unity_file": "ac-4.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1718874438829-1-269634889.5-1667966.png"
+    },
+    "11430": {
+      "asset_id": 11430,
+      "name": "ac-5",
+      "category": "test",
+      "unity_file": "ac-5.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1718874555224-1-269751285.79999995-1623812.png"
+    },
+    "11608": {
+      "asset_id": 11608,
+      "name": "ac-6",
+      "category": "test",
+      "unity_file": "ac-6.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1718874657051-1-269853112.79999995-1264509.png"
+    },
+    "12050": {
+      "asset_id": 12050,
+      "name": "N1",
+      "category": "test",
+      "unity_file": "1.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1719477359754-1-2250815.7000000477-1405507.png"
+    },
+    "12051": {
+      "asset_id": 12051,
+      "name": "2D-1",
+      "category": "test",
+      "unity_file": "tset2d.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1732179183191-1-62645.89999997616-457077.png"
+    },
+    "12052": {
+      "asset_id": 12052,
+      "name": "2D-2",
+      "category": "test",
+      "unity_file": "tset2d-2.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1732179993923-1-873377.8000000119-506361.png"
+    },
+    "12053": {
+      "asset_id": 12053,
+      "name": "demo",
+      "category": "test",
+      "unity_file": "tset2d-demo.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1732615865840-1-74373.5-393860.png"
+    },
+    "12119": {
+      "asset_id": 12119,
+      "name": "test2d-demo02",
+      "category": "test",
+      "unity_file": "tset2d-demo01.unity",
+      "unity_abspath": null,
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1733468541282-1-64933.09999999404-393860.png"
+    },
+    "12407": {
+      "asset_id": 12407,
+      "name": "l1-01-02",
+      "category": "C++Python 1-2",
+      "unity_file": "l1-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-01-02\\l1-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-01-02\\l1-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1736149511274-1-178679938.79999995-607743.png"
+    },
+    "12409": {
+      "asset_id": 12409,
+      "name": "l1-02-03",
+      "category": "C++Python 1-2",
+      "unity_file": "l1-02-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-02-03\\l1-02-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-02-03\\l1-02-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1736160527133-1-189695787.10000014-383044.png"
+    },
+    "12836": {
+      "asset_id": 12836,
+      "name": "l1-02-02-c",
+      "category": "C++Python 1-2",
+      "unity_file": "l1-02-02-c.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-02-02-c\\l1-02-02-c.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-02-02-c\\l1-02-02-c\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1737375595775-1-72996.90000000596-664082.png"
+    },
+    "12994": {
+      "asset_id": 12994,
+      "name": "landtest",
+      "category": "C++Python 1-2",
+      "unity_file": "landscapetest.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\LandscapeTest\\landscapetest.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\LandscapeTest\\landscapetest\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1740539746742-1-87832.5-459226.png"
+    },
+    "13023": {
+      "asset_id": 13023,
+      "name": "迭代",
+      "category": "C++Python 1-2",
+      "unity_file": "l1-01-01-1.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\diedai\\l1-01-01-1.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\diedai\\l1-01-01-1\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1741683710445-1-76391.20000004768-613674.bmp"
+    },
+    "13346": {
+      "asset_id": 13346,
+      "name": "黄牛客栈",
+      "category": "C++Python 1-2",
+      "unity_file": "l1-01-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-01-04\\l1-01-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-01-04\\l1-01-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1742885297309-1-411900831.4-1938334.bmp"
+    },
+    "13366": {
+      "asset_id": 13366,
+      "name": "天雷殿外沙漠区 天雷殿大地图 天雷殿安全角落 偏殿",
+      "category": "C++Python 1-2",
+      "unity_file": "l1-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-03-01\\l1-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-03-01\\l1-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1742891501715-1-5479836.200000048-880180.jpg"
+    },
+    "14657": {
+      "asset_id": 14657,
+      "name": "海州城",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-01-01\\l2-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-01-01\\l2-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1743842478509-1-5076511-1843550.jpg"
+    },
+    "14658": {
+      "asset_id": 14658,
+      "name": "胡百亿家废墟万宝阁屋前疾风屋前",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-01-02\\l2-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-01-02\\l2-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1743842601180-1-5199183.099999964-1828386.jpg"
+    },
+    "14662": {
+      "asset_id": 14662,
+      "name": "滩涂",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-02-01\\l2-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-02-01\\l2-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1743844847556-1-261047410.5-7861662.bmp"
+    },
+    "14663": {
+      "asset_id": 14663,
+      "name": "龙宫",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-03-01\\l2-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-03-01\\l2-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1743844930051-1-261129916.79999995-7964406.bmp"
+    },
+    "14664": {
+      "asset_id": 14664,
+      "name": "烬渊之瞳",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-04-01\\l2-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-04-01\\l2-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1743844978527-1-261178393.29999995-12293910.bmp"
+    },
+    "14665": {
+      "asset_id": 14665,
+      "name": "藏宝阁内部",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-04-02\\l2-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-04-02\\l2-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1743845034812-1-261234683.69999993-1411974.bmp"
+    },
+    "14697": {
+      "asset_id": 14697,
+      "name": "CG沙州城",
+      "category": "C++Python 1-2",
+      "unity_file": "l1-01-01-1-cg.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-01-01-cg\\l1-01-01-1-cg.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-01-01-cg\\l1-01-01-1-cg\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1744342549787-1-233007251.7-287759.png"
+    },
+    "14879": {
+      "asset_id": 14879,
+      "name": "缆车房间",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-03-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-03-02\\l3-03-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-03-02\\l3-03-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1744712749625-1-273959170.4-1482358.bmp"
+    },
+    "14880": {
+      "asset_id": 14880,
+      "name": "毕方鸟屋",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-03-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-03-03\\l3-03-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-03-03\\l3-03-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1744712848197-1-13863-1066310.bmp"
+    },
+    "14881": {
+      "asset_id": 14881,
+      "name": "神庙内部",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-04-01\\l3-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-04-01\\l3-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1744713030939-1-196607.09999996424-1663342.bmp"
+    },
+    "14882": {
+      "asset_id": 14882,
+      "name": "四季山谷",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-04-02\\l3-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-04-02\\l3-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1744713150442-1-316111.1999999881-1293654.bmp"
+    },
+    "14883": {
+      "asset_id": 14883,
+      "name": "景王府",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-01-02\\l3-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-01-02\\l3-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1744785247230-1-62329.90000000596-1961834.jpg"
+    },
+    "14884": {
+      "asset_id": 14884,
+      "name": "黄州城大地图",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-01-01\\l3-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-01-01\\l3-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1745479527760-1-84044088.2-985026.jpg"
+    },
+    "14885": {
+      "asset_id": 14885,
+      "name": "古祭坛迷宫",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-02-01\\l3-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-02-01\\l3-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1744795533407-1-1823930.1000000238-728915.jpg"
+    },
+    "15072": {
+      "asset_id": 15072,
+      "name": "玄武山",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-03-01\\l3-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-03-01\\l3-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1744785303669-1-70936043.00000006-1357014.bmp"
+    },
+    "16093": {
+      "asset_id": 16093,
+      "name": "桃源山大地图",
+      "category": "C++Python 1-2",
+      "unity_file": "l4-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-01-01\\l4-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-01-01\\l4-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": null
+    },
+    "16094": {
+      "asset_id": 16094,
+      "name": "怪兽休憩室",
+      "category": "C++Python 1-2",
+      "unity_file": "l4-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-03-01\\l4-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-03-01\\l4-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1746775086473-1-387928.39999997616-627942.jpg"
+    },
+    "16100": {
+      "asset_id": 16100,
+      "name": "悬浮之地",
+      "category": "C++Python 1-2",
+      "unity_file": "l4-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-02-01\\l4-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-02-01\\l4-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1746780802406-1-83866.40000003576-1676106.bmp"
+    },
+    "16101": {
+      "asset_id": 16101,
+      "name": "怪兽工厂",
+      "category": "C++Python 1-2",
+      "unity_file": "l4-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-04-01\\l4-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-04-01\\l4-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1746780853206-1-134666.70000004768-1496934.bmp"
+    },
+    "16112": {
+      "asset_id": 16112,
+      "name": "戏院",
+      "category": "C++Python 1-2",
+      "unity_file": "l4-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-04-02\\l4-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-04-02\\l4-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": null
+    },
+    "16364": {
+      "asset_id": 16364,
+      "name": "古代店铺内",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-02\\l5-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-02\\l5-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1747979672940-1-120853.69999998808-3155350.bmp"
+    },
+    "16375": {
+      "asset_id": 16375,
+      "name": "军营",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-01-01\\l5-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-01-01\\l5-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1748334307515-1-128187.79999995232-2135866.bmp"
+    },
+    "16414": {
+      "asset_id": 16414,
+      "name": "万宝气站",
+      "category": "C++Python 1-2",
+      "unity_file": "l4-03-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-03-02\\l4-03-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-03-02\\l4-03-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1748587048394-1-351564.90000000596-1181591.jpg"
+    },
+    "16429": {
+      "asset_id": 16429,
+      "name": "峡谷",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-01\\l5-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-01\\l5-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1749207880274-1-6090.79999999702-1214776.jpg"
+    },
+    "16430": {
+      "asset_id": 16430,
+      "name": "方丈岛修炼室",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-02-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-03\\l5-02-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-03\\l5-02-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1750155848588-1-102003002.3-727415.jpg"
+    },
+    "16431": {
+      "asset_id": 16431,
+      "name": "木咋特鸟孵化室",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-02-05.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-05\\l5-02-05.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-05\\l5-02-05\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1751884271030-1-16578-602848.jpg"
+    },
+    "16432": {
+      "asset_id": 16432,
+      "name": "时间之眼核心",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-02-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-04\\l5-02-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-04\\l5-02-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1750155837289-1-101991702.7-1071357.jpg"
+    },
+    "16440": {
+      "asset_id": 16440,
+      "name": "卫城",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-03-01\\l5-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-03-01\\l5-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": null
+    },
+    "16451": {
+      "asset_id": 16451,
+      "name": "河道闸口",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-01\\l5-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-01\\l5-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1749450658130-1-12952-3252918.bmp"
+    },
+    "16949": {
+      "asset_id": 16949,
+      "name": "蒸汽卡皮巴拉室内",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-03-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-03-02\\l5-03-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-03-02\\l5-03-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1749629054262-1-91319400.7-2024750.bmp"
+    },
+    "16950": {
+      "asset_id": 16950,
+      "name": "卫城（修复后）",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-04-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-03\\l5-04-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-03\\l5-04-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": null
+    },
+    "16951": {
+      "asset_id": 16951,
+      "name": "喵喵盲盒店内",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-04-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-04\\l5-04-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-04\\l5-04-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1749635066969-1-5837395.400000006-3113946.bmp"
+    },
+    "16952": {
+      "asset_id": 16952,
+      "name": "御膳房厨具库",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-02-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-02-02\\l6-02-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-02-02\\l6-02-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1751619414468-1-3690372.399999976-895385.jpg"
+    },
+    "16953": {
+      "asset_id": 16953,
+      "name": "河道闸口花田",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-01-01\\l6-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-01-01\\l6-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1749706818434-1-71660190.59999996-2116654.bmp"
+    },
+    "16958": {
+      "asset_id": 16958,
+      "name": "天姆小卖部",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-03-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-03-03\\l6-03-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-03-03\\l6-03-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1749715833523-1-2746891.300000012-2118390.bmp"
+    },
+    "16972": {
+      "asset_id": 16972,
+      "name": "方丈岛",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-02-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-02\\l5-02-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-02-02\\l5-02-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1749718478638-1-5392030.700000048-2012190.bmp"
+    },
+    "16996": {
+      "asset_id": 16996,
+      "name": "皇城",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-02-01\\l6-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-02-01\\l6-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1752213707105-1-8952279-1266653.jpg"
+    },
+    "17083": {
+      "asset_id": 17083,
+      "name": "监狱",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-03-01\\l6-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-03-01\\l6-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1750059947286-1-2602208.3000000715-2223514.bmp"
+    },
+    "17267": {
+      "asset_id": 17267,
+      "name": "雪地",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-03-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-03-04\\l6-03-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-03-04\\l6-03-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1750228532232-1-65444200.89999999-2547766.bmp"
+    },
+    "17286": {
+      "asset_id": 17286,
+      "name": "大坝内",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-03-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-03-03\\l5-03-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-03-03\\l5-03-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1750320512337-1-89916707.5-2499838.bmp"
+    },
+    "17287": {
+      "asset_id": 17287,
+      "name": "百兽战神驾驶舱",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-01-02\\l6-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-01-02\\l6-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1750321162494-1-549598.8000000119-1302066.bmp"
+    },
+    "17745": {
+      "asset_id": 17745,
+      "name": "小核桃核心",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-04-01\\l6-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-04-01\\l6-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1750835498885-1-166909496.10000002-2330798.bmp"
+    },
+    "17759": {
+      "asset_id": 17759,
+      "name": "蒸汽腾蛇",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-03-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-03-02\\l6-03-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-03-02\\l6-03-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1750919424743-1-11023153.100000024-1943454.bmp"
+    },
+    "17986": {
+      "asset_id": 17986,
+      "name": "破碎皇城",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-04-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-04-03\\l6-04-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-04-03\\l6-04-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1751619377277-1-3653180.5999999642-1651728.jpg"
+    },
+    "18127": {
+      "asset_id": 18127,
+      "name": "皇宫大殿",
+      "category": "C++Python 1-2",
+      "unity_file": "l6-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-04-02\\l6-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l6\\l6-04-02\\l6-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1751533187677-1-7088041.199999988-811331.jpg"
+    },
+    "19280": {
+      "asset_id": 19280,
+      "name": "CG牛牛客栈",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-02-cg.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-02-cg\\l2-02-cg.unity",
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1752227302933-1-11802397-505192.jpg"
+    },
+    "19281": {
+      "asset_id": 19281,
+      "name": "CG城外滩涂",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-03-cg.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-03-cg\\l2-03-cg.unity",
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1752227352301-1-11851765.2-858806.jpg"
+    },
+    "19282": {
+      "asset_id": 19282,
+      "name": "CG 飞来峰山脚树林  古迹坛外",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-04-cg.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-04-cg\\l3-04-cg.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-04-cg\\l3-04-cg\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1752227573961-1-12073425.7-873488.jpg"
+    },
+    "19287": {
+      "asset_id": 19287,
+      "name": "cg水库",
+      "category": "C++Python 1-2",
+      "unity_file": "l3-03-cg.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-03-cg\\l3-03-cg.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l3\\l3-03-cg\\l3-03-cg\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1754639353054-1-2053116.800000012-786956.jpg"
+    },
+    "19454": {
+      "asset_id": 19454,
+      "name": "沙州城独孤崖",
+      "category": "C++Python 1-2",
+      "unity_file": "l1-01-01-2.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-01-01-2\\l1-01-01-2.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l1\\l1-01-01-2\\l1-01-01-2\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1752646006609-1-189478893-1884214.bmp"
+    },
+    "19456": {
+      "asset_id": 19456,
+      "name": "硬件雪原",
+      "category": "C++Python 1-2",
+      "unity_file": "l2-3.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-3\\l2-3.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l2\\l2-3\\l2-3\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1752735720024-1-38656.20000000298-896432.jpg"
+    },
+    "20710": {
+      "asset_id": 20710,
+      "name": "魔法服装店",
+      "category": "C++Python 1-2",
+      "unity_file": "l7-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-01\\l7-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-01\\l7-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1756980122331-1-116768784.30000019-1544998.bmp"
+    },
+    "20726": {
+      "asset_id": 20726,
+      "name": "魔法扫帚店",
+      "category": "C++Python 1-2",
+      "unity_file": "l7-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-02\\l7-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-02\\l7-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1757043070728-1-62775871.39999986-1430518.bmp"
+    },
+    "20727": {
+      "asset_id": 20727,
+      "name": "魔药学教室",
+      "category": "C++Python 1-2",
+      "unity_file": "l7-03-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-03-02\\l7-03-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-03-02\\l7-03-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1756289391611-1-19150466.100000143-1915770.bmp"
+    },
+    "20728": {
+      "asset_id": 20728,
+      "name": "营地（7-4D形态）",
+      "category": "C++Python 1-2",
+      "unity_file": "l7-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01\\l7-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01\\l7-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1755224007980-1-49547705.800000004-3321846.bmp"
+    },
+    "20731": {
+      "asset_id": 20731,
+      "name": "魔法温室内部",
+      "category": "C++L7",
+      "unity_file": "l7-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-03-01\\l7-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-03-01\\l7-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1756274607841-1-1000546.2999999821-871157.jpg"
+    },
+    "20732": {
+      "asset_id": 20732,
+      "name": "魔药园",
+      "category": "C++L7",
+      "unity_file": "l7-02-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-02-02\\l7-02-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-02-02\\l7-02-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1757925122347-1-19271056.8-878662.jpg"
+    },
+    "20733": {
+      "asset_id": 20733,
+      "name": "四季山谷（岔路版)",
+      "category": "C++L7",
+      "unity_file": "l7-01-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-04\\l7-01-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-04\\l7-01-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1755229285811-1-252427.90000000596-1077181.jpg"
+    },
+    "20734": {
+      "asset_id": 20734,
+      "name": "天空王国（岔路版）",
+      "category": "C++Python 1-2",
+      "unity_file": "l7-01-05.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-05\\l7-01-05.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-05\\l7-01-05\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1757402538503-1-283381.5-664663.jpg"
+    },
+    "20735": {
+      "asset_id": 20735,
+      "name": "峡谷（岔路版）",
+      "category": "C++L7",
+      "unity_file": "l7-01-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-03\\l7-01-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-03\\l7-01-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1755229378613-1-345229.90000000596-786220.jpg"
+    },
+    "20794": {
+      "asset_id": 20794,
+      "name": "营地（7-4C形态）",
+      "category": "C++L7",
+      "unity_file": "l7-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-02\\l7-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-02\\l7-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1756192514655-1-81682057.39999998-3197142.bmp"
+    },
+    "20795": {
+      "asset_id": 20795,
+      "name": "营地（7-4B形态）",
+      "category": "C++L7",
+      "unity_file": "l7-04-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-03\\l7-04-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-03\\l7-04-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1756192624183-1-81791587.89999998-3189306.bmp"
+    },
+    "20796": {
+      "asset_id": 20796,
+      "name": "营地（7-A形态）",
+      "category": "C++L7",
+      "unity_file": "l7-04-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-04\\l7-04-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-04\\l7-04-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1756192673795-1-81841200-3186342.bmp"
+    },
+    "20820": {
+      "asset_id": 20820,
+      "name": "高铁车站八角巷",
+      "category": "C++L7",
+      "unity_file": "l7-01-06.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-06\\l7-01-06.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-06\\l7-01-06\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1757062132541-1-2190703-1600693.jpg"
+    },
+    "20869": {
+      "asset_id": 20869,
+      "name": "魔法学院主楼内",
+      "category": "C++L7",
+      "unity_file": "l7-01-07.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-07\\l7-01-07.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-07\\l7-01-07\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1756365717527-1-95477508.9000001-2053938.bmp"
+    },
+    "20919": {
+      "asset_id": 20919,
+      "name": "魔法学院主楼前",
+      "category": "C++L7",
+      "unity_file": "l7-01-08.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-08\\l7-01-08.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-08\\l7-01-08\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1760524109211-1-32598240-2663094.bmp"
+    },
+    "21224": {
+      "asset_id": 21224,
+      "name": "营地（7-4D-01形态）",
+      "category": "C++Python 1-2",
+      "unity_file": "l7-04-01-1.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-1\\l7-04-01-1.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-1\\l7-04-01-1\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1757051847986-1-71553210.0999999-2683598.bmp"
+    },
+    "21240": {
+      "asset_id": 21240,
+      "name": "龙栖树上的龙巢",
+      "category": "C++L8",
+      "unity_file": "l8-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-02\\l8-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-02\\l8-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1758510995054-1-33721.200000000186-562714.jpg"
+    },
+    "21261": {
+      "asset_id": 21261,
+      "name": "灵镜湖中的空间湖中空间",
+      "category": "C++L8",
+      "unity_file": "l8-01-06.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-06\\l8-01-06.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-06\\l8-01-06\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1758789932812-1-4533318.199999988-882851.jpg"
+    },
+    "21293": {
+      "asset_id": 21293,
+      "name": "禁林",
+      "category": "C++L8",
+      "unity_file": "l8-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-01\\l8-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-01\\l8-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1758704900774-1-167899.90000009537-1284278.bmp"
+    },
+    "21337": {
+      "asset_id": 21337,
+      "name": "中国象棋残局阵",
+      "category": "C++L8",
+      "unity_file": "l8-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-02-01\\l8-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-02-01\\l8-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1760350468502-1-3754275.6999999993-825024.jpg"
+    },
+    "21351": {
+      "asset_id": 21351,
+      "name": "巨蟾洞1",
+      "category": "C++L8",
+      "unity_file": "l8-01-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-03\\l8-01-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-03\\l8-01-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1758271538114-1-193402180.19999993-2352670.bmp"
+    },
+    "21353": {
+      "asset_id": 21353,
+      "name": "巨蟾洞3",
+      "category": "C++L8",
+      "unity_file": "l8-01-05.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-05\\l8-01-05.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-05\\l8-01-05\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1758272854914-1-539191.7000000477-2721902.bmp"
+    },
+    "21355": {
+      "asset_id": 21355,
+      "name": "巨蟾洞2",
+      "category": "C++L8",
+      "unity_file": "l8-01-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-04\\l8-01-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-01-04\\l8-01-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1758276812518-1-3807317.2999999523-1745798.bmp"
+    },
+    "21401": {
+      "asset_id": 21401,
+      "name": "营地（7-4D-02形态）",
+      "category": "C++L7",
+      "unity_file": "l7-04-01-2.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-2\\l7-04-01-2.unity",
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1758865196231-1-10692789.400000095-3070662.bmp"
+    },
+    "21405": {
+      "asset_id": 21405,
+      "name": "大喵朝皇城",
+      "category": "C++L9",
+      "unity_file": "l9-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-01\\l9-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-01\\l9-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1762412971895-1-23823.599999964237-1992763.jpg"
+    },
+    "21550": {
+      "asset_id": 21550,
+      "name": "龙门",
+      "category": "C++L8",
+      "unity_file": "l8-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-04-02\\l8-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-04-02\\l8-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1759038976447-1-8677081.3-621665.jpg"
+    },
+    "21571": {
+      "asset_id": 21571,
+      "name": "图书馆",
+      "category": "C++L9",
+      "unity_file": "l9-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-01-01\\l9-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-01-01\\l9-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1761791625643-1-52635.10000002384-1078839.jpg"
+    },
+    "21572": {
+      "asset_id": 21572,
+      "name": "图书馆（禁书区）",
+      "category": "C++L9",
+      "unity_file": "l9-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-01-02\\l9-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-01-02\\l9-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1760690939869-1-5955949.300000001-771580.jpg"
+    },
+    "21573": {
+      "asset_id": 21573,
+      "name": "空中监狱1",
+      "category": "C++L9",
+      "unity_file": "l9-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-02-01\\l9-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-02-01\\l9-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1759115559571-1-64424697.699999996-496134.jpg"
+    },
+    "21597": {
+      "asset_id": 21597,
+      "name": "队长小木屋内景",
+      "category": "C++L8",
+      "unity_file": "l8-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-03-01\\l8-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-03-01\\l8-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1759214472625-1-4236709.200000048-2355990.bmp"
+    },
+    "22123": {
+      "asset_id": 22123,
+      "name": "怪兽工厂（硬件）",
+      "category": "C++Python 1-2",
+      "unity_file": "l4-04-01-1.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-04-01-1\\l4-04-01-1.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-04-01-1\\l4-04-01-1\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1762152397018-1-19550502.299999997-2235742.bmp"
+    },
+    "22129": {
+      "asset_id": 22129,
+      "name": "桃源山大地图-硬件",
+      "category": "C++Python 1-2",
+      "unity_file": "l4-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-04\\l4-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l4\\l4-04\\l4-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1761811861316-1-8989209.799999952-1159047.jpg"
+    },
+    "22151": {
+      "asset_id": 22151,
+      "name": "营地 9-3",
+      "category": "C++L8",
+      "unity_file": "l7-04-01-4.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-4\\l7-04-01-4.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-4\\l7-04-01-4\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1760338501724-1-610785.8000001907-2258982.bmp"
+    },
+    "22152": {
+      "asset_id": 22152,
+      "name": "营地8-4",
+      "category": "C++L8",
+      "unity_file": "l7-04-01-3.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-3\\l7-04-01-3.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-3\\l7-04-01-3\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1760339611442-1-526313.6999998093-2908526.bmp"
+    },
+    "22421": {
+      "asset_id": 22421,
+      "name": "空中监狱2",
+      "category": "C++L9",
+      "unity_file": "l9-02-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-02-02\\l9-02-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-02-02\\l9-02-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1760686490735-1-78960117.19999999-1741946.bmp"
+    },
+    "22422": {
+      "asset_id": 22422,
+      "name": "藏画室",
+      "category": "C++L9",
+      "unity_file": "l9-03-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-03-03\\l9-03-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-03-03\\l9-03-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1762771992223-1-4914.300000011921-643559.jpg"
+    },
+    "22764": {
+      "asset_id": 22764,
+      "name": "大喵朝刑部地下秘密监牢",
+      "category": "C++L9",
+      "unity_file": "l9-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-02\\l9-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-02\\l9-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1761208191465-1-8663252.699999996-1008377.jpg"
+    },
+    "22776": {
+      "asset_id": 22776,
+      "name": "画卷世界",
+      "category": "C++L9",
+      "unity_file": "l9-04-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-04\\l9-04-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-04\\l9-04-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1761545315880-1-284008.89999997616-466953.jpg"
+    },
+    "22777": {
+      "asset_id": 22777,
+      "name": "金色画卷世界",
+      "category": "C++L9",
+      "unity_file": "l9-04-05.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-05\\l9-04-05.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-05\\l9-04-05\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1761545434195-1-402324.39999997616-325194.jpg"
+    },
+    "23557": {
+      "asset_id": 23557,
+      "name": "营地（9-1 9-2）",
+      "category": "C++L9",
+      "unity_file": "l7-04-01-5.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-5\\l7-04-01-5.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-5\\l7-04-01-5\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763004129233-1-56229473.5-2846718.bmp"
+    },
+    "23558": {
+      "asset_id": 23558,
+      "name": "营地（9-3）",
+      "category": "C++L9",
+      "unity_file": "l7-04-01-6.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-6\\l7-04-01-6.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-6\\l7-04-01-6\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763004221929-1-56322178.2-2840382.bmp"
+    },
+    "23559": {
+      "asset_id": 23559,
+      "name": "营地（9-4）",
+      "category": "C++L9",
+      "unity_file": "l7-04-01-7.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-7\\l7-04-01-7.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-7\\l7-04-01-7\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763004283607-1-56383861.1-2831190.bmp"
+    },
+    "23744": {
+      "asset_id": 23744,
+      "name": "巨人星缘驾驶舱",
+      "category": "C++L10",
+      "unity_file": "l10-02-05.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-05\\l10-02-05.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-05\\l10-02-05\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763364195702-1-15074493.799999999-871065.jpg"
+    },
+    "23745": {
+      "asset_id": 23745,
+      "name": "秘密基地",
+      "category": "C++L9",
+      "unity_file": "l9-04-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l9\\l9-04-03\\l9-04-03.unity",
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763364505625-1-368004.69999999925-2854170.bmp"
+    },
+    "23746": {
+      "asset_id": 23746,
+      "name": "黑暗空旷的空间",
+      "category": "C++L10",
+      "unity_file": "l10-01-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-04\\l10-01-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-04\\l10-01-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763364528919-1-15407710.700000001-1945009.jpg"
+    },
+    "23800": {
+      "asset_id": 23800,
+      "name": "方丈岛-停车场",
+      "category": "C++Python 1-2",
+      "unity_file": "l5-04-a.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-a\\l5-04-a.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-a\\l5-04-a\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764838810780-1-1120788.199999988-997226.jpg"
+    },
+    "23817": {
+      "asset_id": 23817,
+      "name": "城堡大殿",
+      "category": "C++L10",
+      "unity_file": "l10-01-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-03\\l10-01-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-03\\l10-01-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764837937975-1-247979.80000001192-840213.jpg"
+    },
+    "23818": {
+      "asset_id": 23818,
+      "name": "红皇后城堡内",
+      "category": "C++L10",
+      "unity_file": "l10-02-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-03\\l10-02-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-03\\l10-02-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764904843959-1-85691-630065.jpg"
+    },
+    "23819": {
+      "asset_id": 23819,
+      "name": "野兽城堡",
+      "category": "C++L10",
+      "unity_file": "l10-03-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03-01\\l10-03-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03-01\\l10-03-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1765438171227-1-143572-350604.jpg"
+    },
+    "23820": {
+      "asset_id": 23820,
+      "name": "红皇后城堡前广场",
+      "category": "C++L10",
+      "unity_file": "l10-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-01\\l10-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-01\\l10-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763537908710-1-51207113.7-2414130.bmp"
+    },
+    "23821": {
+      "asset_id": 23821,
+      "name": "森林中的小矮人木屋（外景）",
+      "category": "C++L10",
+      "unity_file": "l10-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-01\\l10-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-01\\l10-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763538181286-1-31406.19999999553-2674758.bmp"
+    },
+    "23822": {
+      "asset_id": 23822,
+      "name": "观星塔",
+      "category": "C++L10",
+      "unity_file": "l10-01-05.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-05\\l10-01-05.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-05\\l10-01-05\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763960408185-1-11705464.199999988-1702678.bmp"
+    },
+    "23824": {
+      "asset_id": 23824,
+      "name": "大药房",
+      "category": "C++L10",
+      "unity_file": "l10-01-06.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-06\\l10-01-06.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-06\\l10-01-06\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764572383875-1-23460.099999997765-580934.jpg"
+    },
+    "23830": {
+      "asset_id": 23830,
+      "name": "疯帽子茶话会",
+      "category": "C++L10",
+      "unity_file": "l10-02-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-04\\l10-02-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-04\\l10-02-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763542026236-1-732057.8000000045-1684278.bmp"
+    },
+    "23833": {
+      "asset_id": 23833,
+      "name": "魔药店（室内）",
+      "category": "C++L10",
+      "unity_file": "l10-03-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03-03\\l10-03-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03-03\\l10-03-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763544805908-1-3511970.900000006-2856278.bmp"
+    },
+    "23836": {
+      "asset_id": 23836,
+      "name": "营地（10-3/10-4）",
+      "category": "C++L10",
+      "unity_file": "l7-04-01-8.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-8\\l7-04-01-8.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-8\\l7-04-01-8\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763545281146-1-56136.69999999553-2854170.bmp"
+    },
+    "23838": {
+      "asset_id": 23838,
+      "name": "城堡的城墙门外",
+      "category": "C++L10",
+      "unity_file": "l10-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-02\\l10-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-01-02\\l10-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764743756012-1-6085714.799999952-2812174.bmp"
+    },
+    "23899": {
+      "asset_id": 23899,
+      "name": "方丈岛-森林",
+      "category": "C++L10",
+      "unity_file": "l5-04-b.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-b\\l5-04-b.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l5\\l5-04-b\\l5-04-b\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1763625526027-1-79818531.4-2408646.bmp"
+    },
+    "23903": {
+      "asset_id": 23903,
+      "name": "友情见证所（室内）",
+      "category": "C++L10",
+      "unity_file": "l10-03-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03-02\\l10-03-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03-02\\l10-03-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764762183453-1-12403611.19999981-2827646.bmp"
+    },
+    "23915": {
+      "asset_id": 23915,
+      "name": "玫瑰花园",
+      "category": "C++L10",
+      "unity_file": "l10-03-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03-04\\l10-03-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03-04\\l10-03-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764838613299-1-923306.400000006-1202753.jpg"
+    },
+    "23953": {
+      "asset_id": 23953,
+      "name": "营地（10-4）",
+      "category": "C++L10",
+      "unity_file": "l7-04-01-9.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-9\\l7-04-01-9.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-9\\l7-04-01-9\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764058012219-1-97315941.09999996-2712386.bmp"
+    },
+    "24206": {
+      "asset_id": 24206,
+      "name": "红皇后城堡撑破",
+      "category": "C++L10",
+      "unity_file": "l10-02-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-02\\l10-02-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-02-02\\l10-02-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764670372809-1-23753100.19999981-2723654.bmp"
+    },
+    "24650": {
+      "asset_id": 24650,
+      "name": "学院01",
+      "category": "C++L7",
+      "unity_file": "l7-01-08-1.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-08-1\\l7-01-08-1.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-01-08-1\\l7-01-08-1\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1764829817652-1-1337729.2999999523-2398422.bmp"
+    },
+    "25106": {
+      "asset_id": 25106,
+      "name": "魔法学院主楼（室内）",
+      "category": "C++L11",
+      "unity_file": "l11-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-01-01\\l11-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-01-01\\l11-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1765425401280-1-23600.5-879251.jpg"
+    },
+    "25109": {
+      "asset_id": 25109,
+      "name": "校长室",
+      "category": "C++L11",
+      "unity_file": "l11-01-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-01-03\\l11-01-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-01-03\\l11-01-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1765613772071-1-81454634-1310890.bmp"
+    },
+    "25294": {
+      "asset_id": 25294,
+      "name": "魔药园-1104（摧毁状态）",
+      "category": "C++L11",
+      "unity_file": "l11-04-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-04-04\\l11-04-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-04-04\\l11-04-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1766383365396-1-108553.79999999888-1191887.jpg"
+    },
+    "25354": {
+      "asset_id": 25354,
+      "name": "哎吗花园春",
+      "category": "C++L11",
+      "unity_file": "l11-02-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-02-02\\l11-02-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-02-02\\l11-02-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1765449776175-1-86695350.70000005-2136278.bmp"
+    },
+    "25357": {
+      "asset_id": 25357,
+      "name": "哎吗花园夏",
+      "category": "C++L11",
+      "unity_file": "l11-02-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-02-03\\l11-02-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-02-03\\l11-02-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1765972411456-1-202174678.6999998-2669182.bmp"
+    },
+    "25365": {
+      "asset_id": 25365,
+      "name": "硬件 禁林-1104（摧毁状态）",
+      "category": "C++L11",
+      "unity_file": "l11-04-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-04-03\\l11-04-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-04-03\\l11-04-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1765517350284-1-64786170.10000014-2724726.bmp"
+    },
+    "25366": {
+      "asset_id": 25366,
+      "name": "营地11-3",
+      "category": "C++L11",
+      "unity_file": "l7-04-01-10.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-10\\l7-04-01-10.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-10\\l7-04-01-10\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1765517764732-1-179580.09999990463-2619486.bmp"
+    },
+    "25512": {
+      "asset_id": 25512,
+      "name": "哎吗花园秋冬",
+      "category": "C++L11",
+      "unity_file": "l11-02-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-02-04\\l11-02-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-02-04\\l11-02-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1765970224356-1-199987556.5-2262886.bmp"
+    },
+    "25607": {
+      "asset_id": 25607,
+      "name": "精灵秘境-雪原",
+      "category": "C++L11",
+      "unity_file": "l11-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-01-02\\l11-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-01-02\\l11-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1766057805028-1-38120.40000009537-1990854.bmp"
+    },
+    "25851": {
+      "asset_id": 25851,
+      "name": "营地（摧毁状态）",
+      "category": "C++L11",
+      "unity_file": "l7-04-01-11.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-11\\l7-04-01-11.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-01-11\\l7-04-01-11\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1766468576347-1-99348917.0999999-2556090.bmp"
+    },
+    "25861": {
+      "asset_id": 25861,
+      "name": "学院密室",
+      "category": "C++L11",
+      "unity_file": "l11-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-02-01\\l11-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-02-01\\l11-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1766730980323-1-79644953.00000001-512397.jpg"
+    },
+    "26733": {
+      "asset_id": 26733,
+      "name": "魔药园-1104（摧毁状态）无黑线",
+      "category": "C++L11",
+      "unity_file": "l11-04-04b.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-04-04b\\l11-04-04b.unity",
+      "navmesh_abspath": null,
+      "has_navmesh": false,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1768186452182-1-34228-1328400.jpg"
+    },
+    "26735": {
+      "asset_id": 26735,
+      "name": "禁林-1104（摧毁状态）",
+      "category": "C++L11",
+      "unity_file": "l11-04-03-1.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-04-03-1\\l11-04-03-1.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l11\\l11-04-03-1\\l11-04-03-1\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1768187805955-1-267772.69999980927-1881078.bmp"
+    },
+    "26740": {
+      "asset_id": 26740,
+      "name": "银科镇",
+      "category": "C++L10",
+      "unity_file": "l10-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03\\l10-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-03\\l10-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1768547743085-1-63958.70000000298-861882.jpg"
+    },
+    "26893": {
+      "asset_id": 26893,
+      "name": "魔药园石头路",
+      "category": "C++L7",
+      "unity_file": "l7-04-06.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-06\\l7-04-06.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-06\\l7-04-06\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1768531660725-1-57822833.09999943-2019246.bmp"
+    },
+    "26899": {
+      "asset_id": 26899,
+      "name": "营地-彩虹桥-魔药园",
+      "category": "C++L7",
+      "unity_file": "l7-04-05.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-05\\l7-04-05.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l7\\l7-04-05\\l7-04-05\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1770621763357-1-19309509.600000024-795769.jpg"
+    },
+    "26916": {
+      "asset_id": 26916,
+      "name": "学院走廊",
+      "category": "C++L12",
+      "unity_file": "l12-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l12\\l12-01-01\\l12-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l12\\l12-01-01\\l12-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1768552041980-1-24832.900000572205-1613094.bmp"
+    },
+    "27546": {
+      "asset_id": 27546,
+      "name": "魔药园 魔药速递",
+      "category": "C++L8",
+      "unity_file": "l8-03-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-03-02\\l8-03-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l8\\l8-03-02\\l8-03-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1769580439186-1-181697717.10000038-1887342.bmp"
+    },
+    "28011": {
+      "asset_id": 28011,
+      "name": "营地l13-01",
+      "category": "C++L13",
+      "unity_file": "l13-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-01-01\\l13-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-01-01\\l13-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773211874495-1-874353-821065.jpg"
+    },
+    "28018": {
+      "asset_id": 28018,
+      "name": "神秘遗迹内部",
+      "category": "C++L13",
+      "unity_file": "l13-03-05.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03-05\\l13-03-05.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03-05\\l13-03-05\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1772610638691-1-194187587.9000001-3374894.bmp"
+    },
+    "28019": {
+      "asset_id": 28019,
+      "name": "能源地外景",
+      "category": "C++L13",
+      "unity_file": "l13-03-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03-03\\l13-03-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03-03\\l13-03-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1772610731170-1-194280068.20000005-3142674.bmp"
+    },
+    "28033": {
+      "asset_id": 28033,
+      "name": "神秘遗迹外景",
+      "category": "C++L13",
+      "unity_file": "l13-03-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03-04\\l13-03-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03-04\\l13-03-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1772699087137-1-87855357.29999995-3037446.bmp"
+    },
+    "28104": {
+      "asset_id": 28104,
+      "name": "营地动画用",
+      "category": "C++L13",
+      "unity_file": "l13-01-D01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-01-D01\\l13-01-D01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-01-D01\\l13-01-D01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773210336387-1-70989342.79999995-644698.jpg"
+    },
+    "28105": {
+      "asset_id": 28105,
+      "name": "营地 科技仓内",
+      "category": "C++L13",
+      "unity_file": "l13-03-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03-02\\l13-03-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03-02\\l13-03-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774509082191-1-16415139.19999981-3359086.bmp"
+    },
+    "28109": {
+      "asset_id": 28109,
+      "name": "跑道",
+      "category": "C++L13",
+      "unity_file": "l13-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-02-01\\l13-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-02-01\\l13-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773214623234-1-1328087.7000000477-575296.jpg"
+    },
+    "28357": {
+      "asset_id": 28357,
+      "name": "营地13-3A",
+      "category": "C++L13",
+      "unity_file": "l13-03A.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03A\\l13-03A.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03A\\l13-03A\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773384595092-1-12048186.899999991-879553.jpg"
+    },
+    "28657": {
+      "asset_id": 28657,
+      "name": "营地13-3B",
+      "category": "C++L13",
+      "unity_file": "l13-03B.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03B\\l13-03B.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-03B\\l13-03B\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773642393322-1-61460.70000000112-1371729.jpg"
+    },
+    "28739": {
+      "asset_id": 28739,
+      "name": "营地物资库外景",
+      "category": "关卡场景",
+      "unity_file": "l14-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-01-01\\l14-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-01-01\\l14-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773736104663-1-655945.8999999762-2223990.bmp"
+    },
+    "28746": {
+      "asset_id": 28746,
+      "name": "营地物资库内景",
+      "category": "C++L14",
+      "unity_file": "l14-01-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-01-02\\l14-01-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-01-02\\l14-01-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773803540571-1-207007.20000004768-2642070.bmp"
+    },
+    "28998": {
+      "asset_id": 28998,
+      "name": "营地13-4",
+      "category": "C++L13",
+      "unity_file": "l13-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-04-01\\l13-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l13\\l13-04-01\\l13-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773988612849-1-9488709.099999994-1381536.jpg"
+    },
+    "29001": {
+      "asset_id": 29001,
+      "name": "金属板",
+      "category": "C++L13",
+      "unity_file": "dlzfsqnb.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\guanka\\dlzfsqnb\\dlzfsqnb.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\guanka\\dlzfsqnb\\dlzfsqnb\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1773972823033-1-10931.79999999702-852373.jpg"
+    },
+    "29179": {
+      "asset_id": 29179,
+      "name": "疯狗帮营地",
+      "category": "C++L15",
+      "unity_file": "l15-01-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l15\\l15-01-01\\l15-01-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l15\\l15-01-01\\l15-01-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774257015448-1-251666.6000000015-1124486.jpg"
+    },
+    "29262": {
+      "asset_id": 29262,
+      "name": "漫波神殿中心 激活状态",
+      "category": "C++L15",
+      "unity_file": "l15-04-03.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l15\\l15-04-03\\l15-04-03.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l15\\l15-04-03\\l15-04-03\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774333870481-1-12746780.5-2152150.bmp"
+    },
+    "29263": {
+      "asset_id": 29263,
+      "name": "漫波神殿中心",
+      "category": "C++L15",
+      "unity_file": "l15-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l15\\l15-04-02\\l15-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l15\\l15-04-02\\l15-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774337378236-1-3281831.7999999523-1894154.bmp"
+    },
+    "29264": {
+      "asset_id": 29264,
+      "name": "漫波神殿内",
+      "category": "C++L14",
+      "unity_file": "l14-02-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-02-02\\l14-02-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-02-02\\l14-02-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774333987475-1-12863776.80000019-2027590.bmp"
+    },
+    "29294": {
+      "asset_id": 29294,
+      "name": "漫波大神庙门前",
+      "category": "C++L15",
+      "unity_file": "l15-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l15\\l15-04-01\\l15-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l15\\l15-04-01\\l15-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774437197421-1-57725.60000014305-2276766.bmp"
+    },
+    "29300": {
+      "asset_id": 29300,
+      "name": "研究所内部",
+      "category": "C++L14",
+      "unity_file": "l14-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-04-01\\l14-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-04-01\\l14-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774491737851-1-18397.20000000298-770320.jpg"
+    },
+    "29302": {
+      "asset_id": 29302,
+      "name": "菜园",
+      "category": "C++L14",
+      "unity_file": "l14-04-02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-04-02\\l14-04-02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-04-02\\l14-04-02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774497009563-1-5290119.200000003-1146026.jpg"
+    },
+    "29331": {
+      "asset_id": 29331,
+      "name": "漫波神殿门前",
+      "category": "C++L14",
+      "unity_file": "l14-02-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-02-01\\l14-02-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-02-01\\l14-02-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774590463368-1-74297809.30000019-1855514.bmp"
+    },
+    "29355": {
+      "asset_id": 29355,
+      "name": "烬渊之瞳",
+      "category": "关卡场景",
+      "unity_file": "jyzt.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\guanka\\jyzt\\jyzt.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\guanka\\jyzt\\jyzt\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1775185519561-1-7881.799999982119-996828.jpg"
+    },
+    "29647": {
+      "asset_id": 29647,
+      "name": "营地防御塔",
+      "category": "C++L15",
+      "unity_file": "l14-04-04.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-04-04\\l14-04-04.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l14\\l14-04-04\\l14-04-04\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774855873897-1-20444080.599999905-2753838.bmp"
+    },
+    "29800": {
+      "asset_id": 29800,
+      "name": "禁林10-4迭代",
+      "category": "C++L10",
+      "unity_file": "l10-04-01.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-04-01\\l10-04-01.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\l10\\l10-04-01\\l10-04-01\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1774945925278-1-4864051.799999952-2872294.bmp"
+    },
+    "30295": {
+      "asset_id": 30295,
+      "name": "小场景",
+      "category": "关卡场景",
+      "unity_file": "xcj.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\guanka\\xcj\\xcj.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\guanka\\xcj\\xcj\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1776066475850-1-108444.79999999981-731802.jpg"
+    },
+    "30439": {
+      "asset_id": 30439,
+      "name": "烬渊之瞳02",
+      "category": "关卡场景",
+      "unity_file": "jyzt02.unity",
+      "unity_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\guanka\\jyzt02\\jyzt02.unity",
+      "navmesh_abspath": "D:\\meishu\\Assets\\BundleResources\\ide\\scene\\guanka\\jyzt02\\jyzt02\\NavMesh.asset",
+      "has_navmesh": true,
+      "preview_url": "https://cdn.math-thinking.pipacoding.com/pangu3d/resource/scene/1775631833913-1-81481490.4-554889.jpg"
+    }
+  }
+}

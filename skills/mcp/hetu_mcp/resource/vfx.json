@@ -1,0 +1,3038 @@
+[
+  {
+    "resource_id": 10106,
+    "resource_name": "ef_bianshen_02.prefab",
+    "isLoop": false,
+    "vfxTime": 1.37
+  },
+  {
+    "resource_id": 17761,
+    "resource_name": "ef_huwangdaoguang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 18214,
+    "resource_name": "ef_zhinengtitoushe_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5.1
+  },
+  {
+    "resource_id": 23973,
+    "resource_name": "ef_205jiaoshuidiaoluo_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23974,
+    "resource_name": "ef_205jiaoshui_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2.1
+  },
+  {
+    "resource_id": 30446,
+    "resource_name": "ef_jixieshoupixiushanhongguang_03.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 12567,
+    "resource_name": "ef_hetaofaguang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 15879,
+    "resource_name": "ef_xiaohetaojiguang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 29648,
+    "resource_name": "ef_xiaohetaoguangbo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 12394,
+    "resource_name": "ef_saomiaolanguang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2.1
+  },
+  {
+    "resource_id": 20600,
+    "resource_name": "handBoneCAP_maobi.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21264,
+    "resource_name": "ef_zengjiajingyanzhi_04.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20163,
+    "resource_name": "ef_quandixingchedengguang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20164,
+    "resource_name": "ef_quandixingchedengguang_002.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20166,
+    "resource_name": "ef_dixingcheyouzhuan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20711,
+    "resource_name": "ef_dixingchebaishedeng_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20165,
+    "resource_name": "ef_dixingchezuozhuan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20162,
+    "resource_name": "ef_dixingchedengchangliang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21225,
+    "resource_name": "ef_yingjianke_hongdeng_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21226,
+    "resource_name": "ef_yingjianke_lvdeng_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20712,
+    "resource_name": "ef_chedinghongdeng_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20756,
+    "resource_name": "ef_chedingdengxiangjinhao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20745,
+    "resource_name": "ef_chedingdengxiangling_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20746,
+    "resource_name": "ef_chedingdengxiangyi_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20747,
+    "resource_name": "ef_chedingdengxianger_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20748,
+    "resource_name": "ef_chedingdengxiangsan_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20749,
+    "resource_name": "ef_chedingdengxiangsi_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20750,
+    "resource_name": "ef_chedingdengxiangwu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20751,
+    "resource_name": "ef_chedingdengxiangliu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20752,
+    "resource_name": "ef_chedingdengxiangqi_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20753,
+    "resource_name": "ef_chedingdengxiangba_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20754,
+    "resource_name": "ef_chedingdengxiangjiu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20755,
+    "resource_name": "ef_chedingdengxiangcha_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20742,
+    "resource_name": "ef_chedingdengxiangshang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20741,
+    "resource_name": "ef_chedingdengxiangxia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20744,
+    "resource_name": "ef_chedingdengxiangyou_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20743,
+    "resource_name": "ef_chedingdengxiangzuo_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 20729,
+    "resource_name": "ef_chedinghongdeng_02.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 10364,
+    "resource_name": "ef_ef_tongyong_tanqi.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 10352,
+    "resource_name": "ef_tongyongjingtanhao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 22888,
+    "resource_name": "ef_changgeyinfu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 10365,
+    "resource_name": "ef_tongyongjingaixin_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21260,
+    "resource_name": "ef_zengjiajingyanzhi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21262,
+    "resource_name": "ef_zengjiajingyanzhi_02.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21263,
+    "resource_name": "ef_zengjiajingyanzhi_03.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30114,
+    "resource_name": "ef_haogandujia520_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 24663,
+    "resource_name": "ef_zhuanxiangdeng_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 10510,
+    "resource_name": "ef_tongyong_ganga.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 10362,
+    "resource_name": "ef_ef_tongyong_paixiongpu.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 12568,
+    "resource_name": "ef_ef_tongyong_diandiandian.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 23567,
+    "resource_name": "ef_zhinengxiaochetingchedeng_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23568,
+    "resource_name": "ef_zhinengxiaochezhuanxiangdeng_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30445,
+    "resource_name": "ef_jixieshoupixiushanhongguang_02.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 13044,
+    "resource_name": "ef_tongyongdengpao_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 22803,
+    "resource_name": "ef_mulongxinxinbiaoqing_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 13045,
+    "resource_name": "ef_tongyongshengqibiaoqing.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 10511,
+    "resource_name": "ef_tongyong_weixie.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 15881,
+    "resource_name": "ef_tongyongshengqibiaoqing002.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 10351,
+    "resource_name": "ef_tongyongyiwen_03.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29627,
+    "resource_name": "ef_jiexiebaihumaoyan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29629,
+    "resource_name": "ef_jiexiebaihuqiningjiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 4
+  },
+  {
+    "resource_id": 29628,
+    "resource_name": "ef_jiexiebaihushandian_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21757,
+    "resource_name": "ef_bailingtoufazhaohuo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.3
+  },
+  {
+    "resource_id": 12411,
+    "resource_name": "ef_xuanyun_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 15884,
+    "resource_name": "ef_shuijiaofuhao_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 25355,
+    "resource_name": "ef_zengjiajingyanzhi_06.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 27281,
+    "resource_name": "ef_zengjiajingyanzi_04.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 25452,
+    "resource_name": "ef_zengjiajingyanzhi_07.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 26015,
+    "resource_name": "ef_zengjiajingyanzhi_08.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30466,
+    "resource_name": "ef_canraoyinfu_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1.7
+  },
+  {
+    "resource_id": 29332,
+    "resource_name": "ef_moyinraoer_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 14053,
+    "resource_name": "ef_huangniutanqi_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23747,
+    "resource_name": "ef_tongyongbitipao_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 26886,
+    "resource_name": "ef_yiliangbanguamofa_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.75
+  },
+  {
+    "resource_id": 17275,
+    "resource_name": "ef_wanjianqifa_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 21067,
+    "resource_name": "ef_xiasanjiaozhishibiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21748,
+    "resource_name": "ef_shoujikapianquanping_04_1.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 14661,
+    "resource_name": "ef_danlugouyan_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 14660,
+    "resource_name": "ef_danlugouhuo_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 28136,
+    "resource_name": "ef_datuanwuyun_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 14699,
+    "resource_name": "ef_guaiwuhoujiao_CG001.prefab",
+    "isLoop": false,
+    "vfxTime": 1.82
+  },
+  {
+    "resource_id": 14695,
+    "resource_name": "ef_damianjifengsha_CG001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 12410,
+    "resource_name": "ef_daimahua_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 12835,
+    "resource_name": "ef_daimahua_002.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30983,
+    "resource_name": "ef_daimayu_003.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 27886,
+    "resource_name": "ef_renwushibaidonghua_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 27978,
+    "resource_name": "ef_renwuchenggongdonghua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14742,
+    "resource_name": "ef_qinchairenmingbeijingguang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1.1
+  },
+  {
+    "resource_id": 13332,
+    "resource_name": "ef_chuansongmen_002.prefab",
+    "isLoop": false,
+    "vfxTime": 1.71
+  },
+  {
+    "resource_id": 15869,
+    "resource_name": "ef_chuansongmen_003.prefab",
+    "isLoop": false,
+    "vfxTime": 1.71
+  },
+  {
+    "resource_id": 29112,
+    "resource_name": "ef_chuansongdaidonghua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 14636,
+    "resource_name": "ef_chuansongzhen_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 23542,
+    "resource_name": "ef_baoanshushenzhan_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 21279,
+    "resource_name": "ef_xiujianfangwu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 26293,
+    "resource_name": "ef_masikezuodongxiyanwu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 22125,
+    "resource_name": "ef_guangxingtaisuolian_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5.1
+  },
+  {
+    "resource_id": 29818,
+    "resource_name": "ef_ruqinjingbaomoxingkuang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23752,
+    "resource_name": "ef_quanpinbiananchixu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23823,
+    "resource_name": "ef_quanpinbodongzhuanchang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 6.1
+  },
+  {
+    "resource_id": 23976,
+    "resource_name": "ef_jianheitexiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 23975,
+    "resource_name": "ef_zhengyantexiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23551,
+    "resource_name": "ef_quanpinbianan_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 25606,
+    "resource_name": "ef_quanpingheiziyanwu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 35
+  },
+  {
+    "resource_id": 29330,
+    "resource_name": "ef_hongdengxunhuan_1001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29329,
+    "resource_name": "ef_lvdengxunhuan_1001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29328,
+    "resource_name": "ef_huangdengxunhuan_1001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30296,
+    "resource_name": "ef_hemushentifare_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 20171,
+    "resource_name": "ef_bingkuairuohua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 23543,
+    "resource_name": "ef_binghuadandao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 23545,
+    "resource_name": "ef_binghuasuilie_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.4
+  },
+  {
+    "resource_id": 23544,
+    "resource_name": "ef_binghuadaiji_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14694,
+    "resource_name": "ef_chongchujiuyingduzi_CG001.prefab",
+    "isLoop": false,
+    "vfxTime": 3.06
+  },
+  {
+    "resource_id": 29843,
+    "resource_name": "ef_chukujisaomiaotexiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.1
+  },
+  {
+    "resource_id": 29221,
+    "resource_name": "ef_fenliejimaozhenqi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 30104,
+    "resource_name": "ef_qiegejiqiyanwu_02.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30103,
+    "resource_name": "ef_qiegejiqiyanwu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 27236,
+    "resource_name": "ef_wangzhezhijianjianqi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.45
+  },
+  {
+    "resource_id": 29342,
+    "resource_name": "ef_shengchanzhizengjia_08.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 27198,
+    "resource_name": "ef_jiatelinkaihuo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.17
+  },
+  {
+    "resource_id": 23906,
+    "resource_name": "ef_baoguoyanwu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.03
+  },
+  {
+    "resource_id": 21244,
+    "resource_name": "ef_shoujikapianquanping_06.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21232,
+    "resource_name": "ef_shoujikapianquanping_04.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21230,
+    "resource_name": "ef_shoujikapianquanping_02.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 22620,
+    "resource_name": "ef_shoujikapianquanping_09.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 25518,
+    "resource_name": "ef_shoujikapianquanping_13.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 22619,
+    "resource_name": "ef_shoujikapianquanping_10.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 25519,
+    "resource_name": "ef_shoujikapianquanping_14.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 22622,
+    "resource_name": "ef_shoujikapianquanping_07.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21243,
+    "resource_name": "ef_shoujikapianquanping_05.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21231,
+    "resource_name": "ef_shoujikapianquanping_03.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 22621,
+    "resource_name": "ef_shoujikapianquanping_08.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 18026,
+    "resource_name": "ef_beibaopenhuo_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14719,
+    "resource_name": "ef_shufangmaoyan_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 18083,
+    "resource_name": "ef_fantanguangxian_01.prefab",
+    "isLoop": false,
+    "vfxTime": 0.55
+  },
+  {
+    "resource_id": 18084,
+    "resource_name": "ef_fantanguangxian_02.prefab",
+    "isLoop": false,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 23269,
+    "resource_name": "ef_fantanchenggong_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 29630,
+    "resource_name": "ef_fashepaodan_02.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29631,
+    "resource_name": "ef_fashepaodan_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 17277,
+    "resource_name": "ef_dikunfaretexiao_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 12393,
+    "resource_name": "ef_bianshenyanwu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 18126,
+    "resource_name": "ef_miaowangbianshen_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 25356,
+    "resource_name": "ef_wangzhezhijianhechengguangxiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 23536,
+    "resource_name": "ef_hechengguanglian_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 29542,
+    "resource_name": "ef_hejincailiaoshuzhizengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 14637,
+    "resource_name": "ef_chuansongzhenqidongmen_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 14638,
+    "resource_name": "ef_qidongmenkaiqi_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2.1
+  },
+  {
+    "resource_id": 18655,
+    "resource_name": "ef_chuifengji_003.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 18654,
+    "resource_name": "ef_chuifengji_002.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 28014,
+    "resource_name": "ef_outubaise_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 28267,
+    "resource_name": "ef_jiemaqipingmufaguang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21049,
+    "resource_name": "ef_pentouhuapenshui_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 25511,
+    "resource_name": "ef_penhuomofashifa_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 25510,
+    "resource_name": "ef_penhuomofahuoyan_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.3
+  },
+  {
+    "resource_id": 15865,
+    "resource_name": "ef_zifuzuibamaoyan_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 25605,
+    "resource_name": "ef_sijiliuzhuanguang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 21237,
+    "resource_name": "ef_huixiangguangpu_001.prefab",
+    "isLoop": false,
+    "vfxTime": 10
+  },
+  {
+    "resource_id": 24864,
+    "resource_name": "ef_huiyimiwukuang_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 21303,
+    "resource_name": "ef_kapaihuishouchenggong_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 14698,
+    "resource_name": "ef_fengsha_CG001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23535,
+    "resource_name": "ef_tushuguangchuangsongmen_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23550,
+    "resource_name": "ef_dimianbaozha_001.prefab",
+    "isLoop": false,
+    "vfxTime": 3.05
+  },
+  {
+    "resource_id": 27989,
+    "resource_name": "ef_dimianheiyantexiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 18025,
+    "resource_name": "ef_wuqibiannong_001.prefab",
+    "isLoop": true,
+    "vfxTime": 35
+  },
+  {
+    "resource_id": 25491,
+    "resource_name": "ef_ganguobaozamoguyun_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3.75
+  },
+  {
+    "resource_id": 28994,
+    "resource_name": "ef_lajiduichouqi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2.5
+  },
+  {
+    "resource_id": 14712,
+    "resource_name": "ef_zhenyaotabaozha_CG01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23748,
+    "resource_name": "ef_shengyinchuanlai_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30438,
+    "resource_name": "ef_yijikoikaidamentexiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 16995,
+    "resource_name": "ef_dapengjihua_001.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 16994,
+    "resource_name": "ef_dapongjinhuatexiao_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 18030,
+    "resource_name": "ef_tianqiongyitexiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 18029,
+    "resource_name": "ef_tianqiongyidianbo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 18650,
+    "resource_name": "ef_wuyun_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 28953,
+    "resource_name": "ef_taiyangnengbanxishou_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 14716,
+    "resource_name": "ef_kuafupenhuo_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 24201,
+    "resource_name": "ef_kapai_nvwu01.prefab",
+    "isLoop": false,
+    "vfxTime": 3.2
+  },
+  {
+    "resource_id": 29543,
+    "resource_name": "ef_haoganduzengjiazhi_001.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 22161,
+    "resource_name": "ef_zimuguaibianshen_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 22244,
+    "resource_name": "ef_zimuguaiheihua_02.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23270,
+    "resource_name": "ef_zimuguaibianshen_003.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14760,
+    "resource_name": "efyuhanglaoshichuchang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 3.17
+  },
+  {
+    "resource_id": 26609,
+    "resource_name": "ef_dingmoquan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 25110,
+    "resource_name": "ef_mishidamenchuansong_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 25083,
+    "resource_name": "ef_koudingshifa_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 25084,
+    "resource_name": "ef_koudingshifagongji_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 25889,
+    "resource_name": "ef_wangzhezhijianhanbingdaoguang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23409,
+    "resource_name": "ef_fengyinlangtou_02.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23408,
+    "resource_name": "ef_fengyinhutou_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 17276,
+    "resource_name": "ef_shejian_danzhi001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 12566,
+    "resource_name": "ef_hetaobianshen_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14700,
+    "resource_name": "ef_guang_CG001.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 14704,
+    "resource_name": "ef_xiaohetaobianshenfeiji_CG001.prefab",
+    "isLoop": false,
+    "vfxTime": 2.3
+  },
+  {
+    "resource_id": 22234,
+    "resource_name": "ef_saomiaolanguang_02.prefab",
+    "isLoop": true,
+    "vfxTime": 1.9
+  },
+  {
+    "resource_id": 25079,
+    "resource_name": "ef_hetaohudunchixu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 6.5
+  },
+  {
+    "resource_id": 18649,
+    "resource_name": "ef_xiaohetaojiaodimaichong_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 19764,
+    "resource_name": "ef_xiaohetaoxuruo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14707,
+    "resource_name": "ef_xiaohetaoqitiao_CG001.prefab",
+    "isLoop": false,
+    "vfxTime": 3.06
+  },
+  {
+    "resource_id": 14708,
+    "resource_name": "ef_hetaobianshen_CG005.prefab",
+    "isLoop": false,
+    "vfxTime": 3.01
+  },
+  {
+    "resource_id": 14705,
+    "resource_name": "ef_xiaohetaofeijiweiyan_CG001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14706,
+    "resource_name": "ef_xiaohetaojiguangpaodan_CG01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 14703,
+    "resource_name": "ef_jiguangbeiji_CG001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14701,
+    "resource_name": "ef_hetaofeijituowei_CG001.prefab",
+    "isLoop": false,
+    "vfxTime": null
+  },
+  {
+    "resource_id": 28076,
+    "resource_name": "ef_xiaoliuxinghuoyu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21755,
+    "resource_name": "ef_longbaobaodapenti_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1.7
+  },
+  {
+    "resource_id": 15868,
+    "resource_name": "ef_pingmubianyuanzhezhao_001.prefab",
+    "isLoop": false,
+    "vfxTime": null
+  },
+  {
+    "resource_id": 17951,
+    "resource_name": "ef_zhanmiaodaoguang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14709,
+    "resource_name": "ef_zhanmiaodaoguang_CG004.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 14710,
+    "resource_name": "ef_zhanmiaodaoguangbeiji_CG001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30112,
+    "resource_name": "ef_changjinghuoyanranshaochixu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 30113,
+    "resource_name": "ef_changjinghuoyanranshaodanchi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 23951,
+    "resource_name": "ef_judaziseguangxiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 4.54
+  },
+  {
+    "resource_id": 26901,
+    "resource_name": "ef_juwuzhuiluotexiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 26690,
+    "resource_name": "ef_huanyingyixing_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.65
+  },
+  {
+    "resource_id": 25296,
+    "resource_name": "ef_huanxiangyanwu_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 14711,
+    "resource_name": "ef_diancihudun_CG001.prefab",
+    "isLoop": false,
+    "vfxTime": 3.01
+  },
+  {
+    "resource_id": 30460,
+    "resource_name": "ef_kaijiaonanggusu_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21580,
+    "resource_name": "ef_ef_marenruoshandian_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 26737,
+    "resource_name": "ef_qiangmofaguangxiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 27415,
+    "resource_name": "ef_biyedianlicaidai_01.prefab",
+    "isLoop": false,
+    "vfxTime": 7
+  },
+  {
+    "resource_id": 18039,
+    "resource_name": "ef_caidai_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 17085,
+    "resource_name": "ef_biansedengguang_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 17086,
+    "resource_name": "ef_dengguangbaise_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29273,
+    "resource_name": "ef_wucaigouhuo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2.5
+  },
+  {
+    "resource_id": 22779,
+    "resource_name": "ef_caihongqiao_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23088,
+    "resource_name": "ef_weiruomofalanguang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 13331,
+    "resource_name": "ef_guaiwuhousheng_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 22778,
+    "resource_name": "ef_shoujikapianquanping_11.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 18518,
+    "resource_name": "ef_caidengbianse_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5.133333
+  },
+  {
+    "resource_id": 18524,
+    "resource_name": "ef_baisedeng_001.prefab",
+    "isLoop": false,
+    "vfxTime": null
+  },
+  {
+    "resource_id": 18521,
+    "resource_name": "ef_ziisedeng_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5.133333
+  },
+  {
+    "resource_id": 18523,
+    "resource_name": "ef_hongsedeng_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5.133333
+  },
+  {
+    "resource_id": 18522,
+    "resource_name": "ef_lvisedeng_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5.133333
+  },
+  {
+    "resource_id": 18520,
+    "resource_name": "ef_lansedeng_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5.133333
+  },
+  {
+    "resource_id": 18519,
+    "resource_name": "ef_huangsedeng_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5.133333
+  },
+  {
+    "resource_id": 21068,
+    "resource_name": "ef_xianrenzhangpenhuafen_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 21280,
+    "resource_name": "ef_fangwushengji_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 21229,
+    "resource_name": "ef_shoujikapianquanping_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21045,
+    "resource_name": "ef_darenliumajie_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 23565,
+    "resource_name": "ef_darenliumajie_02.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 25523,
+    "resource_name": "ef_dadouchongjibo_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.3
+  },
+  {
+    "resource_id": 23969,
+    "resource_name": "ef_dadouyanwu_03.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 17011,
+    "resource_name": "ef_dajiayancheng_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 27246,
+    "resource_name": "ef_saozhoudianlaobanshifa_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21747,
+    "resource_name": "ef_mofasaozhoutuowei_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 30185,
+    "resource_name": "ef_manghesaomiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 22371,
+    "resource_name": "ef_chixuxingyanwu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.4
+  },
+  {
+    "resource_id": 24701,
+    "resource_name": "ef_outuzhedang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 25461,
+    "resource_name": "ef_shuzitexiaozu_12.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23417,
+    "resource_name": "ef_shuzitexiaozu_05.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23420,
+    "resource_name": "ef_shuzitexiaozu_08.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 25458,
+    "resource_name": "ef_shuzitexiaozu_09.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23411,
+    "resource_name": "ef_shuzitexiaozu_02.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 25460,
+    "resource_name": "ef_shuzitexiaozu_11.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 25459,
+    "resource_name": "ef_shuzitexiaozu_10.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23413,
+    "resource_name": "ef_shuzitexiaozu_04.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23410,
+    "resource_name": "ef_shuzitexiaozu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23418,
+    "resource_name": "ef_shuzitexiaozu_06.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23419,
+    "resource_name": "ef_shuzitexiaozu_07.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23412,
+    "resource_name": "ef_shuzitexiaozu_03.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 28742,
+    "resource_name": "ef_wurenjifangxingfazhen_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23267,
+    "resource_name": "ef_shijiafantan_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 17980,
+    "resource_name": "ef_xuanfenggongji_001.prefab",
+    "isLoop": false,
+    "vfxTime": 4.07
+  },
+  {
+    "resource_id": 28741,
+    "resource_name": "ef_wurenjifaguangtexiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 29271,
+    "resource_name": "ef_wurenjipenqi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29272,
+    "resource_name": "ef_wurenjipenshui_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 30986,
+    "resource_name": "ef_siyewurenjisaomiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 31039,
+    "resource_name": "ef_siyewurenjisaomiaochixu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 17401,
+    "resource_name": "ef_saomiaotexiao_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29214,
+    "resource_name": "ef_wurenjitousheguangfuban_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29268,
+    "resource_name": "ef_nenglianghudun_1001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 26604,
+    "resource_name": "ef_xingxingfazhen_01.prefab",
+    "isLoop": true,
+    "vfxTime": 9999
+  },
+  {
+    "resource_id": 24205,
+    "resource_name": "ef_pengyousuochuxian_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.4
+  },
+  {
+    "resource_id": 24204,
+    "resource_name": "ef_pengyousuoxiaoshi_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.4
+  },
+  {
+    "resource_id": 18215,
+    "resource_name": "jishujiqiren_touming01.prefab",
+    "isLoop": false,
+    "vfxTime": null
+  },
+  {
+    "resource_id": 18028,
+    "resource_name": "ef_jiqisaomiaogou_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5.6
+  },
+  {
+    "resource_id": 23578,
+    "resource_name": "ef_jixieshouxiufu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.2
+  },
+  {
+    "resource_id": 14741,
+    "resource_name": "ef_jixieguimaoyan_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 14696,
+    "resource_name": "ef_damianjifengsha_CG003.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 27280,
+    "resource_name": "ef_beizimaolvyan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 29458,
+    "resource_name": "ef_shuzhizengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 27887,
+    "resource_name": "ef_yanglbutongguodonghua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 27888,
+    "resource_name": "ef_yanglitongguodonghua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 29000,
+    "resource_name": "ef_hexincailiaoshengwen_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 30465,
+    "resource_name": "ef_hexindianchishuzhizengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.333333
+  },
+  {
+    "resource_id": 16999,
+    "resource_name": "ef_hetaojijiakaidun_001.prefab",
+    "isLoop": false,
+    "vfxTime": 6.5
+  },
+  {
+    "resource_id": 25289,
+    "resource_name": "ef_hetaohudunchixu_02.prefab",
+    "isLoop": true,
+    "vfxTime": 6.5
+  },
+  {
+    "resource_id": 23943,
+    "resource_name": "ef_chengsehuifuguangxiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.47
+  },
+  {
+    "resource_id": 23755,
+    "resource_name": "ef_mofajiatelinjiqiang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23756,
+    "resource_name": "ef_mofajiatelinjiqiang_02.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 28997,
+    "resource_name": "ef_zhengqueguangxiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 21758,
+    "resource_name": "ef_mulongpenhuo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.8
+  },
+  {
+    "resource_id": 21760,
+    "resource_name": "ef_mulongzhuaheng_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21995,
+    "resource_name": "ef_mulongkuangfeng_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 17013,
+    "resource_name": "ef_duyefashe_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14715,
+    "resource_name": "ef_bifangpenhuo_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.8
+  },
+  {
+    "resource_id": 14702,
+    "resource_name": "ef_fengsha_CG0001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 22128,
+    "resource_name": "ef_zhiyumofaguangxiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5.1
+  },
+  {
+    "resource_id": 27244,
+    "resource_name": "ef_fapaodianlaobanshifa_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 17978,
+    "resource_name": "ef_haidaonongwu_001.prefab",
+    "isLoop": true,
+    "vfxTime": 35
+  },
+  {
+    "resource_id": 30478,
+    "resource_name": "ef_dasaowusheng_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30188,
+    "resource_name": "ef_manbokongzhitaishansuo_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3.33
+  },
+  {
+    "resource_id": 30115,
+    "resource_name": "ef_shendiandamenjiesuochenggong_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 30984,
+    "resource_name": "ef_huoduiximie_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2.1
+  },
+  {
+    "resource_id": 30989,
+    "resource_name": "ef_huoduigouhuoranshaochixu_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 30980,
+    "resource_name": "ef_huoduigouhuoranshao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 29634,
+    "resource_name": "ef_changjinghuoqiang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 25890,
+    "resource_name": "ef_wangzhezhijianhuoyandaoguang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30979,
+    "resource_name": "ef_miehuoqitexiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 17088,
+    "resource_name": "ef_dengguangzise_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 17087,
+    "resource_name": "ef_dengguanglvse_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 17090,
+    "resource_name": "ef_dengguanglanise_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 17089,
+    "resource_name": "ef_dengguanghuangise_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21057,
+    "resource_name": "ef_huajianluzisehuafen_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2.05
+  },
+  {
+    "resource_id": 27278,
+    "resource_name": "ef_huajianluzisehuafen_002.prefab",
+    "isLoop": false,
+    "vfxTime": 1.65
+  },
+  {
+    "resource_id": 30456,
+    "resource_name": "ef_huichenxingxingdiandian_02.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 29937,
+    "resource_name": "ef_liulansanfachouqi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2.5
+  },
+  {
+    "resource_id": 28954,
+    "resource_name": "ef_wuneiyanhua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2.45
+  },
+  {
+    "resource_id": 28995,
+    "resource_name": "ef_luosifenmaoreqi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 26650,
+    "resource_name": "ef_baozhaguangxiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 22243,
+    "resource_name": "ef_baozhachixuyanwu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 15883,
+    "resource_name": "ef_wutiluodiyanchen_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 28990,
+    "resource_name": "ef_mensuojiesuo_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 28363,
+    "resource_name": "ef_wuqixiangzidakai_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.2
+  },
+  {
+    "resource_id": 24200,
+    "resource_name": "eff_kapai_langren01.prefab",
+    "isLoop": false,
+    "vfxTime": 3.2
+  },
+  {
+    "resource_id": 24203,
+    "resource_name": "ef_kapai_lieren01.prefab",
+    "isLoop": false,
+    "vfxTime": 3.2
+  },
+  {
+    "resource_id": 21759,
+    "resource_name": "ef_maozhuabo_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.6
+  },
+  {
+    "resource_id": 26900,
+    "resource_name": "ef_wangzhezhijianfeichu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 26674,
+    "resource_name": "ef_wangzhezhijianhanbing_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 26673,
+    "resource_name": "ef_wangzhezhijianhuoyan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 26675,
+    "resource_name": "ef_wangzhezhijiankongjianmofa_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 26739,
+    "resource_name": "ef_wangzhezhijianzhongji_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 24151,
+    "resource_name": "ef_meiguigongjiqinshi_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 24196,
+    "resource_name": "ef_meiguigongjiqinshi_02.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 24154,
+    "resource_name": "ef_meiguigongjizuzhou_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 24197,
+    "resource_name": "ef_meiguigongjizuzhou_02.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 24188,
+    "resource_name": "ef_meiguihuaban_02.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 24186,
+    "resource_name": "ef_meiguihuazhedang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.51
+  },
+  {
+    "resource_id": 29244,
+    "resource_name": "ef_shengchanzhizengjia_07.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 30992,
+    "resource_name": "ef_shengchanzhizengjia_15.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 31007,
+    "resource_name": "ef_shengchanzhizengjia_16.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29667,
+    "resource_name": "ef_shengchanzhizengjia_11.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 31008,
+    "resource_name": "ef_shengchanzhizengjia_17.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 30996,
+    "resource_name": "ef_shengchanzhizengjia_18.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 28051,
+    "resource_name": "ef_shengchanzhizengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29668,
+    "resource_name": "ef_shengchanzhizengjia_12.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 28052,
+    "resource_name": "ef_shengchanzhizengjia_02.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 28053,
+    "resource_name": "ef_shengchanzhizengjia_03.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29669,
+    "resource_name": "ef_shengchanzhizengjia_13.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29545,
+    "resource_name": "ef_shengchanzhizengjia_09.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29670,
+    "resource_name": "ef_shengchanzhizengjia_14.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 28054,
+    "resource_name": "ef_shengchanzhizengjia_04.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29624,
+    "resource_name": "ef_shengchanzhizengjia_10.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 28358,
+    "resource_name": "ef_shengchanzhizengjia_05.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 28359,
+    "resource_name": "ef_shengchanzhizengjia_06.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 19450,
+    "resource_name": "ef_dianziping_001.prefab",
+    "isLoop": true,
+    "vfxTime": 16
+  },
+  {
+    "resource_id": 30190,
+    "resource_name": "ef_xiaohetaodianzimaichong_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 22911,
+    "resource_name": "ef_huamianmiwu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 22912,
+    "resource_name": "ef_huamianmowu_02.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 22913,
+    "resource_name": "ef_huamianmowu_03.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 22914,
+    "resource_name": "ef_huamianmowu_04.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 18034,
+    "resource_name": "ef_baicaixianrenzhangjiguang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 18035,
+    "resource_name": "ef_baicaixianrenzhangjiguangbeiji_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 27242,
+    "resource_name": "ef_bailingshizhanmofa_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 23950,
+    "resource_name": "ef_bailinghuidongmozhang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 22124,
+    "resource_name": "ef_bailingpaolu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 27396,
+    "resource_name": "ef_zhiboqujingkuang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 14639,
+    "resource_name": "ef_xiangjikuangmoxing_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 26903,
+    "resource_name": "ef_duanpaitexiao_hong01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 26902,
+    "resource_name": "ef_duanpaitexiao_huang01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 29459,
+    "resource_name": "ef_ef_pengshazengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 30671,
+    "resource_name": "ef_manghebaokai_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 30299,
+    "resource_name": "ef_suishiduizengjia_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1.333333
+  },
+  {
+    "resource_id": 27987,
+    "resource_name": "ef_shenmiyijimaoyan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 8
+  },
+  {
+    "resource_id": 17585,
+    "resource_name": "ef_shenlongdaxiaemo_0001.prefab",
+    "isLoop": true,
+    "vfxTime": 6
+  },
+  {
+    "resource_id": 21163,
+    "resource_name": "ef_jinguzhoufazhen_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30310,
+    "resource_name": "ef_hemupigumaoyan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 25877,
+    "resource_name": "ef_wangzhezhijiankongjianliefeng_01.prefab",
+    "isLoop": true,
+    "vfxTime": 9000.25
+  },
+  {
+    "resource_id": 23407,
+    "resource_name": "ef_chuansuozhouronghe_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2.5
+  },
+  {
+    "resource_id": 23271,
+    "resource_name": "ef_chuansuo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 4.2
+  },
+  {
+    "resource_id": 25371,
+    "resource_name": "ef_chuanyijinghuifu_001.prefab",
+    "isLoop": false,
+    "vfxTime": 4
+  },
+  {
+    "resource_id": 25370,
+    "resource_name": "ef_chuanyijingposui_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5.07
+  },
+  {
+    "resource_id": 26418,
+    "resource_name": "ef_chuanyijingxuanwo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 4.2
+  },
+  {
+    "resource_id": 29217,
+    "resource_name": "ef_yaolumaoyan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29216,
+    "resource_name": "ef_yaoluxuanwo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 4.5
+  },
+  {
+    "resource_id": 29013,
+    "resource_name": "ef_xiangzixuanzhongguangxiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 28667,
+    "resource_name": "ef_sandiangongji_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2.55
+  },
+  {
+    "resource_id": 22163,
+    "resource_name": "ef_hongbaoshi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 22154,
+    "resource_name": "ef_hongjiangguangxiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23963,
+    "resource_name": "ef_hongsegongjiguangxiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23932,
+    "resource_name": "ef_hongsejiatelinmofadan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21592,
+    "resource_name": "ef_zengjiajingyanzhi_05.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30476,
+    "resource_name": "ef_jueyuantizhuangjiapianzengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2.333333
+  },
+  {
+    "resource_id": 30551,
+    "resource_name": "ef_jueyuantizhuangjiapianzengjia_02.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21798,
+    "resource_name": "ef_lvsemofaguangmang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3.3
+  },
+  {
+    "resource_id": 26289,
+    "resource_name": "ef_lvsemofazhen_01.prefab",
+    "isLoop": true,
+    "vfxTime": 9999
+  },
+  {
+    "resource_id": 29245,
+    "resource_name": "ef_juguangdeng_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 17012,
+    "resource_name": "ef_shengliguangxiao_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 28680,
+    "resource_name": "ef_nengyuantanceguangdanci_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 28681,
+    "resource_name": "ef_nengyuantanceguangchixu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5.5
+  },
+  {
+    "resource_id": 22150,
+    "resource_name": "ef_caisenengliangqiu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3.55
+  },
+  {
+    "resource_id": 29636,
+    "resource_name": "ef_naodianbopingmuchangliang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 18042,
+    "resource_name": "ef_zimakaimentexiao_001.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 18036,
+    "resource_name": "ef_boluoxiguamaichongdan_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 18037,
+    "resource_name": "ef_boluoxiguamaichongdanbeiji_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 28062,
+    "resource_name": "ef_yingdidizhuangaoliang_02.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21997,
+    "resource_name": "ef_luoleitexiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.35
+  },
+  {
+    "resource_id": 29011,
+    "resource_name": "ef_xudianchizufaguang_03.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29012,
+    "resource_name": "ef_xudianchizufaguang_04.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 22162,
+    "resource_name": "ef_lanbaoshi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 29803,
+    "resource_name": "ef_lanseguangmang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 3.11
+  },
+  {
+    "resource_id": 27481,
+    "resource_name": "ef_jinrufeichuanlanseguang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 4.5
+  },
+  {
+    "resource_id": 27480,
+    "resource_name": "ef_jinrufeichuanhongseguang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 4.5
+  },
+  {
+    "resource_id": 23898,
+    "resource_name": "ef_moguyuntexiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 4.05
+  },
+  {
+    "resource_id": 18032,
+    "resource_name": "ef_mogutudoupaodan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 18033,
+    "resource_name": "ef_mogutudoupaodanbeiji_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 13533,
+    "resource_name": "ef_mogubaozha_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1.73
+  },
+  {
+    "resource_id": 26605,
+    "resource_name": "ef_chongdongrukou_01.prefab",
+    "isLoop": true,
+    "vfxTime": 4.5
+  },
+  {
+    "resource_id": 18038,
+    "resource_name": "ef_feihudie_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 21282,
+    "resource_name": "ef_zhuangbeiguangqiu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 30553,
+    "resource_name": "ef_zhuangjiapianzengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 17091,
+    "resource_name": "ef_juesechuansong_001.prefab",
+    "isLoop": false,
+    "vfxTime": 3.11
+  },
+  {
+    "resource_id": 22373,
+    "resource_name": "ef_juesehongsecanrao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 22372,
+    "resource_name": "ef_juesechudianchixu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 16998,
+    "resource_name": "ef_jingbaohongguang_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29822,
+    "resource_name": "ef_jingbaohongguang_003.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 22374,
+    "resource_name": "ef_jingbaohongguang_002.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 30434,
+    "resource_name": "ef_jiexiebaihugongjiguangbo_02.prefab",
+    "isLoop": false,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 30548,
+    "resource_name": "ef_jiexiebaihugongjiguangbo_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 26606,
+    "resource_name": "ef_lurenwuguidaquan_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 23579,
+    "resource_name": "ef_cheliangpengzhuang_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.35
+  },
+  {
+    "resource_id": 22375,
+    "resource_name": "ef_lansefushe_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 27977,
+    "resource_name": "ef_shurubuzhengquedonghua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 21756,
+    "resource_name": "ef_renxingdapentihuohua_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.7
+  },
+  {
+    "resource_id": 21283,
+    "resource_name": "ef_zhuangbeizhedangguangxiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 28635,
+    "resource_name": "ef_xianquantabianshen_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.3
+  },
+  {
+    "resource_id": 29008,
+    "resource_name": "ef_bileizhentashandian_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 29181,
+    "resource_name": "ef_bileizhentahongse_01.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 29673,
+    "resource_name": "ef_peizhijiqichuansongdaidonghua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 29823,
+    "resource_name": "ef_zhonglikongjian_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 18471,
+    "resource_name": "ef_liangzichuansong_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 27971,
+    "resource_name": "ef_liangzichuansongmen_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 18040,
+    "resource_name": "ef_jinguang_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 23538,
+    "resource_name": "ef_sm_l9_dj_shengbi_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 30297,
+    "resource_name": "ef_jinzizhizengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.333333
+  },
+  {
+    "resource_id": 28362,
+    "resource_name": "ef_ef_taihejinzhizengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 28361,
+    "resource_name": "ef_wuganghejinzhizengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 30298,
+    "resource_name": "ef_tieniehejinzengjia_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.333333
+  },
+  {
+    "resource_id": 27279,
+    "resource_name": "ef_tongganguomaolvyan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 14667,
+    "resource_name": "ef_xiangjisanguang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 17399,
+    "resource_name": "ef_xiangjisanguangzanting_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 22575,
+    "resource_name": "ef_shanxianhuahuaefnpenshe_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.3
+  },
+  {
+    "resource_id": 28632,
+    "resource_name": "ef_shandiangongji_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 21555,
+    "resource_name": "ef_shandianmofa_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 23955,
+    "resource_name": "ef_shuijingqiuguangxiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 22238,
+    "resource_name": "ef_duizhangshengji_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 23572,
+    "resource_name": "ef_duizhangdafeng_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 23540,
+    "resource_name": "ef_duizhangmofabangtuowei_001.prefab",
+    "isLoop": true,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 23793,
+    "resource_name": "ef_duizhanghudun_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1.7
+  },
+  {
+    "resource_id": 25492,
+    "resource_name": "ef_duizhangshifaguangxiao_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 25863,
+    "resource_name": "ef_jiangweimofadangongji_01.prefab",
+    "isLoop": false,
+    "vfxTime": 0.3
+  },
+  {
+    "resource_id": 28743,
+    "resource_name": "ef_yunshixiaoshi_01.prefab",
+    "isLoop": false,
+    "vfxTime": 4.01
+  },
+  {
+    "resource_id": 23537,
+    "resource_name": "ef_yinxingshouguangzhao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 28958,
+    "resource_name": "ef_gerecailiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 4
+  },
+  {
+    "resource_id": 29266,
+    "resource_name": "ef_gerecailiao_02.prefab",
+    "isLoop": true,
+    "vfxTime": 4
+  },
+  {
+    "resource_id": 29802,
+    "resource_name": "ef_xuebaoxiaotouxiangdonghua_01.prefab",
+    "isLoop": true,
+    "vfxTime": 130
+  },
+  {
+    "resource_id": 14659,
+    "resource_name": "ef_xueqiuchuchang_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2.17
+  },
+  {
+    "resource_id": 29285,
+    "resource_name": "ef_shangrenbeileiji_01.prefab",
+    "isLoop": false,
+    "vfxTime": 2.55
+  },
+  {
+    "resource_id": 27988,
+    "resource_name": "ef_leidabo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 30461,
+    "resource_name": "ef_leidaxianshihongdian_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 28013,
+    "resource_name": "ef_leodayujingguangbo_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 24210,
+    "resource_name": "ef_kehuashoushentiyanwu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 21245,
+    "resource_name": "ef_L7wuzhang_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 13021,
+    "resource_name": "ef_yinfu_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 26441,
+    "resource_name": "ef_dayinfutexiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 24202,
+    "resource_name": "ef_kapai_yuyanjia01.prefab",
+    "isLoop": false,
+    "vfxTime": 3.2
+  },
+  {
+    "resource_id": 12955,
+    "resource_name": "ef_fengtexiao_002.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 12954,
+    "resource_name": "ef_fengtexiao_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 21593,
+    "resource_name": "ef_marenqiangshandian_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 29810,
+    "resource_name": "ef_machezhuanghuoyanwu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 21040,
+    "resource_name": "ef_meihuomogucaihongyanwu_01.prefab",
+    "isLoop": false,
+    "vfxTime": 1.3
+  },
+  {
+    "resource_id": 21047,
+    "resource_name": "ef_mofazhen_L7_002.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21046,
+    "resource_name": "ef_mofazhen_L7_001.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21041,
+    "resource_name": "ef_mofaguangxiao_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 21042,
+    "resource_name": "ef_daojutexiao_001.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 21043,
+    "resource_name": "ef_daojutexiaobaokai_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1.13
+  },
+  {
+    "resource_id": 27248,
+    "resource_name": "ef_mofaxueshengshifa_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 27252,
+    "resource_name": "ef_mofabaoxiang_001.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 24187,
+    "resource_name": "ef_haoshihuaishidoujianpingmu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 23546,
+    "resource_name": "ef_mofabodong_001.prefab",
+    "isLoop": false,
+    "vfxTime": 2.5
+  },
+  {
+    "resource_id": 26884,
+    "resource_name": "ef_mofalianjieguangxiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 27238,
+    "resource_name": "ef_mojingxuanwo.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 26885,
+    "resource_name": "ef_heihuatexiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 22153,
+    "resource_name": "ef_heijiangguangxiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 26767,
+    "resource_name": "ef_heiyantexiao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 4
+  },
+  {
+    "resource_id": 21044,
+    "resource_name": "ef_heiziseyantuan_01.prefab",
+    "isLoop": true,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 26664,
+    "resource_name": "ef_heisefenchenfanyong_02.prefab",
+    "isLoop": true,
+    "vfxTime": 2.5
+  },
+  {
+    "resource_id": 26651,
+    "resource_name": "ef_baozhayanchen_01.prefab",
+    "isLoop": false,
+    "vfxTime": 5
+  },
+  {
+    "resource_id": 24862,
+    "resource_name": "ef_heiziseyanwu_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1.5
+  },
+  {
+    "resource_id": 23118,
+    "resource_name": "ef_shoujikapianquanping_12.prefab",
+    "isLoop": false,
+    "vfxTime": 3
+  },
+  {
+    "resource_id": 21556,
+    "resource_name": "ef_longbaobaopenshandian_01.prefab",
+    "isLoop": true,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 21553,
+    "resource_name": "ef_longbaobaoqipao_01.prefab",
+    "isLoop": true,
+    "vfxTime": 2
+  },
+  {
+    "resource_id": 16997,
+    "resource_name": "ef_longyipenheiyan_001.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 12072,
+    "resource_name": "eff_kaiqibaoxiang.prefab",
+    "isLoop": false,
+    "vfxTime": 1.24
+  },
+  {
+    "resource_id": 10363,
+    "resource_name": "ef_ef_tongyong_kuqi.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 10361,
+    "resource_name": "ef_ef_tongyong_huanxiao.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  },
+  {
+    "resource_id": 10360,
+    "resource_name": "ef_ef_tongyong_kuangxi.prefab",
+    "isLoop": false,
+    "vfxTime": 1
+  }
+]

@@ -26,8 +26,8 @@ skills/mcp/hetu_mcp/handlers/__pycache__/
 skills/mcp/hetu_mcp/**/__pycache__/
 skills/mcp/temp/
 
-# 编辑器
-.cursor/
+# 编辑器（只忽略根目录的 .cursor，不影响 skills/.cursor 下的 SKILL.md）
+/.cursor/
 *.swp
 .DS_Store
 Thumbs.db

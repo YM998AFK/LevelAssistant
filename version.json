@@ -1,6 +1,6 @@
 {
   "version": "1.0.1",
   "skills_url": "https://github.com/YM998AFK/LevelAssistant/releases/download/v1.0.1/skills.zip",
-  "exe_url": "https://github.com/YM998AFK/LevelAssistant/releases/download/v1.0.1/LevelAssistant.exe",
+  "exe_url": "",
   "changelog": "- 新增热更新功能\n- 程序启动后自动检查新版本"
 }

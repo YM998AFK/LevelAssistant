@@ -1,6 +1,6 @@
 {
   "version": "1.0.3",
   "skills_url": "https://github.com/YM998AFK/LevelAssistant/releases/download/v1.0.3/skills.zip",
-  "exe_url": "https://github.com/YM998AFK/LevelAssistant/releases/download/v1.0.3/LevelAssistant-v1.0.3.zip",
+  "exe_url": "",
   "changelog": "## 🛠 程序更新\n- 智能通道健康度追踪：自动探测连通性，哪个通道好用就优先用哪个\n- 额度耗尽立即切换备用通道，不再等待重试\n- 备用通道重试次数 3→5 次，成功率提升至 94%\n- 聊天框支持粘贴 / 拖入图片\n- 修改关卡完成或停止后可继续输入\n- 资源搜索、新建关卡、新建剧情支持从聊天框直接发起任务\n\n## 📦 Skills 更新\n- 修改关卡：扫包、语义转换等中间过程不再输出给用户，只显示对比卡\n- level-modify 技能规范优化\n- MCP 资源索引更新"
 }

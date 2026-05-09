@@ -18,8 +18,12 @@ DEFAULT_RESOURCE_DIR = PACKAGE_ROOT / "resource"
 DEFAULT_DEFINITIONS_PATH = PACKAGE_ROOT / "definitions" / "resource_definitions.py"
 RESOURCE_SUMMARY_FILENAME = "resouce_summary.json"
 RESOURCE_INDEX_FILENAME = "resource_index.json"
+UPDATED_RESOURCE_FILENAME = "updated_resource.json"
 SPRITE3D_METADATA_FILENAME = "sprite_3d.json"
 VFX_METADATA_FILENAME = "vfx.json"
+AUDIO_METADATA_FILENAME = "audio.json"
+SCENE_METADATA_FILENAME = "scene.json"
+SCENE_NAVMESH_DIRNAME = "scene_navmesh"
 SPRITE3D_WRITEBACK_FIELDS = [
     "rootRotation",
     "rootScale",
@@ -30,6 +34,20 @@ SPRITE3D_WRITEBACK_FIELDS = [
     "direction",
 ]
 VFX_WRITEBACK_FIELDS = ["isLoop", "vfxTime"]
+AUDIO_WRITEBACK_FIELDS = ["describe"]
+SCENE_WRITEBACK_FIELDS = [
+    "scenePath",
+    "sceneName",
+    "boundsCenter",
+    "boundsSize",
+    "boundsMin",
+    "boundsMax",
+    "areaConfig",
+    "mapBounds",
+    "playerBounds",
+    "navMesh",
+    "navMeshRect",
+]
 DEFAULT_URL = (
     "https://tcp-api-sg.testing.hetao101.com/pangu3d-resource-api/v1/list"
     "?language=1&platform=1&levelid=1&view=0&visual=1"
@@ -412,18 +430,54 @@ def build_updated_resources(
     return sorted(set(updated_resource_ids))
 
 
+def extract_updated_resource_ids(payload: Any) -> list[int]:
+    if isinstance(payload, dict):
+        values = payload.get("updated_resource")
+    else:
+        values = payload
+
+    if not isinstance(values, list):
+        return []
+
+    resource_ids: list[int] = []
+    for value in values:
+        resource_id = coerce_int(value)
+        if resource_id is not None:
+            resource_ids.append(resource_id)
+    return sorted(set(resource_ids))
+
+
+def load_existing_updated_resources(*paths: Path) -> list[int]:
+    resource_ids: set[int] = set()
+    for path in paths:
+        if not path.exists():
+            continue
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8-sig"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        resource_ids.update(extract_updated_resource_ids(payload))
+    return sorted(resource_ids)
+
+
+def build_updated_resource_payload(
+    current_updated_resources: list[int],
+    existing_updated_resources: list[int],
+) -> dict[str, list[int]]:
+    merged = sorted(set(existing_updated_resources).union(current_updated_resources))
+    return {"updated_resource": merged}
+
+
 def build_resource_summary(
     *,
     source_url: str,
     host: str,
     summary: dict[str, Any],
     flat_resources: list[dict[str, Any]],
-    previous_updated_at: dict[int, int | None] | None = None,
 ) -> dict[str, Any]:
     entry_kind_values = build_entry_kind_values(flat_resources)
     entry_class_map = build_entry_class_map(flat_resources)
     entry_category_map = build_entry_category_map(flat_resources)
-    previous_updated_at = previous_updated_at or {}
 
     return {
         "generated_at_utc": summary["generated_at_utc"],
@@ -440,7 +494,6 @@ def build_resource_summary(
         "by_resource_type": summary["by_resource_type"],
         "by_category": summary["by_category"],
         "by_platform": summary["by_platform"],
-        "updated_resource": build_updated_resources(flat_resources, previous_updated_at),
         "resources": build_brief_resource_records(flat_resources),
     }
 
@@ -496,9 +549,13 @@ def render_readme(summary: dict[str, Any]) -> str:
         "## Files",
         "",
         f"- `{RESOURCE_SUMMARY_FILENAME}`: compact resource data for quick checks",
+        f"- `{UPDATED_RESOURCE_FILENAME}`: pending resource ids changed since previous exports",
         f"- `{RESOURCE_INDEX_FILENAME}`: complete flattened resource records",
+        f"- `{AUDIO_METADATA_FILENAME}`: extracted Music/Sound semantic descriptions",
         f"- `{SPRITE3D_METADATA_FILENAME}`: extracted Sprite3D/Role transform and MeshPartSettings metadata",
         f"- `{VFX_METADATA_FILENAME}`: extracted VFX duration and loop metadata",
+        f"- `{SCENE_METADATA_FILENAME}`: extracted Scene bounds and lightweight NavMesh references",
+        f"- `{SCENE_NAVMESH_DIRNAME}/`: full Scene NavMesh payloads keyed by resource_id, including precomputed graph data",
         "- `../definitions/resource_definitions.py`: generated lookup and validation helpers",
         "",
         "## Top Resource Types",
@@ -549,7 +606,7 @@ def dumps_compact_vectors(value: Any, level: int = 0) -> str:
     if isinstance(value, list):
         if not value:
             return "[]"
-        if len(value) in (3, 4) and all(is_number(item) for item in value):
+        if all(is_number(item) for item in value):
             return "[" + ",".join(scalar_to_json(item) for item in value) + "]"
         parts = [f"{child_indent}{dumps_compact_vectors(item, level + 1)}" for item in value]
         return "[\n" + ",\n".join(parts) + "\n" + indent + "]"
@@ -580,12 +637,16 @@ def load_metadata_by_resource_id(path: Path) -> dict[int, dict[str, Any]]:
 def apply_parsed_metadata(
     records: list[dict[str, Any]],
     resource_dir: Path,
-) -> tuple[int, int]:
+) -> tuple[int, int, int, int]:
     sprite_metadata = load_metadata_by_resource_id(resource_dir / SPRITE3D_METADATA_FILENAME)
     vfx_metadata = load_metadata_by_resource_id(resource_dir / VFX_METADATA_FILENAME)
+    audio_metadata = load_metadata_by_resource_id(resource_dir / AUDIO_METADATA_FILENAME)
+    scene_metadata = load_metadata_by_resource_id(resource_dir / SCENE_METADATA_FILENAME)
 
     sprite_updated = 0
     vfx_updated = 0
+    audio_updated = 0
+    scene_updated = 0
     for record in records:
         if not isinstance(record, dict):
             continue
@@ -605,7 +666,19 @@ def apply_parsed_metadata(
                 record[field] = vfx_row.get(field)
             vfx_updated += 1
 
-    return sprite_updated, vfx_updated
+        audio_row = audio_metadata.get(resource_id)
+        if audio_row is not None:
+            for field in AUDIO_WRITEBACK_FIELDS:
+                record[field] = audio_row.get(field)
+            audio_updated += 1
+
+        scene_row = scene_metadata.get(resource_id)
+        if scene_row is not None:
+            for field in SCENE_WRITEBACK_FIELDS:
+                record[field] = scene_row.get(field)
+            scene_updated += 1
+
+    return sprite_updated, vfx_updated, audio_updated, scene_updated
 
 
 def enum_member_name(value: str) -> str:
@@ -654,6 +727,7 @@ from typing import Any
 RESOURCE_DIR = Path(__file__).resolve().parents[1] / "resource"
 RESOURCE_SUMMARY_PATH = RESOURCE_DIR / "{RESOURCE_SUMMARY_FILENAME}"
 RESOURCE_INDEX_PATH = RESOURCE_DIR / "{RESOURCE_INDEX_FILENAME}"
+UPDATED_RESOURCE_PATH = RESOURCE_DIR / "{UPDATED_RESOURCE_FILENAME}"
 
 
 class EntryKind(str, Enum):
@@ -670,7 +744,11 @@ ENTRY_CATEGORY_ID_TO_CATEGORY: dict[int, str] = {{
 
 
 def resource_data_exists() -> bool:
-    return RESOURCE_SUMMARY_PATH.exists() and RESOURCE_INDEX_PATH.exists()
+    return (
+        RESOURCE_SUMMARY_PATH.exists()
+        and RESOURCE_INDEX_PATH.exists()
+        and UPDATED_RESOURCE_PATH.exists()
+    )
 
 
 def ensure_resource_data() -> None:
@@ -688,6 +766,7 @@ def ensure_resource_data() -> None:
     )
     load_resource_summary.cache_clear()
     load_resource_index.cache_clear()
+    load_updated_resources.cache_clear()
 
 
 def _coerce_int(value: Any) -> int | None:
@@ -712,6 +791,26 @@ def load_resource_index() -> list[dict[str, Any]]:
     if not isinstance(payload, list):
         raise ValueError(f"Resource index must be a list: {{RESOURCE_INDEX_PATH}}")
     return payload
+
+
+@lru_cache(maxsize=1)
+def load_updated_resources() -> list[int]:
+    ensure_resource_data()
+    if not UPDATED_RESOURCE_PATH.exists():
+        return []
+    payload = json.loads(UPDATED_RESOURCE_PATH.read_text(encoding="utf-8"))
+    values = payload.get("updated_resource") if isinstance(payload, dict) else payload
+    if not isinstance(values, list):
+        raise ValueError(
+            f"Updated resources must be a list or an object with updated_resource: {{UPDATED_RESOURCE_PATH}}"
+        )
+
+    resource_ids: list[int] = []
+    for value in values:
+        resource_id = _coerce_int(value)
+        if resource_id is not None:
+            resource_ids.append(resource_id)
+    return sorted(set(resource_ids))
 
 
 def iter_resource_summaries() -> list[dict[str, Any]]:
@@ -747,6 +846,11 @@ def get_resource(resource_id: int | str, default: Any = None) -> dict[str, Any] 
 
 def is_valid_resource_id(resource_id: int | str) -> bool:
     return get_resource_summary(resource_id) is not None
+
+
+def is_updated_resource(resource_id: int | str) -> bool:
+    target_id = _coerce_int(resource_id)
+    return target_id is not None and target_id in set(load_updated_resources())
 
 
 def find_resources(
@@ -998,17 +1102,23 @@ def main() -> int:
         host=host,
         summary=summary,
         flat_resources=flat_resources,
-        previous_updated_at=previous_updated_at,
+    )
+    current_updated_resources = build_updated_resources(flat_resources, previous_updated_at)
+    updated_resource_path = output_dir / UPDATED_RESOURCE_FILENAME
+    updated_resource_payload = build_updated_resource_payload(
+        current_updated_resources,
+        load_existing_updated_resources(updated_resource_path, output_dir / RESOURCE_SUMMARY_FILENAME),
     )
     entry_kind_values = build_entry_kind_values(flat_resources)
     entry_class_map = build_entry_class_map(flat_resources)
     entry_category_map = build_entry_category_map(flat_resources)
 
-    sprite_writeback_count, vfx_writeback_count = apply_parsed_metadata(
+    sprite_writeback_count, vfx_writeback_count, audio_writeback_count, scene_writeback_count = apply_parsed_metadata(
         flat_resources,
         output_dir,
     )
     write_json(output_dir / RESOURCE_SUMMARY_FILENAME, resource_summary)
+    write_json(updated_resource_path, updated_resource_payload)
     resource_index_path.write_text(
         dumps_compact_vectors(flat_resources) + "\n",
         encoding="utf-8",
@@ -1025,7 +1135,18 @@ def main() -> int:
     print(f"Generated definitions: {definitions_path}")
     print(f"Entries: {summary['entry_counts']['total_entries']}")
     print(f"Resources: {summary['resource_counts']['total_resources']}")
-    print(f"Parsed metadata writeback: Sprite3D/Role={sprite_writeback_count}, VFX={vfx_writeback_count}")
+    print(
+        "Updated resources: "
+        f"current={len(current_updated_resources)}, "
+        f"merged={len(updated_resource_payload['updated_resource'])}"
+    )
+    print(
+        "Parsed metadata writeback: "
+        f"Sprite3D/Role={sprite_writeback_count}, "
+        f"VFX={vfx_writeback_count}, "
+        f"Audio={audio_writeback_count}, "
+        f"Scene={scene_writeback_count}"
+    )
     return 0
 
 

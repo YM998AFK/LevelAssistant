@@ -56,8 +56,13 @@ def iter_blocks(node, path="/"):
     node_type = node.get("type")
     if node_type is not None:
         if node_type == "BlockScript":
-            for i, frag in enumerate(node.get("fragments", []) or []):
-                head = frag.get("head")
+            frags = node.get("fragments")
+            if frags is None and "blockScript" in node:
+                # Wrong "blockScript:{fragments}" wrapper format — yield error sentinel then still traverse
+                yield f"{path}[FORMAT_ERROR]", {"define": "__BLOCKSCRIPT_WRAPPER_INVALID__", "sections": []}
+                frags = (node.get("blockScript") or {}).get("fragments", [])
+            for i, frag in enumerate(frags or []):
+                head = frag.get("head") or (frag if "define" in frag else None)
                 if head:
                     yield from iter_blocks(head, f"{path}fragments[{i}]/head")
             for i, mb in enumerate(node.get("myblocks", []) or []):
@@ -138,6 +143,15 @@ def main(argv: list[str]) -> int:
     for bpath, blk in iter_blocks(scene):
         define = blk.get("define")
         count_by_define[define] += 1
+
+        # Format-error sentinel injected by iter_blocks — hard FAIL
+        if define == "__BLOCKSCRIPT_WRAPPER_INVALID__":
+            errors.append(
+                f"{bpath}: BlockScript node uses wrong 'blockScript:{{fragments}}' wrapper "
+                f"instead of top-level 'fragments' — engine will silently ignore all scripts"
+            )
+            continue
+
         sections = blk.get("sections", [])
         actual = len(sections[0].get("params", [])) if sections else 0
 

@@ -8,20 +8,25 @@ import copy
 import json
 import shutil
 import uuid
+from collections.abc import Mapping, Sequence
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 from definitions.block_models import collect_block_object_type_errors, validate_block_structure
 from definitions.workspace_schema import (
+    collect_module_entries,
     collect_project_policy_errors,
     collect_script_entries,
+    get_module_type_info,
     get_project_policy,
     iter_workspace_heads,
     resolve_script_context,
     resolve_script,
     walk_blocks,
 )
+from navigation.block_navmesh import resolve_workspace_scene_resource_id
+from navigation.scene_navmesh import DEFAULT_SAMPLE_DISTANCE, sample_scene_position
 
 
 def _resolve_workspace_path(file_path: str, workspace_root: Optional[Path] = None) -> Path:
@@ -38,13 +43,33 @@ def clone_workspace(workspace_data: Dict[str, Any]) -> Dict[str, Any]:
     return copy.deepcopy(workspace_data)
 
 
+def _ensure_block_param_value(value: Any) -> None:
+    if isinstance(value, list):
+        raise ValueError(
+            "Block parameters do not support JSON array values; write arrays through "
+            "typed workspace fields such as props2 SimpleList.value or res."
+        )
+
+
+def build_param_value_entry(
+    value: Any,
+    *,
+    value_key: str = "val",
+    scalar_type: str = "var",
+) -> Dict[str, Any]:
+    if isinstance(value, dict):
+        return {"type": "block", value_key: value}
+
+    _ensure_block_param_value(value)
+    return {"type": scalar_type, value_key: str(value)}
+
+
 def set_param_value(entry_type: str, entry: Dict[str, Any], value: Any) -> None:
+    _ensure_block_param_value(value)
+
     if entry_type == "columns":
         if isinstance(value, dict):
             entry["type"] = "block"
-            entry["value"] = value
-        elif isinstance(value, list):
-            # 保持 JSON 数组原样写入，不转 str（str([...]) 会产生 Python repr 格式字符串）
             entry["value"] = value
         else:
             entry["value"] = str(value)
@@ -52,9 +77,6 @@ def set_param_value(entry_type: str, entry: Dict[str, Any], value: Any) -> None:
 
     if isinstance(value, dict):
         entry["type"] = "block"
-        entry["val"] = value
-    elif isinstance(value, list):
-        # 保持 JSON 数组原样写入，不转 str
         entry["val"] = value
     else:
         entry["type"] = entry.get("type", "var")
@@ -91,9 +113,14 @@ async def load_workspace_file(file_path: str, workspace_root: Optional[Path] = N
     with open(full_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
+    from handlers.validation_operations import collect_workspace_scene_resource_warnings
+
+    warnings = collect_workspace_scene_resource_warnings(data)
     return {
         "success": True,
         "file_path": str(full_path),
+        "warning_count": len(warnings),
+        "warnings": warnings,
         "data": data,
     }
 
@@ -324,6 +351,45 @@ def update_fragment_position(
     return updated_data
 
 
+def update_scene_element_position(
+    workspace_data: Dict[str, Any],
+    position: Any,
+    *,
+    element_id: Any = None,
+    element_path: str | None = None,
+    element_name: str | None = None,
+    navmesh: Mapping[str, Any] | None = None,
+) -> Dict[str, Any]:
+    """Update a scene element props.Position, optionally grounding it on Scene NavMesh."""
+
+    requested_position = _coerce_vector3(position, "position")
+    updated_data = clone_workspace(workspace_data)
+    _, module = _resolve_scene_element_module(
+        updated_data,
+        element_id=element_id,
+        element_path=element_path,
+        element_name=element_name,
+    )
+
+    props = module.get("props")
+    if props is None:
+        props = {}
+        module["props"] = props
+    if not isinstance(props, dict):
+        raise ValueError("Target scene element props must be an object")
+    if "Position" not in props and not _module_supports_position(module):
+        module_type = module.get("type", "Unknown")
+        raise ValueError(f"Target scene element type {module_type!r} does not support props.Position")
+
+    final_position = _ground_position_with_navmesh(
+        updated_data,
+        requested_position,
+        navmesh,
+    )
+    props["Position"] = _format_workspace_vector3(final_position)
+    return updated_data
+
+
 def create_myblock(
     workspace_data: Dict[str, Any],
     name: str,
@@ -456,10 +522,7 @@ def create_myblock_call(
     }
 
     for value in parameter_values:
-        if isinstance(value, dict):
-            call_block["sections"][0]["params"].append({"type": "block", "val": value})
-        else:
-            call_block["sections"][0]["params"].append({"type": "var", "val": str(value)})
+        call_block["sections"][0]["params"].append(build_param_value_entry(value))
 
     return call_block
 
@@ -483,3 +546,164 @@ def find_myblock_usages(workspace_data: Dict[str, Any], myblock_name: str) -> Li
                 )
 
     return usages
+
+
+def _resolve_scene_element_module(
+    workspace_data: Dict[str, Any],
+    *,
+    element_id: Any = None,
+    element_path: str | None = None,
+    element_name: str | None = None,
+) -> tuple[str, Dict[str, Any]]:
+    selectors = [
+        element_id is not None,
+        element_path is not None,
+        element_name is not None,
+    ]
+    if sum(selectors) != 1:
+        raise ValueError("Provide exactly one of element_id, element_path, or element_name")
+
+    matches: list[tuple[str, Dict[str, Any]]] = []
+    for path, module in collect_module_entries(workspace_data):
+        if element_path is not None:
+            if path == element_path:
+                matches.append((path, module))
+            continue
+
+        if element_id is not None:
+            module_id = module.get("id")
+            if module_id is not None and str(module_id) == str(element_id):
+                matches.append((path, module))
+            continue
+
+        props = module.get("props")
+        if isinstance(props, Mapping) and props.get("Name") == element_name:
+            matches.append((path, module))
+
+    if not matches:
+        selector = element_path if element_path is not None else element_id if element_id is not None else element_name
+        raise ValueError(f"Scene element not found: {selector}")
+    if len(matches) > 1:
+        paths = ", ".join(path for path, _ in matches[:5])
+        raise ValueError(f"Scene element selector matched multiple modules: {paths}")
+    return matches[0]
+
+
+def _module_supports_position(module: Mapping[str, Any]) -> bool:
+    type_name = module.get("type")
+    if not isinstance(type_name, str):
+        return False
+    type_info = get_module_type_info(type_name)
+    if not isinstance(type_info, Mapping):
+        return False
+    property_names = type_info.get("property_names")
+    return isinstance(property_names, list) and "Position" in property_names
+
+
+def _ground_position_with_navmesh(
+    workspace_data: Mapping[str, Any],
+    position: tuple[float, float, float],
+    navmesh: Mapping[str, Any] | None,
+) -> tuple[float, float, float]:
+    options = _normalize_grounding_navmesh_options(navmesh)
+    if not options["enabled"]:
+        return position
+
+    scene_resource_id = options["scene_resource_id"]
+    if scene_resource_id is None:
+        scene_resource_id = resolve_workspace_scene_resource_id(workspace_data)
+    if scene_resource_id is None:
+        if options["strict"]:
+            raise ValueError("navmesh.scene_resource_id is required and no Scene props.AssetId was found")
+        return position
+
+    hit = sample_scene_position(
+        scene_resource_id,
+        position,
+        options["max_sample_distance"],
+        area_mask=options.get("area_mask"),
+        use_3d_distance=options["use_3d_distance"],
+        resource_dir=options.get("resource_dir"),
+    )
+    if hit is None:
+        if options["strict"]:
+            raise ValueError(
+                "No valid Scene NavMesh point found within "
+                f"{options['max_sample_distance']} of {list(position)}"
+            )
+        return position
+    return hit.position
+
+
+def _normalize_grounding_navmesh_options(navmesh: Mapping[str, Any] | None) -> dict[str, Any]:
+    if navmesh is None:
+        return {"enabled": False}
+    if not isinstance(navmesh, Mapping):
+        raise ValueError("navmesh must be an object")
+
+    options = dict(navmesh)
+    options["enabled"] = bool(options.get("enabled", True))
+    options["scene_resource_id"] = options.get("scene_resource_id", options.get("resource_id"))
+    options["max_sample_distance"] = _coerce_non_negative_float(
+        options.get("max_sample_distance", DEFAULT_SAMPLE_DISTANCE),
+        "navmesh.max_sample_distance",
+    )
+    options["strict"] = bool(options.get("strict", True))
+    options["use_3d_distance"] = bool(options.get("use_3d_distance", False))
+    return options
+
+
+def _coerce_vector3(value: Any, name: str) -> tuple[float, float, float]:
+    if isinstance(value, Mapping):
+        x = value.get("x", value.get("X"))
+        y = value.get("y", value.get("Y"))
+        z = value.get("z", value.get("Z"))
+        if x is None or y is None or z is None:
+            raise ValueError(f"{name} must contain x, y, and z")
+        return (
+            _coerce_finite_float(x, f"{name}.x"),
+            _coerce_finite_float(y, f"{name}.y"),
+            _coerce_finite_float(z, f"{name}.z"),
+        )
+
+    if isinstance(value, Sequence) and not isinstance(value, (str, bytes)) and len(value) >= 3:
+        return (
+            _coerce_finite_float(value[0], f"{name}[0]"),
+            _coerce_finite_float(value[1], f"{name}[1]"),
+            _coerce_finite_float(value[2], f"{name}[2]"),
+        )
+
+    raise ValueError(f"{name} must be a Vector3-like value")
+
+
+def _coerce_finite_float(value: Any, name: str) -> float:
+    try:
+        number = float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"{name} must be a number") from exc
+    if number != number or number in (float("inf"), float("-inf")):
+        raise ValueError(f"{name} must be finite")
+    return number
+
+
+def _coerce_non_negative_float(value: Any, name: str) -> float:
+    number = _coerce_finite_float(value, name)
+    if number < 0:
+        raise ValueError(f"{name} must be non-negative")
+    return number
+
+
+def _format_workspace_vector3(value: tuple[float, float, float]) -> list[str]:
+    return [
+        _format_workspace_number(value[0]),
+        _format_workspace_number(value[1]),
+        _format_workspace_number(value[2]),
+    ]
+
+
+def _format_workspace_number(value: float) -> str:
+    rounded = round(float(value), 6)
+    if abs(rounded) < 1e-9:
+        rounded = 0.0
+    text = f"{rounded:.6f}".rstrip("0").rstrip(".")
+    return text if text and text != "-0" else "0"

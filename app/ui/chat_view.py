@@ -1,8 +1,13 @@
 """对话区：消息列表 + 输入框。支持流式追加文本和工具调用气泡。"""
 from __future__ import annotations
 
-from PySide6.QtCore import Qt, Signal, QTimer
-from PySide6.QtGui import QKeyEvent
+import base64
+import tempfile
+import os
+from pathlib import Path
+
+from PySide6.QtCore import Qt, Signal, QTimer, QSize
+from PySide6.QtGui import QKeyEvent, QPixmap, QImage
 from PySide6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QLabel, QScrollArea,
     QTextEdit, QPushButton, QFrame, QSizePolicy, QToolButton,
@@ -47,7 +52,7 @@ class _ThinkingSection(QFrame):
         self._content.setStyleSheet("""
             background: #F8FAFC;
             border-left: 2px solid #E2E8F0;
-            color: #94A3B8; font-size: 12px;
+            color: #1E293B; font-size: 12px;
             padding: 8px 12px; margin-top: 4px;
             border-radius: 0 6px 6px 0;
         """)
@@ -109,6 +114,13 @@ class MessageBlock(QFrame):
         self._thinking: _ThinkingSection | None = None
         self._chips: list[QLabel] = []
 
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        # 用户气泡限制最大宽度为父容器 70%，确保 wordWrap 正常工作
+        if self.role == "user" and hasattr(self, "_bubble"):
+            max_w = max(160, int(self.width() * 0.70))
+            self._bubble.setMaximumWidth(max_w)
+
     # ── user layout: spacer + bubble + avatar ──────────────────────
     def _build_user(self, root: QHBoxLayout):
         root.addStretch(1)
@@ -117,9 +129,11 @@ class MessageBlock(QFrame):
         self._bubble.setObjectName("UserBubble")
         # 直接内联样式，不依赖 app 样式表级联（防止父级 transparent 覆盖）
         self._bubble.setStyleSheet(
-            "#UserBubble { background-color: #6366F1; border-radius: 18px;"
+            "#UserBubble { background-color: #5B21B6; border-radius: 18px;"
             " border-bottom-right-radius: 5px; padding: 10px 14px; }"
         )
+        # 初始兜底宽度：resizeEvent 会动态调整为父容器 70%
+        self._bubble.setMaximumWidth(420)
         bubble_layout = QVBoxLayout(self._bubble)
         bubble_layout.setContentsMargins(0, 0, 0, 0)
         bubble_layout.setSpacing(0)
@@ -131,6 +145,10 @@ class MessageBlock(QFrame):
         avatar.setObjectName("UserAvatar")
         avatar.setAlignment(Qt.AlignCenter)
         avatar.setFixedSize(28, 28)
+        avatar.setStyleSheet(
+            "background: #7C3AED; color: white; border-radius: 14px;"
+            " font-weight: 700; font-size: 11px;"
+        )
         root.addWidget(avatar, 0, Qt.AlignTop)
 
     # ── ai layout: avatar + card ────────────────────────────────────
@@ -143,6 +161,32 @@ class MessageBlock(QFrame):
 
         self._card = QFrame()
         self._card.setObjectName("AICard")
+        self._card.setStyleSheet("""
+            QFrame#AICard {
+                background: #F8F7FF;
+                border-top: 1px solid #D4D4D8;
+                border-right: 1px solid #D4D4D8;
+                border-bottom: 1px solid #D4D4D8;
+                border-left: 3px solid #7C3AED;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+                border-top-right-radius: 16px;
+                border-bottom-right-radius: 16px;
+                padding: 12px 14px;
+            }
+            QFrame#AICard[active="true"] {
+                background: #F5F3FF;
+                border-top: 1px solid #DDD6FE;
+                border-right: 1px solid #DDD6FE;
+                border-bottom: 1px solid #DDD6FE;
+                border-left: 3px solid #A78BFA;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+                border-top-right-radius: 16px;
+                border-bottom-right-radius: 16px;
+                padding: 12px 14px;
+            }
+        """)
         card_layout = QVBoxLayout(self._card)
         card_layout.setContentsMargins(0, 0, 0, 0)
         card_layout.setSpacing(6)
@@ -152,7 +196,7 @@ class MessageBlock(QFrame):
         role_label = QLabel("Sonnet")
         role_label.setObjectName("RoleLabel")
         role_label.setStyleSheet(
-            "color: #6366F1; font-size: 11px; font-weight: 600; "
+            "color: #7C3AED; font-size: 11px; font-weight: 600; "
             "background: transparent; padding-bottom: 2px;"
         )
         card_layout.addWidget(role_label)
@@ -265,8 +309,8 @@ class SessionBar(QFrame):
         self.setFixedHeight(36)
         self.setStyleSheet("""
             QFrame#SessionBar {
-                background: #F1F5F9;
-                border-bottom: 1px solid #E2E8F0;
+                background: #FFFFFF;
+                border-bottom: 1px solid #D4D4D8;
             }
         """)
         layout = QHBoxLayout(self)
@@ -295,11 +339,11 @@ class SessionBar(QFrame):
         add_btn.setCursor(Qt.PointingHandCursor)
         add_btn.setStyleSheet("""
             QPushButton {
-                background: transparent; border: 1px solid #CBD5E1;
-                border-radius: 4px; color: #64748B; font-size: 14px;
+                background: transparent; border: 1px solid #D4D4D8;
+                border-radius: 4px; color: #71717A; font-size: 14px;
                 font-weight: 600;
             }
-            QPushButton:hover { background: #E2E8F0; }
+            QPushButton:hover { background: #F0EFF8; }
         """)
         add_btn.clicked.connect(self.session_add)
         layout.addWidget(add_btn)
@@ -308,7 +352,7 @@ class SessionBar(QFrame):
         self._current = 0
 
     _STATUS_DOT = {
-        "running":   ("●", "#6366F1"),
+        "running":   ("●", "#7C3AED"),
         "reviewing": ("●", "#F59E0B"),
         "error":     ("●", "#DC2626"),
         "done":      ("●", "#059669"),
@@ -342,25 +386,44 @@ class SessionBar(QFrame):
         if active:
             btn.setStyleSheet("""
                 QPushButton {
-                    background: white; border: 1px solid #C7D2FE;
-                    border-radius: 6px; color: #4F46E5; font-size: 12px;
+                    background: white; border: 1px solid #DDD6FE;
+                    border-radius: 6px; color: #7C3AED; font-size: 12px;
                     padding: 0 10px; font-weight: 600;
                 }
             """)
         else:
-            extra_color = f"color: {dot_color};" if dot_color else "color: #64748B;"
+            extra_color = f"color: {dot_color};" if dot_color else "color: #71717A;"
             btn.setStyleSheet(f"""
                 QPushButton {{
                     background: transparent; border: 1px solid transparent;
                     border-radius: 6px; {extra_color} font-size: 12px;
                     padding: 0 10px;
                 }}
-                QPushButton:hover {{ background: #E2E8F0; }}
+                QPushButton:hover {{ background: #F0EFF8; }}
             """)
 
 
+class _ImageEditor(QTextEdit):
+    """QTextEdit 子类：拦截粘贴事件，把剪贴板里的图片提取出来而不是插入 HTML。"""
+    image_pasted = Signal(QImage)
+
+    def canInsertFromMimeData(self, source):
+        if source.hasImage():
+            return True
+        return super().canInsertFromMimeData(source)
+
+    def insertFromMimeData(self, source):
+        if source.hasImage():
+            img = source.imageData()
+            if isinstance(img, QImage) and not img.isNull():
+                self.image_pasted.emit(img)
+                return
+        super().insertFromMimeData(source)
+
+
 class InputArea(QFrame):
-    send_requested = Signal(str)
+    # text: str, images: list[str]  (images 为临时文件绝对路径列表)
+    send_requested = Signal(str, list)
     stop_requested = Signal()
 
     def __init__(self, parent=None):
@@ -370,14 +433,24 @@ class InputArea(QFrame):
         root.setContentsMargins(12, 12, 12, 12)
         root.setSpacing(8)
 
-        self.editor = QTextEdit()
-        self.editor.setPlaceholderText("发送消息...")
+        # 图片预览条（默认隐藏）
+        self._thumb_bar = QWidget()
+        self._thumb_bar.setFixedHeight(68)
+        self._thumb_layout = QHBoxLayout(self._thumb_bar)
+        self._thumb_layout.setContentsMargins(0, 0, 0, 4)
+        self._thumb_layout.setSpacing(6)
+        self._thumb_layout.addStretch()
+        self._thumb_bar.hide()
+        root.addWidget(self._thumb_bar)
+
+        self.editor = _ImageEditor()
+        self.editor.setPlaceholderText("发送消息（可粘贴图片）…")
         self.editor.setFixedHeight(60)
-        # 明确指定背景和文字颜色，不依赖 transparent 继承（Windows 下 transparent 会导致文字不可见）
         self.editor.setStyleSheet(
             "QTextEdit { background-color: #FFFFFF; border: none;"
-            " color: #1E293B; selection-background-color: #C7D2FE; }"
+            " color: #18181B; selection-background-color: #DDD6FE; }"
         )
+        self.editor.image_pasted.connect(self._add_image_from_qimage)
         root.addWidget(self.editor)
 
         bottom = QHBoxLayout()
@@ -392,7 +465,84 @@ class InputArea(QFrame):
 
         self.editor.installEventFilter(self)
         self._busy = False
+        self._image_paths: list[str] = []  # 当前待发图片临时路径
 
+        # 支持拖放图片文件
+        self.setAcceptDrops(True)
+
+    # ── 拖放 ──────────────────────────────────────────────────────────────────
+    def dragEnterEvent(self, ev):
+        if ev.mimeData().hasUrls() or ev.mimeData().hasImage():
+            ev.acceptProposedAction()
+        else:
+            super().dragEnterEvent(ev)
+
+    def dropEvent(self, ev):
+        if ev.mimeData().hasImage():
+            img = ev.mimeData().imageData()
+            if isinstance(img, QImage) and not img.isNull():
+                self._add_image_from_qimage(img)
+            ev.acceptProposedAction()
+            return
+        if ev.mimeData().hasUrls():
+            for url in ev.mimeData().urls():
+                p = url.toLocalFile()
+                if p and Path(p).suffix.lower() in (".png", ".jpg", ".jpeg", ".webp", ".gif"):
+                    self._add_image_from_path(p)
+            ev.acceptProposedAction()
+            return
+        super().dropEvent(ev)
+
+    # ── 图片添加 ──────────────────────────────────────────────────────────────
+    def _add_image_from_qimage(self, img: QImage):
+        tmp = tempfile.NamedTemporaryFile(suffix=".jpg", delete=False)
+        tmp.close()
+        img.save(tmp.name, "JPEG", 90)
+        self._add_image_from_path(tmp.name)
+
+    def _add_image_from_path(self, path: str):
+        if path in self._image_paths:
+            return
+        self._image_paths.append(path)
+        self._add_thumbnail(path)
+        self._thumb_bar.show()
+
+    def _add_thumbnail(self, path: str):
+        container = QFrame()
+        container.setFixedSize(60, 60)
+        container.setStyleSheet("QFrame { border-radius: 6px; background: #F3F4F6; }")
+        lbl = QLabel(container)
+        lbl.setFixedSize(60, 60)
+        pix = QPixmap(path).scaled(60, 60, Qt.KeepAspectRatioByExpanding, Qt.SmoothTransformation)
+        # 居中裁剪到 60×60
+        x = (pix.width() - 60) // 2
+        y = (pix.height() - 60) // 2
+        pix = pix.copy(x, y, 60, 60)
+        lbl.setPixmap(pix)
+        lbl.setAlignment(Qt.AlignCenter)
+        lbl.setStyleSheet("border-radius: 6px;")
+
+        # 右上角删除按钮
+        del_btn = QPushButton("×", container)
+        del_btn.setFixedSize(16, 16)
+        del_btn.move(44, 0)
+        del_btn.setStyleSheet(
+            "QPushButton { background: #EF4444; color: white; border-radius: 8px; "
+            "font-size: 10px; padding: 0; }"
+        )
+        del_btn.clicked.connect(lambda: self._remove_image(path, container))
+
+        self._thumb_layout.insertWidget(self._thumb_layout.count() - 1, container)
+
+    def _remove_image(self, path: str, widget: QWidget):
+        if path in self._image_paths:
+            self._image_paths.remove(path)
+        widget.setParent(None)
+        widget.deleteLater()
+        if not self._image_paths:
+            self._thumb_bar.hide()
+
+    # ── 发送 ──────────────────────────────────────────────────────────────────
     def eventFilter(self, obj, ev):
         if obj is self.editor and ev.type() == ev.Type.KeyPress:
             ke: QKeyEvent = ev
@@ -406,10 +556,16 @@ class InputArea(QFrame):
             self.stop_requested.emit()
             return
         text = self.editor.toPlainText().strip()
-        if not text:
+        images = list(self._image_paths)
+        if not text and not images:
             return
         self.editor.clear()
-        self.send_requested.emit(text)
+        self._image_paths.clear()
+        for w in self._thumb_bar.findChildren(QFrame):
+            w.setParent(None)
+            w.deleteLater()
+        self._thumb_bar.hide()
+        self.send_requested.emit(text, images)
 
     def set_busy(self, busy: bool):
         self._busy = busy
@@ -421,7 +577,7 @@ class InputArea(QFrame):
 
 class ChatView(QWidget):
     """整个对话区：会话标签 + 滚动消息列表 + 底部输入。"""
-    send_requested = Signal(str)
+    send_requested = Signal(str, list)   # text, images
     stop_requested = Signal()
     session_changed = Signal(int)
     session_add = Signal()
@@ -445,11 +601,11 @@ class ChatView(QWidget):
         self._bg_strip.setObjectName("BgStrip")
         self._bg_strip.setStyleSheet("""
             QLabel#BgStrip {
-                background: #EEF2FF;
-                color: #4F46E5;
+                background: #EDE9FE;
+                color: #7C3AED;
                 font-size: 11px;
                 padding: 3px 16px;
-                border-bottom: 1px solid #C7D2FE;
+                border-bottom: 1px solid #DDD6FE;
             }
         """)
         self._bg_strip.setVisible(False)
@@ -459,10 +615,12 @@ class ChatView(QWidget):
         self.scroll.setWidgetResizable(True)
         self.scroll.setFrameShape(QScrollArea.NoFrame)
         self.scroll.setStyleSheet("background: transparent;")
+        self.scroll.viewport().setStyleSheet("background: #FFFFFF;")
         root.addWidget(self.scroll, 1)
 
         self.container = QWidget()
-        self.container.setStyleSheet("background: transparent;")
+        self.container.setObjectName("ChatMsgContainer")
+        self.container.setStyleSheet("QWidget#ChatMsgContainer { background: transparent; }")
         self.scroll_layout = QVBoxLayout(self.container)
         self.scroll_layout.setContentsMargins(48, 28, 48, 28)
         self.scroll_layout.setSpacing(20)
@@ -523,7 +681,7 @@ class ChatView(QWidget):
         label = QLabel(text)
         label.setObjectName("HintLabel")
         label.setAlignment(Qt.AlignCenter)
-        label.setStyleSheet("color: #9CA3AF; font-size: 12px;")
+        label.setStyleSheet("color: #A1A1AA; font-size: 12px;")
         count = self.scroll_layout.count()
         self.scroll_layout.insertWidget(count - 1, label)
 
@@ -554,8 +712,8 @@ class _StatusBar(QFrame):
     """
 
     _STATE_STYLES = {
-        "idle":      ("●", "#CBD5E1", "就绪"),
-        "running":   ("◎", "#6366F1", "运行中"),
+        "idle":      ("●", "#D4D4D8", "就绪"),
+        "running":   ("◎", "#7C3AED", "运行中"),
         "reviewing": ("🔍", "#F59E0B", "审查中"),
         "stopped":   ("□", "#F59E0B", "已停止"),
         "done":      ("✓", "#059669", "待回复"),
@@ -567,8 +725,9 @@ class _StatusBar(QFrame):
         self.setObjectName("StatusPanel")
         self.setStyleSheet("""
             QFrame#StatusPanel {
-                background: #F8FAFC;
-                border-top: 1px solid #E2E8F0;
+                background: #F5F5F7;
+                border-top: 1px solid #D4D4D8;
+                border-bottom: 1px solid #D4D4D8;
             }
             QLabel { background: transparent; }
         """)
@@ -583,24 +742,24 @@ class _StatusBar(QFrame):
 
         self._dot = QLabel("●")
         self._dot.setFixedWidth(14)
-        self._dot.setStyleSheet("font-size: 11px; color: #CBD5E1;")
+        self._dot.setStyleSheet("font-size: 11px; color: #D4D4D8;")
         row1.addWidget(self._dot)
 
         self._state_label = QLabel("就绪")
         self._state_label.setFixedWidth(52)
-        self._state_label.setStyleSheet("font-size: 11px; color: #64748B; font-weight: 600;")
+        self._state_label.setStyleSheet("font-size: 11px; color: #71717A; font-weight: 600;")
         row1.addWidget(self._state_label)
 
         sep = QLabel("|")
-        sep.setStyleSheet("color: #D1D5DB; font-size: 11px;")
+        sep.setStyleSheet("color: #D4D4D8; font-size: 11px;")
         row1.addWidget(sep)
 
         self._iter_label = QLabel("")
-        self._iter_label.setStyleSheet("font-size: 11px; color: #64748B;")
+        self._iter_label.setStyleSheet("font-size: 11px; color: #71717A;")
         row1.addWidget(self._iter_label)
 
         self._cur_tool_label = QLabel("")
-        self._cur_tool_label.setStyleSheet("font-size: 11px; color: #6366F1;")
+        self._cur_tool_label.setStyleSheet("font-size: 11px; color: #7C3AED;")
         row1.addWidget(self._cur_tool_label, 1)
 
         root.addLayout(row1)
@@ -626,7 +785,7 @@ class _StatusBar(QFrame):
         # ── 行3：最新2行思考内容 ─────────────────────────────────
         self._think_label = QLabel("")
         self._think_label.setStyleSheet(
-            "font-size: 11px; color: #94A3B8; background: transparent;"
+            "font-size: 11px; color: #A1A1AA; background: transparent;"
         )
         self._think_label.setWordWrap(False)
         root.addWidget(self._think_label)
@@ -648,7 +807,7 @@ class _StatusBar(QFrame):
         for name, status in recent:
             chip = QLabel(f"🔧 {name} {status}")
             chip.setStyleSheet("""
-                background: #EEF2FF; color: #4F46E5;
+                background: #EDE9FE; color: #7C3AED;
                 border-radius: 8px; padding: 2px 8px;
                 font-size: 11px;
             """)

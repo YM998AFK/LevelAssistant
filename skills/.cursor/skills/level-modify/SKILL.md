@@ -3,7 +3,7 @@ name: level-modify
 description: >-
   修改已有盘古3D关卡的主 agent 编排手册。当用户提到修改关卡、调整效果、改动已有包、
   基于XX包改、把XX改成YY、改挑战X、练习X改成YY时触发。
-  新架构：主 agent 只负责决策与编排，各专属子 agent 执行具体工作。
+  新架构：主 agent 只负责决策与编排，有包体输入时直接调用 scripts/_scan_level.py 扫描，各专属子 agent 执行改造和审查。
   四步流程：策划输入 → 扫包+状态对比卡 → dispatch 改造员 → dispatch 审查员。
   需要资源查找时强制先派遣 level-resource 子 agent。
   输出 output/modify/{ORIG_NAME}-v{N}.zip。
@@ -29,8 +29,7 @@ description: >-
 | 子 agent | 读哪个 SKILL | 派遣模板 |
 |---------|------------|---------|
 | 资源搜索员 | `level-resource/SKILL.md` | `level-resource/resource_prompt.md` |
-| 扫描员 | `level-modify/scanner_skill.md` | `level-modify/scanner_prompt.md` |
-| 改造员 | `level-modify/modifier_skill.md` | `level-modify/modifier_prompt.md` |
+| 改造员 | （无需读额外文件，prompt 已自包含） | `level-modify/modifier_prompt.md` |
 | 审查员 | `level-common/reviewer_skill.md` | `level-modify/reviewer_prompt.md` |
 
 ---
@@ -62,7 +61,7 @@ description: >-
 1. 当前 session 中 agent 刚完成该包的生成或修改（S1-S3 扫描结果全在上下文中）
 2. 设计师指出具体问题（"这里效果不对"、"这个角色朝向错了"）
 
-**免除项**：S1 / S2 / S3 扫包三步（包结构已在上下文，重扫是纯浪费）。
+**免除项**：S1 / S2 / S3 扫包三步（包结构已在上下文，重扫是纯浪费；前提：该包的 §1~§8 + 表A + 表B 扫描结果已在当前 session 上下文中）。
 
 **不可免除项**：
 
@@ -87,11 +86,14 @@ description: >-
 ```
 第1步  策划输入（包路径 + 需求描述）
   ↓
-第2步  【并行】dispatch 扫描员 + 主 agent 推导改造方案
-        → 扫描员返回 §1~§8 + 表A(三栏) + 表B(变量覆盖)
-        → 若需要资源查找：派遣资源搜索员（强制）
-        → 主 agent 合并信息，制定改造方案，输出状态对比卡
-        → 等设计师确认（M7 强制卡点）
+第2步  【并行触发】run_python _scan_level.py + 以下 3 个原子步骤
+        → 脚本返回 §1~§8 + 表A(三栏) + 表B(变量覆盖)
+        → 若需要资源查找：派遣资源搜索员（强制，同批次）
+        ────── 输出对比卡前，必须按顺序完成全部 3 项 ──────
+        ☐ A. 扫包完整性：S1(ref_ingest) + S2(三栏/表B) + S3(ref_diff) 全通
+        ☐ B. 读 modify_playbook.md → 匹配本次属于哪个模式（M-1~M-11）
+        ☐ C. 按匹配模式列出「最小 diff」改动清单
+        → 输出状态对比卡，等设计师确认（M7 强制卡点）
   ↓
 第3步  dispatch 改造员（填 modifier_prompt.md 模板）
         → 改造员返回：确认表 + 逐项执行回报 + validate 结果 + verify_gates 结果
@@ -142,19 +144,32 @@ description: >-
 | # | 必做项 | 完成标志 |
 |---|--------|---------|
 | S1 | 读 `参考-extracted/<母本>/_analysis.md`（不存在则先跑 `python scripts/ref_ingest.py --json`） | 文件已读，或已确认生成成功 |
-| S2 | 按 `level-common/modify_playbook.md §6` 扫描三栏（活代码 A / 候补 B1 / 遗留 B2）+ 变量覆盖影响表（表 B） | 两张表在扫描员返回结果中存在 |
+| S2 | 扫描三栏（活代码 A / 候补 B1 / 遗留 B2）+ 变量覆盖影响表（表 B）（对应流程总览步骤 A） | 两张表在扫描员返回结果中存在 |
 | S3 | 用 `scripts/ref_diff.py <母本dir> <当前包dir>` 确认包结构全貌 | diff 输出已读取，无遗漏模块 |
 
 **三项中任一未完成 → 禁止输出对比卡，禁止进入第3步。**
 
-### 如何 dispatch 扫描员
+### ⛔ 步骤 B：读 modify_playbook.md（与扫包并行，输出对比卡前必须完成）
 
-1. 填写 `scanner_prompt.md` 模板（告知扫描员：读 `level-modify/scanner_skill.md`）：
-   - `${ZIP_PATH}`：目标 zip 绝对路径
-   - `${WORKDIR_PATH}`：解压后工作目录
-   - `${WS_FILE_PATH}`：ws 文件绝对路径
-   - `${TARGET_HANDLERS}`：根据用户需求推断的重点 handler（如 `cmd=cin 分支, 计算速度 handler`）
-2. **与推导改造方案并行 dispatch**（同一消息批次，不串行等待）
+按以下顺序操作，缺一不可：
+
+1. 读 `level-common/modify_playbook.md` 全文
+2. 对照 §1 模式总览，匹配本次任务对应的模式代号（M-1~M-11）
+3. 读该模式的"最小 diff"小节，将其约束纳入步骤 C（改动清单）
+
+**未完成此步 → 禁止输出状态对比卡，禁止进入第3步。**
+
+### 如何执行扫包
+
+直接调用 `run_python` 工具，传入脚本绝对路径和参数：
+- **脚本**：`<skills_dir>/scripts/_scan_level.py`
+- **参数**：`[WORKDIR_PATH, WS_FILE_PATH]`
+
+脚本 stdout 即为完整扫描报告（§1~§8 + 表A + 表B），直接用于制定改造方案。
+
+⛔ **有包体必扫**：只要有 zip / `.ws` 输入且当前 session 尚未扫过该包，**必须立即调用**，不可跳过。唯一豁免：该包完整扫描结果已在当前 session 上下文中。
+
+**与推导改造方案并行执行**（同一消息批次，不串行等待）。
 
 ### 需要资源查找时（强制派遣资源搜索员）
 
@@ -162,14 +177,57 @@ description: >-
 - 填写 `level-resource/resource_prompt.md` 模板
 - 与扫描员**同一批次**派遣
 
-### 扫描员返回后的质检三问
+### ⛔ cpp 答案页 ▼▲ 折叠区推导（有 cpp 时必做，与扫包并行）
 
-收到扫描员返回，以下三项必须全 YES 才继续：
+当用户提供了答案页 cpp 文件，**制定改造方案前必须完成下列三步**，不得跳过。
+
+#### 第一步：逐行标注折叠区
+
+对**每个** cpp 文件，按 `▼`（折叠开始）/ `▲`（折叠结束）逐段列出：
+
+```
+文件：挑战X答案页.cpp
+折叠区A：[▼ 所在行] ~ [▲ 所在行]  →  区内代码：<内容，逐行抄出>
+折叠区B：[▼ 所在行] ~ [▲ 所在行]  →  区内代码：<内容，逐行抄出>
+```
+
+> ⚠️ `▼▲` 出现在行内注释中（如 `cin>>n;// ▲`），标记的是**该行本身**是折叠区的边界。要逐字符读，不要跳行。
+
+#### 第二步：对比两文件的折叠区差异（核心）
+
+分两类检查，缺一不可：
+
+| 检查项 | 是 → | 否 → |
+|--------|------|------|
+| 折叠区**内代码**不同（输出值 / 循环体变了） | 改演示值或积木参数 | 不用改 |
+| **折叠区边界移动**（边界行本身变了） | **演出控制结构必须同步变化** | 只改值 |
+
+> ⛔ **只看输出形状不够**：折叠边界移动意味着「学生要填写的代码段」变了，演出中对应的 `Repeat` / `BroadcastMessageAndWait` 的**位置和次数**都要跟着变。典型后果：换行广播从循环外移入循环内、外层 Repeat 次数从 1 改为 n。
+
+**典型对照（挑战2 → 挑战4 折叠边界移动案例）**：
+
+| 维度 | 挑战2（原） | 挑战4（目标） | 演出结构变化 |
+|------|------------|--------------|-------------|
+| 折叠区B 包含 | 整个外层 for + 换行 | 内层 for 循环体 + 换行（外层 for 头已给出） | 换行广播从循环外移入循环内 |
+| 外层 Repeat 参数 | `ListReplaceItemAt` 设为 `'1'`（单次） | `ListGetItemAt(1, cin_cut)`（跑 n 次） | 外层循环次数从固定 1 变为 n |
+| 换行位置 | `cmd=cin` 分支末尾 | 外层 Repeat 循环体末尾 | 广播插入点改变 |
+
+#### 第三步：将折叠区分析结论纳入改动清单
+
+只有完成上述分析，才能写出完整的 `${CHANGE_LIST}`：
+- 每条结构性改动（Repeat 次数 / 广播位置）要标注「**因折叠边界移动**」
+- 每条值类改动（演示值 / SetVar 参数）要标注「**因折叠区内代码变化**」
+
+---
+
+### 扫描报告质检三问
+
+收到 `_scan_level.py` stdout 输出，以下三项必须全 YES 才继续：
 1. §1~§8 八个区段全部有内容？
 2. 表 A（三栏分类）存在且每个 fragment 都有分类？
 3. 表 B（变量覆盖影响表）存在且覆盖所有 SetVar/ListReplaceItemAt？
 
-任一 NO → 打回扫描员重做（新开 Task，不 resume）。
+任一 NO → 说明脚本执行失败，**必须检查报错原因**（路径/权限/参数），修正后重新调用，不得自行代为分析 WS 文件。
 
 ### 状态对比卡格式（固定模板，主 agent 填写后发给设计师）
 
@@ -262,6 +320,14 @@ description: >-
    | 外层循环换行 | 变更 | 外层 Repeat 内新增 BroadcastMessageAndWait('换行') |
    | 其余 handler | 同 | 未改动 |
    ```
+4. **${CPP_CONTENT}**：用 `read_file` 读取用户上传的所有答案页 cpp 文件，将内容内联粘贴（支持多文件，每个文件加文件名标题）。无 cpp 则填"无"。
+5. **${CHANGE_ASSERTIONS}**：从改造员返回的「改动路径断言表」**原样复制**，不得语义转述，保留精确 ws 路径：
+   ```
+   | # | 精确 ws 路径 | 改前值 | 改后值 |
+   |---|------------|--------|--------|
+   | 1 | scene.children[X]....params[N].val | '2' | '5' |
+   ```
+   > 审查员将用此表直接调用 `json_path_get` 逐行断言，路径必须完整可寻址
 
 ### 审查员返回后的质检三问
 
@@ -278,8 +344,12 @@ description: >-
 
 ### 路径与版本号（主 agent 自查）
 
-- 路径：`output/modify/{原包名}-v{N}.zip`，不是 `output/` 根目录、不是 `output/new/`
+- 改造员的 `${OUTPUT_ZIP_PATH}` 应填写**全局产出目录**下的绝对路径：`<产出目录>/modify/{原包名}-v{N}.zip`
+  （产出目录见系统提示"产出目录"一行；交付消息中可简写为 `output/modify/{原包名}-v{N}.zip`）
 - 不覆盖旧版：`-v{N}.zip` 已存在则递增为 `v{N+1}`
+- 改造员已在步骤6直接将包写入产出目录，**主 agent 无需再调用 `create_archive`**
+
+> ⚠️ 改造员打包后，`output/modify/{name}-v{N}.zip` 即为最终产出，不要再二次打包，否则会产生 zip 嵌套。
 
 ### 交付消息（主 agent 必须包含以下所有内容）
 

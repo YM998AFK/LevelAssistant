@@ -3,7 +3,7 @@
 
 背景：过往 subagent 为了验证一个关卡包，需要分别跑 verify_blocks.py、
 verify_no_new_next.py、以及手写 MCP validate 脚本，总 20~30 次 Shell 调用。
-本脚本把三个 gate 合并为单次调用 + 结构化输出，供主 agent / subagent 一次拿齐结果。
+本脚本把五个 gate 合并为单次调用 + 结构化输出，供主 agent / subagent 一次拿齐结果。
 
 使用：
   python scripts/verify_gates.py <target_zip>
@@ -15,6 +15,8 @@ Gate 覆盖：
   gate1  params-count    —— verify_blocks.py 的核心逻辑（积木参数槽）
   gate2  no-new-next     —— verify_no_new_next.py 的核心逻辑（禁用 block.next）
   gate3  mcp-validate    —— hetu_mcp.validation_operations.validate_workspace
+  gate4  zip-completeness—— N11 zip 完整性（export_info / icon / UUID 匹配）
+  gate5  block-scope-N14 —— R-17 积木节点类型归属（Camera/UIView/Character/3D 四组，check_reviewer_items.check_r17）
 
 退出码：
   0  全部 gate PASS
@@ -47,6 +49,7 @@ from verify_blocks import (  # noqa: E402
     load_registry,
 )
 from verify_no_new_next import collect_next_paths  # noqa: E402
+from check_reviewer_items import check_r17  # noqa: E402
 
 try:
     from handlers.validation_operations import validate_workspace  # type: ignore  # noqa: E402
@@ -196,7 +199,10 @@ def run_gate2(
 # Gate 3: mcp validate_workspace
 # ---------------------------------------------------------------------------
 
-def run_gate3(ws_data: Dict[str, Any]) -> Dict[str, Any]:
+def run_gate3(
+    ws_data: Dict[str, Any],
+    baseline_ws: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
     if validate_workspace is None:
         return {
             "name": "gate3_mcp_validate",
@@ -223,16 +229,33 @@ def run_gate3(ws_data: Dict[str, Any]) -> Dict[str, Any]:
             "stats": {},
         }
 
-    errors = r.get("errors", []) or []
-    warnings = r.get("warnings", []) or []
+    all_errors = [str(e) for e in (r.get("errors", []) or [])]
+    all_warnings = [str(w) for w in (r.get("warnings", []) or [])]
+
+    # 有 baseline 时：只报新增错误（baseline 已有的忽略，逻辑同 gate2）
+    if baseline_ws is not None:
+        try:
+            rb = validate_workspace(baseline_ws)
+            base_errors = set(str(e) for e in (rb.get("errors", []) or []))
+        except Exception:
+            base_errors = set()
+        new_errors = [e for e in all_errors if e not in base_errors]
+        mode = "incremental"
+    else:
+        new_errors = all_errors
+        mode = "absolute"
+
     return {
         "name": "gate3_mcp_validate",
-        "pass": bool(r.get("valid")) and not errors,
-        "error_count": int(r.get("error_count", len(errors))),
-        "warning_count": int(r.get("warning_count", len(warnings))),
-        "errors": [str(e) for e in errors[:50]],
-        "warnings": [str(w) for w in warnings[:50]],
+        "pass": not new_errors,
+        "mode": mode,
+        "error_count": len(new_errors),
+        "warning_count": len(all_warnings),
+        "errors": new_errors[:50],
+        "warnings": all_warnings[:50],
         "stats": {
+            "total_errors_in_target": len(all_errors),
+            "baseline_errors_ignored": len(all_errors) - len(new_errors) if baseline_ws else 0,
             "errors_truncated_if_gt": 50,
             "warnings_truncated_if_gt": 50,
         },
@@ -243,7 +266,8 @@ def run_gate3(ws_data: Dict[str, Any]) -> Dict[str, Any]:
 # Gate 4: N11 zip completeness（N11 规则：export_info.json / icon / UUID 匹配）
 # ---------------------------------------------------------------------------
 
-def run_gate4_zip_completeness(zip_path: Path) -> Dict[str, Any]:
+def _collect_gate4_errors(zip_path: Path) -> tuple[List[str], List[str]]:
+    """返回 (errors, warnings)，供增量对比复用。"""
     errors: List[str] = []
     warnings: List[str] = []
     with zipfile.ZipFile(zip_path, "r") as zf:
@@ -272,7 +296,6 @@ def run_gate4_zip_completeness(zip_path: Path) -> Dict[str, Any]:
                         f"!= export_info.solutionUid={e_uid!r}"
                     )
                 else:
-                    # 检查 solution icon 字段是否有对应文件
                     for proj in sol.get("projects", []):
                         icon = proj.get("icon", "")
                         icon_name = icon.rsplit("/", 1)[-1] if "/" in icon else icon
@@ -282,15 +305,103 @@ def run_gate4_zip_completeness(zip_path: Path) -> Dict[str, Any]:
                             )
             except Exception as exc:
                 errors.append(f"读 solution/export_info 出错: {exc!r}")
+    return errors, warnings
+
+
+def run_gate4_zip_completeness(
+    zip_path: Path,
+    baseline_zip: Optional[Path] = None,
+) -> Dict[str, Any]:
+    all_errors, all_warnings = _collect_gate4_errors(zip_path)
+
+    # 有 baseline 时：只报新增错误
+    if baseline_zip is not None:
+        try:
+            base_errors, _ = _collect_gate4_errors(baseline_zip)
+            base_set = set(base_errors)
+        except Exception:
+            base_set = set()
+        new_errors = [e for e in all_errors if e not in base_set]
+        mode = "incremental"
+    else:
+        new_errors = all_errors
+        mode = "absolute"
 
     return {
         "name": "gate4_zip_completeness",
-        "pass": len(errors) == 0,
-        "error_count": len(errors),
-        "warning_count": len(warnings),
-        "errors": errors,
-        "warnings": warnings,
-        "stats": {},
+        "pass": len(new_errors) == 0,
+        "mode": mode,
+        "error_count": len(new_errors),
+        "warning_count": len(all_warnings),
+        "errors": new_errors,
+        "warnings": all_warnings,
+        "stats": {
+            "total_errors_in_target": len(all_errors),
+            "baseline_errors_ignored": len(all_errors) - len(new_errors) if baseline_zip else 0,
+        },
+    }
+
+
+# ---------------------------------------------------------------------------
+# Gate 5: N14 积木节点类型归属（R-17）
+# ---------------------------------------------------------------------------
+
+def run_gate5_block_scope(
+    ws_data: Dict[str, Any],
+    baseline_ws: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """将 check_reviewer_items.check_r17() 封装为 gate，覆盖四组违规：
+    A  Camera专属积木出现在非CameraService节点
+    A' CameraService节点含禁用积木
+    B  UIView专属积木出现在非UIView节点
+    B' UIView节点含3D专属积木
+    C  Character专属积木出现在非Character节点
+    对应 design_rules.md R-17 / SKILL.md N14。
+    有 baseline 时只报新增违规（baseline 已有的忽略，逻辑同 gate2/gate3）。
+    """
+    try:
+        r = check_r17(ws_data)
+    except Exception as exc:  # pragma: no cover
+        return {
+            "name": "gate5_block_scope_N14",
+            "pass": False,
+            "error_count": 1,
+            "warning_count": 0,
+            "errors": [f"check_r17 threw: {exc!r}"],
+            "warnings": [],
+            "stats": {},
+        }
+
+    all_errors = [str(e) for e in (r.get("details", []) or [])]
+    groups = r.get("groups", {})
+
+    # 有 baseline 时：只报新增违规
+    if baseline_ws is not None:
+        try:
+            rb = check_r17(baseline_ws)
+            base_errors = set(str(e) for e in (rb.get("details", []) or []))
+        except Exception:
+            base_errors = set()
+        new_errors = [e for e in all_errors if e not in base_errors]
+        mode = "incremental"
+    else:
+        new_errors = all_errors
+        mode = "absolute"
+
+    return {
+        "name": "gate5_block_scope_N14",
+        "pass": not new_errors,
+        "mode": mode,
+        "error_count": len(new_errors),
+        "warning_count": 0,
+        "errors": new_errors[:50],
+        "warnings": [],
+        "stats": {
+            "groups": groups,
+            "total_errors_in_target": len(all_errors),
+            "baseline_errors_ignored": len(all_errors) - len(new_errors) if baseline_ws else 0,
+            "errors_truncated_if_gt": 50,
+        },
     }
 
 
@@ -308,8 +419,9 @@ def run_all(
     gates = [
         run_gate1(target_ws),
         run_gate2(target_ws, baseline_ws),
-        run_gate3(target_ws),
-        run_gate4_zip_completeness(target_zip),
+        run_gate3(target_ws, baseline_ws),
+        run_gate4_zip_completeness(target_zip, baseline_zip),
+        run_gate5_block_scope(target_ws, baseline_ws),
     ]
 
     overall_pass = all(g["pass"] for g in gates)

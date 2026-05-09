@@ -1,24 +1,30 @@
 """主窗口：顶部栏 + 模式切换 + 侧边栏 + 对话区。"""
 from __future__ import annotations
 
+import base64
 from pathlib import Path
 from typing import Optional
 import uuid
 import shutil
 
-from PySide6.QtCore import Qt, Signal
+from PySide6.QtCore import Qt, Signal, QTimer
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel,
     QPushButton, QMessageBox,
 )
 
-from ..config import APP_NAME, MODES, workspace_dir, DEFAULT_MODEL
+from ..config import (
+    APP_NAME, APP_VERSION, MODES, workspace_dir, DEFAULT_MODEL,
+    UPDATE_VERSION_URL, UPDATE_PROXY_PREFIX,
+)
 from ..skills import skills_for_mode, Skill
 from ..agent import AgentWorker, ReviewWorker, build_system_prompt, build_review_prompt
 from ..logger import get_app_logger, setup_task_logging
 from .sidebar import Sidebar
 from .chat_view import ChatView, MessageBlock
+from .update_dialog import UpdateNotifyDialog
+from ..updater import UpdateChecker
 
 
 MAX_SESSIONS = 10   # 每个模式最多保留的会话数
@@ -117,6 +123,10 @@ class MainWindow(QMainWindow):
         self._wire()
         self._load_history()
         self._restore_session_state()   # 还原上次会话（内部若无内容则显示欢迎语）
+        self._update_checker: UpdateChecker | None = None
+        # 延迟 0.5 秒等主窗口渲染完毕后立即检查更新
+        if UPDATE_VERSION_URL:
+            QTimer.singleShot(500, self._check_for_updates)
 
     def _center_window(self):
         screen = QGuiApplication.primaryScreen().availableGeometry()
@@ -142,9 +152,33 @@ class MainWindow(QMainWindow):
         menu_btn.setCursor(Qt.PointingHandCursor)
         top_layout.addWidget(menu_btn)
 
+        logo_wrap = QWidget()
+        logo_wrap.setStyleSheet("background: transparent;")
+        logo_row = QHBoxLayout(logo_wrap)
+        logo_row.setContentsMargins(0, 0, 0, 0)
+        logo_row.setSpacing(7)
+
+        logo_icon = QLabel("L")
+        logo_icon.setFixedSize(24, 24)
+        logo_icon.setAlignment(Qt.AlignCenter)
+        logo_icon.setStyleSheet(
+            "background: #7C3AED; color: white; border-radius: 6px;"
+            "font-size: 12px; font-weight: 800;"
+        )
+        logo_row.addWidget(logo_icon)
+
         title = QLabel(APP_NAME)
         title.setObjectName("AppTitle")
-        top_layout.addWidget(title)
+        logo_row.addWidget(title)
+
+        ver_label = QLabel(f"v{APP_VERSION}")
+        ver_label.setStyleSheet(
+            "background: transparent; color: #A1A1AA; font-size: 11px;"
+        )
+        ver_label.setAlignment(Qt.AlignVCenter)
+        logo_row.addWidget(ver_label)
+
+        top_layout.addWidget(logo_wrap)
 
         top_layout.addStretch()
         self.mode_tabs = ModeTabs()
@@ -156,7 +190,7 @@ class MainWindow(QMainWindow):
         avatar.setFixedSize(28, 28)
         avatar.setAlignment(Qt.AlignCenter)
         avatar.setStyleSheet("""
-            background: #111827; color: white; border-radius: 14px;
+            background: #7C3AED; color: white; border-radius: 14px;
             font-weight: 600; font-size: 12px;
         """)
         top_layout.addWidget(avatar)
@@ -500,6 +534,68 @@ class MainWindow(QMainWindow):
         )
         self._start_agent(system_prompt)
 
+    def _start_task_from_chat(self, text: str, images: list):
+        """resource_search / create_level / create_story 从输入框直接发起任务。"""
+        mode = self.current_mode
+        ws_prefix = "search" if mode == "resource_search" else "task"
+        ws = workspace_dir() / f"{ws_prefix}_{uuid.uuid4().hex[:8]}"
+        ws.mkdir(parents=True, exist_ok=True)
+        self.workspace = ws
+        self.task_logger = setup_task_logging(ws)
+        self._log.info("从输入框发起任务 mode=%s workspace=%s", mode, ws)
+
+        skills = skills_for_mode(mode)
+        skill = skills[0] if skills else None
+        self.current_skill = skill
+        self.uploaded_files = []
+
+        self._current_session()["name"] = self._make_tab_label(text or "新任务")
+
+        # 构建初始消息（直接用用户输入，不经过侧边栏表单）
+        if images:
+            content: list = []
+            for img_path in images:
+                p = Path(img_path)
+                suffix = p.suffix.lower()
+                media_type = "image/jpeg" if suffix in (".jpg", ".jpeg") else (
+                    "image/webp" if suffix == ".webp" else
+                    "image/gif" if suffix == ".gif" else "image/png"
+                )
+                with open(img_path, "rb") as f:
+                    img_b64 = base64.standard_b64encode(f.read()).decode()
+                content.append({
+                    "type": "image",
+                    "source": {"type": "base64", "media_type": media_type, "data": img_b64},
+                })
+            if text:
+                content.append({"type": "text", "text": text})
+            self.messages = [{"role": "user", "content": content}]
+        else:
+            self.messages = [{"role": "user", "content": text}]
+
+        user_msg = self.chat.add_message("user")
+        user_msg.set_text(text)
+        self._append_display("user", text)
+
+        self.current_ai_message = self.chat.add_message("assistant")
+        self.chat._status_bar.reset_for_new_task()
+        self.current_ai_message.set_active(True)
+
+        default_skill_content = {
+            "resource_search": "你是资源搜索协调员，解析需求并并行派发子 Agent 查询资源。",
+            "create_level":    "（当前无匹配技能，按通用流程执行）",
+            "create_story":    "（当前无匹配技能，按通用流程执行）",
+        }.get(mode, "")
+
+        system_prompt = build_system_prompt(
+            skill_content=skill.content if skill else default_skill_content,
+            skill_path=skill.path if skill else None,
+            mode_label=MODES[mode]["label"],
+            workspace=ws,
+            uploaded_files=[],
+        )
+        self._start_agent(system_prompt)
+
     def _init_free_chat_workspace(self):
         ws = workspace_dir() / f"chat_{uuid.uuid4().hex[:8]}"
         ws.mkdir(parents=True, exist_ok=True)
@@ -532,8 +628,10 @@ class MainWindow(QMainWindow):
             lines.append(payload["description"])
             lines.append("")
             lines.append(
-                f"请按技能规则开始工作。完成后使用 create_archive 将产出目录打包，"
-                f"output_name 填写 **绝对路径** 保存到产出目录：`{output_dir()}/文件名.zip`"
+                "请按技能规则开始工作。"
+                "改造员子 agent 完成后会直接用 pack_zip_clean 将包写入 "
+                f"`{output_dir()}/modify/` 目录，**主 agent 无需再调用 create_archive**，"
+                "否则会对已含 zip 的目录二次打包产生 zip 嵌套。"
             )
         elif payload["mode"] == "resource_search":
             lines.append("【任务】资源搜索")
@@ -555,10 +653,18 @@ class MainWindow(QMainWindow):
             lines.append("【描述】")
             lines.append(payload["description"])
             lines.append("")
-            lines.append(
-                f"请按技能规则开始工作。完成后使用 create_archive 将产出目录打包，"
-                f"output_name 填写 **绝对路径** 保存到产出目录：`{output_dir()}/文件名.zip`"
-            )
+            if payload["mode"] in ("create_level", "create_story"):
+                lines.append(
+                    "请按技能规则开始工作。"
+                    "创建员子 agent 完成后会直接用 pack_zip_clean 将包写入 "
+                    f"`{output_dir()}/new/` 目录，**主 agent 无需再调用 create_archive**，"
+                    "否则会对已含 zip 的目录二次打包产生 zip 嵌套。"
+                )
+            else:
+                lines.append(
+                    f"请按技能规则开始工作。完成后使用 create_archive 将产出目录打包，"
+                    f"output_name 填写 **绝对路径** 保存到产出目录：`{output_dir()}/文件名.zip`"
+                )
         msg = "\n".join(lines)
         self._current_session()["task_description"] = msg   # 供审查 Agent 使用
         return msg
@@ -757,57 +863,76 @@ class MainWindow(QMainWindow):
                 except Exception:
                     pass
 
-        # 判断是否需要走独立审查流程
-        task_desc = sess.get("task_description", "")
-        will_review = bool(archive_paths and task_desc)
+        # ReviewWorker 已禁用：level-modify 等技能内部已有子 agent 审查员，无需二次审查
+        will_review = False
 
         if self._is_active_session(mode, sess_idx):
             if self.current_ai_message:
                 self.current_ai_message.seal_thinking()
                 self.current_ai_message.set_active(False)
-                if final_text:
+                if final_text and mode == "free_chat":
                     self.current_ai_message.set_text(final_text)
-            if archive_paths and not will_review:
-                # 不需要审查（如无 task_desc）→ 立即显示下载卡
+            if archive_paths:
                 ai = self.current_ai_message or self.chat.add_message("assistant")
                 for fp in archive_paths:
                     ai.add_download_card(fp, Path(fp).name)
-            # 若 will_review，下载卡推迟到 _route_review_done 显示
-            if not will_review:
-                self.chat.set_busy(False)
-                self.chat.update_status(state="done")
-                self.sidebar.set_enabled_inputs(True)
+            self.chat.set_busy(False)
+            self.chat.update_status(state="done")
+            self.sidebar.set_enabled_inputs(True)
             self.current_ai_message = None
 
         self._refresh_session_bar()
         self._save_history()   # 任务完成后持久化
 
-        # 有产出文件 → 自动触发独立审查 Agent
-        if will_review:
-            self._start_review(mode, sess_idx, archive_paths)
 
-
-    def _on_chat_send(self, text: str):
+    def _on_chat_send(self, text: str, images: list | None = None):
+        images = images or []
         sess = self._current_session()
         if sess["status"] in ("running", "reviewing"):
             QMessageBox.information(self, "提示", "请等待当前会话完成，或点停止按钮中断")
             return
 
-        self._log.info("_on_chat_send  text_len=%d", len(text))
+        self._log.info("_on_chat_send  text_len=%d  images=%d", len(text), len(images))
 
         if not self.workspace and self.current_mode == "free_chat":
             self._init_free_chat_workspace()
 
         if not self.workspace:
+            # resource_search / create_level / create_story：允许从输入框直接发起任务
+            if self.current_mode in ("resource_search", "create_level", "create_story"):
+                self._start_task_from_chat(text, images)
+                return
             QMessageBox.information(self, "提示", "请先在左侧开始一个任务")
             return
 
         if sess["name"].startswith("会话"):
-            sess["name"] = self._make_tab_label(text)
+            sess["name"] = self._make_tab_label(text or "图片")
 
         user_msg = self.chat.add_message("user")
         user_msg.set_text(text)
-        self.messages.append({"role": "user", "content": text})
+
+        # 构建消息内容（纯文字 or 多模态）
+        if images:
+            content: list = []
+            for img_path in images:
+                p = Path(img_path)
+                suffix = p.suffix.lower()
+                media_type = "image/jpeg" if suffix in (".jpg", ".jpeg") else (
+                    "image/webp" if suffix == ".webp" else
+                    "image/gif" if suffix == ".gif" else "image/png"
+                )
+                with open(img_path, "rb") as f:
+                    img_b64 = base64.standard_b64encode(f.read()).decode()
+                content.append({
+                    "type": "image",
+                    "source": {"type": "base64", "media_type": media_type, "data": img_b64},
+                })
+            if text:
+                content.append({"type": "text", "text": text})
+            self.messages.append({"role": "user", "content": content})
+        else:
+            self.messages.append({"role": "user", "content": text})
+
         self._append_display("user", text)
         self.current_ai_message = self.chat.add_message("assistant")
         self.chat._status_bar.reset_for_new_task()
@@ -851,6 +976,8 @@ class MainWindow(QMainWindow):
             w.request_stop()
             sess["status"] = "stopped"
             self.chat.update_status(state="stopped")
+            self.chat.set_busy(False)       # 立即解锁输入，无需等 finished_turn
+            self.sidebar.set_enabled_inputs(True)
         rw = sess.get("review_worker")
         if rw and rw.isRunning():
             rw.request_stop()
@@ -1202,6 +1329,26 @@ class MainWindow(QMainWindow):
         self.review_message = None
         self._restore_session_state()
         self._log.info("历史记录已清空")
+
+    # ── 热更新 ───────────────────────────────────────────────────────────
+
+    def _check_for_updates(self):
+        self._update_checker = UpdateChecker(
+            version_url=UPDATE_VERSION_URL,
+            current_version=APP_VERSION,
+            proxy_prefix=UPDATE_PROXY_PREFIX,
+            parent=self,
+        )
+        self._update_checker.update_available.connect(self._on_update_available)
+        self._update_checker.check_failed.connect(
+            lambda err: self._log.debug("更新检查失败（忽略）: %s", err)
+        )
+        self._update_checker.start()
+
+    def _on_update_available(self, info: dict):
+        self._log.info("发现新版本: %s", info.get("version"))
+        dlg = UpdateNotifyDialog(info, proxy_prefix=UPDATE_PROXY_PREFIX, parent=self)
+        dlg.exec()
 
     # ── 关闭事件 ────────────────────────────────────────────────────────
     def closeEvent(self, ev):

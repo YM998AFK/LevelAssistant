@@ -163,11 +163,18 @@ async def main() -> int:
                 tools = await session.list_tools()
                 tool_names = [tool.name for tool in tools.tools]
                 print(f"tool_count: {len(tool_names)}")
-                assert {"get_resource", "find_resources", "validate_resource"}.issubset(tool_names)
+                assert {
+                    "get_resource",
+                    "find_resources",
+                    "validate_resource",
+                    "update_scene_element_position",
+                }.issubset(tool_names)
 
                 workspace_payload = await call_json(
                     session, "load_workspace_file", {"file_path": WORKSPACE_FILE}
                 )
+                assert "warning_count" in workspace_payload
+                assert isinstance(workspace_payload.get("warnings"), list)
                 workspace = workspace_payload["data"]
                 print("load_workspace_file: ok")
 
@@ -412,6 +419,14 @@ async def main() -> int:
                 )
                 assert move_block["define"] == "MoveSteps"
                 print("create_block: ok")
+
+                create_block_array_error = await expect_tool_error(
+                    session,
+                    "create_block",
+                    {"block_define": "MoveSteps", "parameters": {"steps": [1, 2]}},
+                )
+                assert "Block parameters do not support JSON array values" in create_block_array_error
+                print("create_block_array_rejected: ok")
     
                 play_animation_block = await call_json(
                     session,
@@ -452,6 +467,14 @@ async def main() -> int:
                 )
                 assert modified_block["sections"][0]["params"][0]["val"] == "99"
                 print("modify_block_parameter: ok")
+
+                list_param_error = await expect_tool_error(
+                    session,
+                    "modify_block_parameter",
+                    {"block": move_block, "parameter_index": 0, "value": ["a", "b"]},
+                )
+                assert "Block parameters do not support JSON array values" in list_param_error
+                print("modify_block_parameter_array_rejected: ok")
     
                 trigger_block = await call_json(
                     session, "create_block", {"block_define": "WhenGameStarts"}
@@ -594,6 +617,14 @@ async def main() -> int:
                 )
                 assert call_block["define"] == created_entry["name"]
                 print("create_myblock_call: ok")
+
+                myblock_call_array_error = await expect_tool_error(
+                    session,
+                    "create_myblock_call",
+                    {"myblock_name": created_entry["name"], "parameter_values": [["7"]]},
+                )
+                assert "Block parameters do not support JSON array values" in myblock_call_array_error
+                print("create_myblock_call_array_rejected: ok")
     
                 custom_call_validation = await call_json(
                     session,

@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "hetu-mcp": {
+      "type": "stdio",
+      "command": "C:/Program Files/PyManager/python.exe",
+      "args": [
+        "${workspaceFolder}/mcp/hetu_mcp/server.py",
+        "${workspaceFolder}"
+      ]
+    }
+  }
+}

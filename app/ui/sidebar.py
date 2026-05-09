@@ -28,7 +28,8 @@ class Sidebar(QWidget):
         outer.addWidget(scroll, 1)
 
         self.body = QWidget()
-        self.body.setStyleSheet("background: transparent;")
+        self.body.setObjectName("SidebarBody")
+        self.body.setStyleSheet("QWidget#SidebarBody { background: transparent; }")
         self.body_layout = QVBoxLayout(self.body)
         self.body_layout.setContentsMargins(24, 24, 24, 24)
         self.body_layout.setSpacing(20)
@@ -40,6 +41,8 @@ class Sidebar(QWidget):
         self.start_btn.setFixedHeight(40)
         self.start_btn.clicked.connect(self._on_start)
         btn_wrap = QWidget()
+        btn_wrap.setObjectName("BtnWrap")
+        btn_wrap.setStyleSheet("QWidget#BtnWrap { background: transparent; }")
         btn_layout = QVBoxLayout(btn_wrap)
         btn_layout.setContentsMargins(24, 0, 24, 24)
         btn_layout.addWidget(self.start_btn)

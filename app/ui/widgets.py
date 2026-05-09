@@ -90,12 +90,20 @@ class FileChip(QWidget):
         layout.setSpacing(6)
 
         p = Path(path)
+
+        dot = QLabel()
+        dot.setFixedSize(7, 7)
+        dot.setStyleSheet(
+            "background: #059669; border-radius: 3px; border: none;"
+        )
+        layout.addWidget(dot)
+
         name = QLabel(p.name)
-        name.setStyleSheet("background: transparent; font-size: 12px; color: #1E293B;")
+        name.setStyleSheet("background: transparent; font-size: 12px; color: #18181B;")
         try:
             sz = p.stat().st_size
             size = QLabel(human_size(sz))
-            size.setStyleSheet("color: #94A3B8; font-size: 11px; background: transparent;")
+            size.setStyleSheet("color: #A1A1AA; font-size: 11px; background: transparent;")
         except Exception:
             size = QLabel("")
         layout.addWidget(name, 1)

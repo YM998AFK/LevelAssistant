@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "hooks": {
+    "stop": [
+      {
+        "command": "python -X utf8 .cursor/hooks/pre_delivery_check.py",
+        "failClosed": true,
+        "timeout": 60
+      }
+    ]
+  }
+}

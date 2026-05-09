@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import logging
+import time
 from pathlib import Path
 from typing import Any, List
 import traceback
@@ -10,9 +11,12 @@ from PySide6.QtCore import QThread, Signal
 import anthropic
 
 from .config import (
-    ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, CLAUDE_USER_AGENT,
+    ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, CLAUDE_USER_AGENT, get_anthropic_api_version,
+    NEW_API_KEY, NEW_API_BASE_URL, NEW_API_MODEL,
     DEFAULT_MODEL, MAX_TOOL_ITERATIONS, MAX_TOKENS_PER_TURN,
+    make_new_api_http_client,
     skills_dir, cursor_skills_dir, mcp_dir, output_dir,
+    channel_health,
 )
 from .tools import ToolBox, tool_definitions
 
@@ -57,7 +61,9 @@ def build_system_prompt(
             parts.append(f"  - `{f}`")
     parts.extend([
         "",
-        f"产出包用 create_archive 保存到产出目录：`{out_dir}/<文件名>.zip`",
+        f"产出目录（全局）：`{out_dir}`，子 agent 打包时应直接写入此目录，主 agent 无需再次 create_archive。",
+        "  ⚠️ 若需调用 create_archive，src_dir 必须是内容目录（如 input_extracted/），",
+        "     严禁对已含 zip 的目录（如 output/modify/）打包，否则产生 zip 嵌套 → 包无效。",
         "",
         "## 执行规则（优先级低于技能规范）",
         "- 技能规范中要求「等用户确认」的步骤：必须输出确认单后**立即停止，不得再调用任何工具**，等收到用户明确回复后再继续",
@@ -67,7 +73,7 @@ def build_system_prompt(
         "- 技能规范要求「先读某文件」时：必须先完整读取该文件再继续后续步骤",
         "- 审查员子 agent 返回后，若输出中含有「总体：FAIL」字样，**必须走重做流程**（新开改造员 → 新开审查员），严禁自行宣判「可豁免」或「建议通过」",
         "  - 唯一例外：若 FAIL 项目在主 agent 判断后属于纯描述笔误（改动内容本身已经正确），可在向用户明确说明后跳过，但必须得到用户明确 OK",
-        "- 扫描员子 agent 返回后，若输出不含「§1」「§8」「表 A」「表 B」等完整区段标记，**必须打回重做（新开 Task）**，不得自行代为分析 WS 文件",
+        "- run_python 调用 _scan_level.py 后，若输出不含「§1」「§8」「表 A」「表 B」等完整区段标记，说明脚本执行失败，**必须检查报错原因**（路径/权限/参数），修正后重新调用，不得自行代为分析 WS 文件",
         "- 遇到不确定的地方直接向用户提问，不要硬猜",
     ])
     return "\n".join(parts)
@@ -176,7 +182,7 @@ class ReviewWorker(QThread):
         messages = [{"role": "user", "content":
                      "请开始审查，严格按照审查步骤逐项执行，最后输出规定格式的审查报告。"}]
 
-        readable_roots = [skills_dir()]
+        readable_roots = [skills_dir(), output_dir(), output_dir().parent]
         if self.skill_dir:
             readable_roots.append(self.skill_dir)
         toolbox = ToolBox(
@@ -184,13 +190,29 @@ class ReviewWorker(QThread):
             readable_roots=readable_roots,
             readable_files=self.output_files,
             extra_writable_roots=[output_dir(), output_dir().parent],
+            logger=self.log,
         )
         try:
-            client = anthropic.Anthropic(
+            new_client = anthropic.Anthropic(
+                api_key=NEW_API_KEY,
+                base_url=NEW_API_BASE_URL,
+                default_headers={"User-Agent": CLAUDE_USER_AGENT},
+                http_client=make_new_api_http_client(),
+            )
+            fallback_client = anthropic.Anthropic(
                 api_key=ANTHROPIC_API_KEY,
                 base_url=ANTHROPIC_BASE_URL,
-                default_headers={"User-Agent": CLAUDE_USER_AGENT},
+                default_headers={
+                    "User-Agent": CLAUDE_USER_AGENT,
+                    "anthropic-version": get_anthropic_api_version(),
+                },
+                timeout=120.0,
             )
+            clients = [
+                (new_client,      NEW_API_MODEL),   # 通道 0 = 新网关
+                (fallback_client, DEFAULT_MODEL),    # 通道 1 = 旧代理
+            ]
+            channel_labels = ["新网关", "旧代理"]
             tools = tool_definitions()
             full_ai_text: list[str] = []
 
@@ -199,30 +221,69 @@ class ReviewWorker(QThread):
                     break
                 self.log.info("[审查] 轮次 %d", iteration + 1)
                 self.iteration_update.emit(iteration + 1)
-                try:
-                    with client.messages.stream(
-                        model=DEFAULT_MODEL,
-                        max_tokens=8000,
-                        system=system_prompt,
-                        tools=tools,
-                        messages=messages,
-                    ) as stream:
-                        for event in stream:
-                            if self._stop:
+                final_message = None
+                # 按全局健康度排序通道
+                ordered_channels = channel_health.get_channel_order()
+                success = False
+                for ch in ordered_channels:
+                    client_ch, model_ch = clients[ch]
+                    max_attempts = 5
+                    for attempt in range(max_attempts):
+                        try:
+                            with client_ch.messages.stream(
+                                model=model_ch,
+                                max_tokens=8000,
+                                system=system_prompt,
+                                tools=tools,
+                                messages=messages,
+                            ) as stream:
+                                for event in stream:
+                                    if self._stop:
+                                        break
+                                    etype = getattr(event, "type", "")
+                                    if etype == "content_block_delta":
+                                        delta = getattr(event, "delta", None)
+                                        if delta and delta.type == "text_delta":
+                                            self.text_chunk.emit(delta.text)
+                                            full_ai_text.append(delta.text)
+                                final_message = stream.get_final_message()
+                            channel_health.mark_success(ch)
+                            success = True
+                            break
+                        except Exception as e:
+                            err_str = str(e)
+                            is_budget = "budget_exceeded" in err_str
+                            channel_health.mark_failure(ch, budget_exceeded=is_budget)
+                            if is_budget:
+                                self.log.warning(
+                                    "[审查][%s] 额度已耗尽，立即切换下一通道", channel_labels[ch]
+                                )
                                 break
-                            etype = getattr(event, "type", "")
-                            if etype == "content_block_delta":
-                                delta = getattr(event, "delta", None)
-                                if delta and delta.type == "text_delta":
-                                    self.text_chunk.emit(delta.text)
-                                    full_ai_text.append(delta.text)
-                        final_message = stream.get_final_message()
-                except Exception as e:
-                    self.log.error("[审查] 请求失败: %s", e)
-                    self.error.emit(f"审查请求失败: {e}")
+                            wait = min(2 ** attempt, 16)
+                            self.log.warning(
+                                "[审查][%s] 轮次 %d 第 %d 次失败，%ds 后重试: %s",
+                                channel_labels[ch], iteration + 1, attempt + 1, wait, e,
+                            )
+                            if attempt < max_attempts - 1:
+                                time.sleep(wait)
+                    if success:
+                        break
+
+                if not success or final_message is None:
+                    self.log.error("[审查] 所有通道均失败")
+                    self.error.emit("审查请求失败：新网关和旧代理均不可用，请稍后重试")
                     return
 
                 stop_reason = final_message.stop_reason
+                usage = getattr(final_message, "usage", None)
+                if usage:
+                    self.log.info(
+                        "[审查] 轮次完成 stop_reason=%s | tokens: input=%d output=%d total=%d",
+                        stop_reason,
+                        getattr(usage, "input_tokens", 0),
+                        getattr(usage, "output_tokens", 0),
+                        getattr(usage, "input_tokens", 0) + getattr(usage, "output_tokens", 0),
+                    )
                 ai_text = "".join(full_ai_text)
                 full_ai_text.clear()
                 if ai_text:
@@ -305,7 +366,7 @@ class AgentWorker(QThread):
         self.log.info("用户请求停止")
 
     def _make_toolbox(self) -> ToolBox:
-        readable_roots = [skills_dir()]
+        readable_roots = [skills_dir(), output_dir(), output_dir().parent]
         if self.skill_dir:
             readable_roots.append(self.skill_dir)
         return ToolBox(
@@ -314,17 +375,34 @@ class AgentWorker(QThread):
             readable_files=self.uploaded_files,
             extra_writable_roots=[output_dir(), output_dir().parent],
             mode=self.mode,
+            logger=self.log,
         )
 
     def run(self):
         self.log.info("Agent 启动 model=%s workspace=%s", self.model, self.workspace)
         self.log.debug("system_prompt_length=%d chars", len(self.system_prompt))
         try:
-            client = anthropic.Anthropic(
+            # ── 双通道客户端：新网关优先，旧代理备用 ──────────────────────────────
+            new_client = anthropic.Anthropic(
+                api_key=NEW_API_KEY,
+                base_url=NEW_API_BASE_URL,
+                default_headers={"User-Agent": CLAUDE_USER_AGENT},
+                http_client=make_new_api_http_client(),
+            )
+            fallback_client = anthropic.Anthropic(
                 api_key=ANTHROPIC_API_KEY,
                 base_url=ANTHROPIC_BASE_URL,
-                default_headers={"User-Agent": CLAUDE_USER_AGENT},
+                default_headers={
+                    "User-Agent": CLAUDE_USER_AGENT,
+                    "anthropic-version": get_anthropic_api_version(),
+                },
             )
+            clients = [
+                (new_client,      NEW_API_MODEL),   # 通道 0 = 新网关
+                (fallback_client, self.model),       # 通道 1 = 旧代理
+            ]
+            channel_labels = ["新网关", "旧代理"]
+
             toolbox = self._make_toolbox()
             tools = tool_definitions()
             full_ai_text: list[str] = []
@@ -336,7 +414,6 @@ class AgentWorker(QThread):
 
                 self.log.info("--- 轮次 %d 开始请求 ---", iteration + 1)
                 self.iteration_update.emit(iteration + 1)
-                # 记录消息结构（方便排查图片问题）
                 if iteration == 0 and self.messages:
                     first = self.messages[0]
                     c = first.get("content", "")
@@ -345,32 +422,76 @@ class AgentWorker(QThread):
                         self.log.info("首条消息含 %d 个图片 block，共 %d 个 block", img_cnt, len(c))
                     else:
                         self.log.info("首条消息为纯文字")
-                try:
-                    with client.messages.stream(
-                        model=self.model,
-                        max_tokens=MAX_TOKENS_PER_TURN,
-                        system=self.system_prompt,
-                        tools=tools,
-                        messages=self.messages,
-                    ) as stream:
-                        for event in stream:
-                            if self._stop:
-                                break
-                            etype = getattr(event, "type", "")
-                            if etype == "content_block_delta":
-                                delta = getattr(event, "delta", None)
-                                if delta and delta.type == "text_delta":
-                                    self.text_chunk.emit(delta.text)
-                                    full_ai_text.append(delta.text)
 
-                        final_message = stream.get_final_message()
-                except Exception as e:
-                    self.log.error("模型请求失败: %s: %s", type(e).__name__, e, exc_info=True)
-                    self.error.emit(f"模型请求失败: {type(e).__name__}: {e}")
+                final_message = None
+                # 按全局健康度排序通道，动态选最优
+                ordered_channels = channel_health.get_channel_order()
+                self.log.debug("通道健康度: %s → 本轮顺序 %s",
+                               channel_health.status_str(),
+                               [channel_labels[c] for c in ordered_channels])
+                success = False
+                for ch in ordered_channels:
+                    client_ch, model_ch = clients[ch]
+                    max_attempts = 5
+                    for attempt in range(max_attempts):
+                        try:
+                            with client_ch.messages.stream(
+                                model=model_ch,
+                                max_tokens=MAX_TOKENS_PER_TURN,
+                                system=self.system_prompt,
+                                tools=tools,
+                                messages=self.messages,
+                            ) as stream:
+                                for event in stream:
+                                    if self._stop:
+                                        break
+                                    etype = getattr(event, "type", "")
+                                    if etype == "content_block_delta":
+                                        delta = getattr(event, "delta", None)
+                                        if delta and delta.type == "text_delta":
+                                            self.text_chunk.emit(delta.text)
+                                            full_ai_text.append(delta.text)
+                                final_message = stream.get_final_message()
+                            channel_health.mark_success(ch)
+                            self.log.info("轮次 %d 通道[%s]成功", iteration + 1, channel_labels[ch])
+                            success = True
+                            break
+                        except Exception as e:
+                            err_str = str(e)
+                            is_budget = "budget_exceeded" in err_str
+                            channel_health.mark_failure(ch, budget_exceeded=is_budget)
+                            if is_budget:
+                                self.log.warning(
+                                    "[%s] 额度已耗尽，立即切换下一通道", channel_labels[ch]
+                                )
+                                break
+                            wait = min(2 ** attempt, 16)
+                            self.log.warning(
+                                "[%s] 轮次 %d 第 %d 次失败，%ds 后重试: %s",
+                                channel_labels[ch], iteration + 1, attempt + 1, wait, e,
+                            )
+                            if attempt < max_attempts - 1:
+                                time.sleep(wait)
+                    if success:
+                        break
+
+                if not success or final_message is None:
+                    self.log.error("所有通道均失败，终止任务")
+                    self.error.emit("模型请求失败：新网关和旧代理均不可用，请稍后重试")
                     return
 
                 stop_reason = final_message.stop_reason
-                self.log.info("轮次 %d 完成 stop_reason=%s", iteration + 1, stop_reason)
+                usage = getattr(final_message, "usage", None)
+                if usage:
+                    self.log.info(
+                        "轮次 %d 完成 stop_reason=%s | tokens: input=%d output=%d total=%d",
+                        iteration + 1, stop_reason,
+                        getattr(usage, "input_tokens", 0),
+                        getattr(usage, "output_tokens", 0),
+                        getattr(usage, "input_tokens", 0) + getattr(usage, "output_tokens", 0),
+                    )
+                else:
+                    self.log.info("轮次 %d 完成 stop_reason=%s", iteration + 1, stop_reason)
 
                 # 记录 AI 本轮输出的文字
                 ai_text_this_turn = "".join(full_ai_text)

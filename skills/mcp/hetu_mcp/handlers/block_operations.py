@@ -7,8 +7,9 @@ from typing import Any, Dict, List, Optional, Union
 
 from definitions.block_models import BlockType, get_block_type_info
 from definitions.workspace_schema import iter_param_entries
+from navigation.block_navmesh import apply_navmesh_to_block
 
-from .workspace_operations import append_section_child, set_param_value
+from .workspace_operations import append_section_child, build_param_value_entry, set_param_value
 
 
 def _block_allows_child_sections(block_info: Optional[Dict[str, Any]]) -> bool:
@@ -25,6 +26,7 @@ def create_block(
     block_define: str,
     parameters: Optional[Dict[str, Any]] = None,
     position: Optional[List[str]] = None,
+    navmesh: Optional[Dict[str, Any]] = None,
 ) -> Dict[str, Any]:
     block_info = get_block_type_info(block_define)
     if not block_info:
@@ -41,16 +43,10 @@ def create_block(
             default_value = param_def.get("default", "")
             param_value = parameters.get(param_name, default_value) if parameters else default_value
 
-            if isinstance(param_value, dict):
-                first_section["params"].append({"type": "block", "val": param_value})
-            elif isinstance(param_value, list):
-                # 保持 JSON 数组原样写入，不转 str
-                first_section["params"].append({"type": "var", "val": param_value})
-            else:
-                value_type = "var"
-                if param_def.get("type") == "boolean":
-                    value_type = "boolean"
-                first_section["params"].append({"type": value_type, "val": str(param_value)})
+            value_type = "boolean" if param_def.get("type") == "boolean" else "var"
+            first_section["params"].append(
+                build_param_value_entry(param_value, scalar_type=value_type)
+            )
 
     if _block_allows_child_sections(block_info):
         first_section["children"] = []
@@ -67,7 +63,7 @@ def create_block(
     if position:
         block["_position"] = position
 
-    return block
+    return apply_navmesh_to_block(block, navmesh)
 
 
 def get_block_info(block: Dict[str, Any]) -> Dict[str, Any]:

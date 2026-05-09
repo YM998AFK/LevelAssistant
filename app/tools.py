@@ -21,6 +21,7 @@ class ToolBox:
         readable_files: Iterable[str] | None = None,
         extra_writable_roots: Iterable[Path] | None = None,
         mode: str = "",
+        logger=None,
     ):
         self.workspace = Path(workspace).resolve()
         self.workspace.mkdir(parents=True, exist_ok=True)
@@ -33,6 +34,7 @@ class ToolBox:
         for p in self.extra_writable_roots:
             p.mkdir(parents=True, exist_ok=True)
         self.mode = mode
+        self._log = logger
 
     def _is_within(self, child: Path, parent: Path) -> bool:
         try:
@@ -266,6 +268,17 @@ class ToolBox:
             return {"error": str(e)}
         if not src.exists():
             return {"error": f"源不存在: {src}"}
+        # 防止双重压缩：源目录内存在 .zip 文件时拒绝打包
+        nested_zips = [p.name for p in src.rglob("*.zip") if p.is_file()]
+        if nested_zips:
+            return {
+                "error": (
+                    f"⛔ [系统强制] 源目录 {src} 内已包含 zip 文件：{nested_zips[:5]}。"
+                    "对已含 zip 的目录打包会产生 zip 嵌套（双重压缩），包将无法导入。"
+                    "修改/新建关卡的最终包由子 agent（改造员/创建员）通过 pack_zip_clean 直接写入 "
+                    "output/modify/ 或 output/new/，主 agent 无需再次打包。"
+                )
+            }
         # output_name 如果是相对路径，以 output_dir() 的父目录（项目根）为基准
         # 这样 AI 写 "output/modify/xxx.zip" 会落到 项目根/output/modify/xxx.zip
         from .config import output_dir as _output_dir
@@ -841,6 +854,175 @@ class ToolBox:
         except Exception as e:
             return {"error": f"{type(e).__name__}: {e}"}
 
+    def _navigate_to(self, data, json_path: str):
+        """按 . 分隔路径遍历 data，返回 (parent, last_key_str, target_node)。
+        parent 是目标节点的直接父容器（dict 或 list），last_key_str 是最后一段路径。
+        """
+        parts = json_path.split(".")
+        node = data
+        for part in parts:
+            node = node[int(part)] if isinstance(node, list) else node[part]
+        parent = data
+        for part in parts[:-1]:
+            parent = parent[int(part)] if isinstance(parent, list) else parent[part]
+        return parent, parts[-1], node
+
+    def ws_create_block(self, block_define: str, parameters: dict | None = None) -> dict:
+        """创建一个结构正确的 block dict（纯内存，不写文件）。
+        返回的 block 可直接传入 ws_append_block / ws_insert_block_child / ws_add_fragment 使用。
+        parameters: {参数名: 值} 字典，未传的参数使用 block 定义中的默认值。
+        """
+        try:
+            self._hetu_import()
+            from handlers.block_operations import create_block
+            block = create_block(block_define, parameters)
+            return {"ok": True, "block": block}
+        except Exception as e:
+            return {"error": f"{type(e).__name__}: {e}"}
+
+    def ws_modify_block_parameter(
+        self, file_path: str, json_path: str, parameter_index: int, value
+    ) -> dict:
+        """在 .ws 文件中按 JSON 路径定位 block，将第 parameter_index 个参数改为 value，写回文件。
+        json_path 精确到含 define 字段的 block dict，如：
+          scene.children.0.fragments.1.head
+          scene.children.0.fragments.1.head.sections.0.children.0
+        parameter_index: 从 0 开始的参数索引。
+        value: 新值（字符串 / 数字）。
+        改完请用 ws_validate 校验。
+        """
+        import json as _json
+        try:
+            p = self._resolve_write(file_path)
+        except PermissionError as e:
+            return {"error": str(e)}
+        if not p.exists():
+            return {"error": f"文件不存在: {file_path}"}
+        try:
+            data = _json.loads(p.read_bytes().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"读取失败: {e}"}
+        try:
+            parent, last_key, block = self._navigate_to(data, json_path)
+        except (KeyError, IndexError, TypeError, ValueError) as e:
+            return {"error": f"路径 '{json_path}' 无效: {e}"}
+        if not isinstance(block, dict) or "define" not in block:
+            return {"error": f"路径 '{json_path}' 指向的不是 block（缺少 define 字段）"}
+        try:
+            self._hetu_import()
+            from handlers.block_operations import modify_block_parameter
+            modified = modify_block_parameter(block, parameter_index, value)
+        except Exception as e:
+            return {"error": f"modify_block_parameter 失败: {type(e).__name__}: {e}"}
+        if isinstance(parent, list):
+            parent[int(last_key)] = modified
+        else:
+            parent[last_key] = modified
+        try:
+            p.write_text(_json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        except Exception as e:
+            return {"error": f"写入失败: {e}"}
+        return {
+            "ok": True,
+            "block_define": block.get("define"),
+            "parameter_index": parameter_index,
+            "new_value": value,
+        }
+
+    def ws_append_block(
+        self, file_path: str, json_path: str, new_block: dict
+    ) -> dict:
+        """在 .ws 文件中按 JSON 路径定位 block，将 new_block 追加到其 next 链或 children，写回文件。
+        json_path 精确到目标 block（如 Repeat / If 块）。
+        new_block 是要追加的完整 block dict，可由 ws_create_block 生成。
+        对有 children 的 block（Repeat、If 等）追加到 children 末尾；
+        对普通 block 追加到 next 链末尾。
+        改完请用 ws_validate 校验。
+        """
+        import json as _json
+        try:
+            p = self._resolve_write(file_path)
+        except PermissionError as e:
+            return {"error": str(e)}
+        if not p.exists():
+            return {"error": f"文件不存在: {file_path}"}
+        try:
+            data = _json.loads(p.read_bytes().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"读取失败: {e}"}
+        try:
+            parent, last_key, block = self._navigate_to(data, json_path)
+        except (KeyError, IndexError, TypeError, ValueError) as e:
+            return {"error": f"路径 '{json_path}' 无效: {e}"}
+        if not isinstance(block, dict) or "define" not in block:
+            return {"error": f"路径 '{json_path}' 不是 block（缺少 define 字段）"}
+        try:
+            self._hetu_import()
+            from handlers.block_operations import append_block
+            modified = append_block(block, new_block)
+        except Exception as e:
+            return {"error": f"append_block 失败: {type(e).__name__}: {e}"}
+        if isinstance(parent, list):
+            parent[int(last_key)] = modified
+        else:
+            parent[last_key] = modified
+        try:
+            p.write_text(_json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        except Exception as e:
+            return {"error": f"写入失败: {e}"}
+        return {
+            "ok": True,
+            "block_define": block.get("define"),
+            "appended_define": new_block.get("define") if isinstance(new_block, dict) else str(new_block),
+        }
+
+    def ws_insert_block_child(
+        self, file_path: str, json_path: str, section_index: int, child_block: dict
+    ) -> dict:
+        """在 .ws 文件中按 JSON 路径定位 block，将 child_block 插入到指定 section 的 children，写回文件。
+        json_path 精确到目标 block（如 Repeat / If 块）。
+        section_index: 0 = 主体分支 / If 的 then，1 = else 分支（If 块）。
+        child_block 是要插入的完整 block dict，可由 ws_create_block 生成。
+        改完请用 ws_validate 校验。
+        """
+        import json as _json
+        try:
+            p = self._resolve_write(file_path)
+        except PermissionError as e:
+            return {"error": str(e)}
+        if not p.exists():
+            return {"error": f"文件不存在: {file_path}"}
+        try:
+            data = _json.loads(p.read_bytes().decode("utf-8"))
+        except Exception as e:
+            return {"error": f"读取失败: {e}"}
+        try:
+            parent, last_key, block = self._navigate_to(data, json_path)
+        except (KeyError, IndexError, TypeError, ValueError) as e:
+            return {"error": f"路径 '{json_path}' 无效: {e}"}
+        if not isinstance(block, dict) or "define" not in block:
+            return {"error": f"路径 '{json_path}' 不是 block（缺少 define 字段）"}
+        try:
+            self._hetu_import()
+            from handlers.block_operations import insert_block_child
+            modified = insert_block_child(block, section_index, child_block)
+        except Exception as e:
+            return {"error": f"insert_block_child 失败: {type(e).__name__}: {e}"}
+        if isinstance(parent, list):
+            parent[int(last_key)] = modified
+        else:
+            parent[last_key] = modified
+        try:
+            p.write_text(_json.dumps(data, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+        except Exception as e:
+            return {"error": f"写入失败: {e}"}
+        return {
+            "ok": True,
+            "block_define": block.get("define"),
+            "section_index": section_index,
+            "child_define": child_block.get("define") if isinstance(child_block, dict) else str(child_block),
+        }
+
     def ws_get_value(self, file_path: str, json_path: str) -> dict:
         """从 .ws 文件中按 JSON 路径读取某个值，方便 AI 在修改前先确认当前内容。
         json_path 使用 . 分隔，数字代表数组索引。
@@ -958,45 +1140,97 @@ class ToolBox:
         self,
         system: str,
         messages: list,
-        client,
+        clients: list,
         tools: list,
         max_iterations: int = 30,
     ) -> dict:
         """子 agent 核心执行循环（run_subagent / resume_subagent 共用）。
+        clients: list of (anthropic_client, model_name) tuples，按优先级排列，依次尝试。
         支持 pause_and_ask：检测到该工具调用时，序列化对话历史到工作目录，
         返回 {"ok": True, "paused": True, "resume_id": ..., "question": ...}。
         """
-        from .config import DEFAULT_MODEL as _DEFAULT_MODEL
         import json as _json
         import uuid as _uuid
         import re as _re
+        import time as _time
+        from .config import channel_health as _ch_health
+
+        _channel_labels = ["新网关", "旧代理"]
+
+        def _sub_truncate(obj, max_len=300):
+            try:
+                s = _json.dumps(obj, ensure_ascii=False)
+            except Exception:
+                s = repr(obj)
+            return s[:max_len] + "..." if len(s) > max_len else s
 
         full_text: list[str] = []
 
-        for _ in range(max_iterations):
-            try:
-                with client.messages.stream(
-                    model=_DEFAULT_MODEL,
-                    max_tokens=8000,
-                    system=system,
-                    tools=tools,
-                    messages=messages,
-                ) as stream:
-                    for event in stream:
-                        etype = getattr(event, "type", "")
-                        if etype == "content_block_delta":
-                            delta = getattr(event, "delta", None)
-                            if delta and delta.type == "text_delta":
-                                full_text.append(delta.text)
-                    resp = stream.get_final_message()
-            except Exception as e:
-                return {"ok": False, "error": f"子 Agent 请求失败: {e}"}
+        for _iter in range(max_iterations):
+            _round = _iter + 1
+            if self._log:
+                self._log.info("[子agent/轮次%d] 开始请求", _round)
+
+            resp = None
+            success = False
+            # 按全局健康度动态排序通道（只取 clients 范围内的通道）
+            ordered_channels = [ch for ch in _ch_health.get_channel_order() if ch < len(clients)]
+            for ch in ordered_channels:
+                ch_client, ch_model = clients[ch]
+                max_attempts = 5
+                for attempt in range(max_attempts):
+                    try:
+                        with ch_client.messages.stream(
+                            model=ch_model,
+                            max_tokens=16000,
+                            system=system,
+                            tools=tools,
+                            messages=messages,
+                        ) as stream:
+                            for event in stream:
+                                etype = getattr(event, "type", "")
+                                if etype == "content_block_delta":
+                                    delta = getattr(event, "delta", None)
+                                    if delta and delta.type == "text_delta":
+                                        full_text.append(delta.text)
+                            resp = stream.get_final_message()
+                        _ch_health.mark_success(ch)
+                        if self._log:
+                            self._log.info("[子agent/轮次%d] 通道[%s]成功", _round, _channel_labels[ch])
+                        success = True
+                        break
+                    except Exception as e:
+                        err_str = str(e)
+                        is_budget = "budget_exceeded" in err_str
+                        _ch_health.mark_failure(ch, budget_exceeded=is_budget)
+                        if is_budget:
+                            if self._log:
+                                self._log.warning(
+                                    "[子agent/轮次%d][%s] 额度已耗尽，立即切换下一通道",
+                                    _round, _channel_labels[ch],
+                                )
+                            break
+                        wait = min(2 ** attempt, 16)
+                        if self._log:
+                            self._log.warning(
+                                "[子agent/轮次%d][%s] 第%d次失败，%ds后重试: %s",
+                                _round, _channel_labels[ch], attempt + 1, wait, e,
+                            )
+                        if attempt < max_attempts - 1:
+                            _time.sleep(wait)
+                if success:
+                    break
+
+            if not success or resp is None:
+                return {"ok": False, "error": "子 Agent 请求失败: 所有通道均不可用，请稍后重试"}
 
             stop_reason = resp.stop_reason
             assistant_blocks = []
+            round_text = []
             for block in resp.content:
                 if block.type == "text":
                     assistant_blocks.append({"type": "text", "text": block.text})
+                    round_text.append(block.text)
                 elif block.type == "tool_use":
                     assistant_blocks.append({
                         "type": "tool_use", "id": block.id,
@@ -1004,7 +1238,25 @@ class ToolBox:
                     })
             messages.append({"role": "assistant", "content": assistant_blocks})
 
-            if stop_reason != "tool_use":
+            if self._log and round_text:
+                combined = "".join(round_text)
+                self._log.debug("[子agent/轮次%d] AI回复（%d chars）: %s",
+                                _round, len(combined), combined[:200])
+
+            if stop_reason == "end_turn":
+                if self._log:
+                    self._log.info("[子agent/轮次%d] end_turn", _round)
+                break
+            elif stop_reason == "max_tokens":
+                # 输出被截断，注入"继续"让子 agent 接着生成（与主 agent 行为一致）
+                if self._log:
+                    self._log.info("[子agent/轮次%d] max_tokens，自动续写", _round)
+                messages.append({"role": "user", "content": [{"type": "text", "text": "继续"}]})
+                continue
+            elif stop_reason != "tool_use":
+                # 其他非正常终止（stop_sequence 等），直接退出
+                if self._log:
+                    self._log.warning("[子agent/轮次%d] 非正常终止 stop_reason=%s", _round, stop_reason)
                 break
 
             # ── 检查是否有 pause_and_ask 调用 ──────────────────────────────
@@ -1024,6 +1276,10 @@ class ToolBox:
                 state_file.write_text(
                     _json.dumps(state, ensure_ascii=False), encoding="utf-8"
                 )
+                if self._log:
+                    self._log.info("[子agent/轮次%d] pause_and_ask → resume_id=%s  q=%s",
+                                   _round, resume_id,
+                                   pause_block.input.get("question", "")[:100])
                 return {
                     "ok": True,
                     "paused": True,
@@ -1037,11 +1293,20 @@ class ToolBox:
             for block in resp.content:
                 if block.type != "tool_use":
                     continue
+                if self._log:
+                    self._log.info("[子agent/轮次%d] 工具调用 → %s  input=%s",
+                                   _round, block.name, _sub_truncate(block.input, 300))
                 try:
                     method = getattr(self, block.name, None)
                     result = method(**block.input) if method else {"error": f"未知工具: {block.name}"}
                 except Exception as e:
                     result = {"error": f"{type(e).__name__}: {e}"}
+                if self._log:
+                    ok = result.get("ok", not result.get("error"))
+                    self._log.info("[子agent/轮次%d] 工具结果 ← %s  ok=%s  %s",
+                                   _round, block.name, ok, _sub_truncate(result, 400))
+                    if result.get("error"):
+                        self._log.warning("[子agent/轮次%d] 工具错误: %s", _round, result["error"])
                 try:
                     content = _json.dumps(result, ensure_ascii=False)
                 except Exception:
@@ -1103,6 +1368,8 @@ class ToolBox:
         from .config import (
             ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, CLAUDE_USER_AGENT,
             DEFAULT_MODEL, output_dir, skills_dir, cursor_skills_dir, mcp_dir,
+            NEW_API_KEY, NEW_API_BASE_URL, NEW_API_MODEL, make_new_api_http_client,
+            channel_health,
         )
         import anthropic as _anthropic
 
@@ -1114,6 +1381,7 @@ class ToolBox:
             "2. 不允许以工具调用结束任务——必须在最终 end_turn 消息里输出结论。",
             "3. 不需要打包，不需要向用户确认，只需输出结论文字。",
             "4. 如果脚本/工具输出了数据，必须将关键数据整理后写入最终回复，不能只说「已完成」。",
+            "   ⚠️ 脚本的 stdout 只有你自己能看到，主 Agent 看不到——必须把关键数据复制到文字消息里。",
             "5. **遇到 MCP 工具失败、或无法自行决策时**：调用 `pause_and_ask` 工具（说明问题和当前进度），"
             "   然后立即停止（不再调用其他工具）。主 Agent 会通过 `resume_subagent` 提供指示后恢复执行。",
             "",
@@ -1125,19 +1393,58 @@ class ToolBox:
             f"- 公共资源目录：`{skills_dir()}`",
         ])
 
+        task = self._inject_skill_content(task)
         user_content = f"{context}\n\n{task}".strip() if context else task
         messages: list = [{"role": "user", "content": user_content}]
 
-        client = _anthropic.Anthropic(
+        # 双通道：新网关优先，旧代理备用（与主 Agent 保持一致）
+        new_client = _anthropic.Anthropic(
+            api_key=NEW_API_KEY,
+            base_url=NEW_API_BASE_URL,
+            default_headers={"User-Agent": CLAUDE_USER_AGENT},
+            http_client=make_new_api_http_client(),
+        )
+        fallback_client = _anthropic.Anthropic(
             api_key=ANTHROPIC_API_KEY,
             base_url=ANTHROPIC_BASE_URL,
             default_headers={"User-Agent": CLAUDE_USER_AGENT},
         )
+        clients = [(new_client, NEW_API_MODEL), (fallback_client, DEFAULT_MODEL)]
+
         # 子 agent 不能递归调用 run_subagent / run_subagents_parallel / resume_subagent
         _SUBAGENT_BLOCKED = {"run_subagent", "run_subagents_parallel", "resume_subagent"}
         tools = [t for t in tool_definitions() if t["name"] not in _SUBAGENT_BLOCKED]
 
-        return self._run_subagent_loop(system, messages, client, tools, max_iterations)
+        return self._run_subagent_loop(system, messages, clients, tools, max_iterations)
+
+    def _inject_skill_content(self, task_str: str) -> str:
+        """检测 prompt 中的「首先读取你的技能文件：`xxx.md`」模式，
+        直接把文件内容内联进 prompt，省去子 Agent 启动后读文件的一轮 API 调用。
+        匹配范围：.cursor/skills/ 下的任意 .md 文件（不限于 SKILL.md）。
+        """
+        import re as _re
+        from .config import cursor_skills_dir as _cursor_skills_dir
+
+        _SKILL_PATTERN = _re.compile(
+            r'首先读取你的技能文件：\s*\n\n`(\.cursor/skills-v2/[^`]+\.md)`\s*\n\n读完后，',
+            _re.DOTALL,
+        )
+
+        def _replace(m: _re.Match) -> str:
+            rel = m.group(1)                          # e.g. .cursor/skills-v2/level-modify/agents/modifier_agent.md
+            sub = rel[len(".cursor/skills-v2/"):]     # e.g. level-modify/agents/modifier_agent.md
+            skill_path = _cursor_skills_dir() / sub
+            try:
+                content = skill_path.read_text(encoding="utf-8")
+            except Exception:
+                return m.group(0)                     # 读不到文件则保持原样
+            return (
+                "你的技能规范已预加载如下（无需读取文件，直接按规范执行）：\n\n"
+                f"<skill_spec>\n{content}\n</skill_spec>\n\n"
+                "按照上述规范，"
+            )
+
+        return _SKILL_PATTERN.sub(_replace, task_str)
 
     def resume_subagent(self, resume_id: str, instruction: str) -> dict:
         """恢复一个因 pause_and_ask 暂停的子 Agent，注入主 Agent 指示后继续执行。
@@ -1146,11 +1453,9 @@ class ToolBox:
         """
         from .config import (
             ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, CLAUDE_USER_AGENT,
+            DEFAULT_MODEL, NEW_API_KEY, NEW_API_BASE_URL, NEW_API_MODEL,
+            make_new_api_http_client, channel_health,
         )
-        import anthropic as _anthropic
-        import json as _json
-
-        state_file = self.workspace / f".pause_state_{resume_id}.json"
         if not state_file.exists():
             return {"error": f"暂停状态不存在：resume_id={resume_id}（文件 .pause_state_{resume_id}.json 未找到）"}
 
@@ -1171,15 +1476,24 @@ class ToolBox:
             }],
         })
 
-        client = _anthropic.Anthropic(
+        # 双通道：新网关优先，旧代理备用
+        new_client = _anthropic.Anthropic(
+            api_key=NEW_API_KEY,
+            base_url=NEW_API_BASE_URL,
+            default_headers={"User-Agent": CLAUDE_USER_AGENT},
+            http_client=make_new_api_http_client(),
+        )
+        fallback_client = _anthropic.Anthropic(
             api_key=ANTHROPIC_API_KEY,
             base_url=ANTHROPIC_BASE_URL,
             default_headers={"User-Agent": CLAUDE_USER_AGENT},
         )
+        clients = [(new_client, NEW_API_MODEL), (fallback_client, DEFAULT_MODEL)]
+
         _SUBAGENT_BLOCKED = {"run_subagent", "run_subagents_parallel", "resume_subagent"}
         tools = [t for t in tool_definitions() if t["name"] not in _SUBAGENT_BLOCKED]
 
-        return self._run_subagent_loop(system, messages, client, tools, max_iterations=30)
+        return self._run_subagent_loop(system, messages, clients, tools, max_iterations=30)
 
     def run_subagents_parallel(
         self,
@@ -1251,39 +1565,9 @@ class ToolBox:
         if not tasks:
             return {"ok": True, "count": 0, "results": [], "combined_output": ""}
 
-        # 自动预注入技能文件：检测 .cursor/skills/*/SKILL.md 引用，直接把内容嵌进 prompt，
-        # 省去子 Agent 读文件的一轮 API 调用（约 10-15 秒）
-        _skill_cache: dict = {}
-
-        def _inject_skill(task_str: str) -> str:
-            pattern = (
-                r'首先读取你的技能文件：\s*\n\n`(\.cursor/skills/[^`]+/SKILL\.md)`\s*\n\n读完后，'
-            )
-
-            def _replace(m: "_re.Match") -> str:
-                rel = m.group(1)  # e.g. .cursor/skills/resource-search/SKILL.md
-                if rel not in _skill_cache:
-                    # rel 以 .cursor/skills/ 开头，cursor_skills_dir() 即是该前缀对应的目录
-                    sub = rel[len(".cursor/skills/"):]  # e.g. resource-search/SKILL.md
-                    skill_path = _cursor_skills_dir() / sub
-                    try:
-                        _skill_cache[rel] = skill_path.read_text(encoding="utf-8")
-                    except Exception:
-                        _skill_cache[rel] = None
-                content = _skill_cache.get(rel)
-                if content:
-                    return (
-                        "你的技能规范已预加载如下（无需读取文件，直接按规范执行）：\n\n"
-                        f"<skill_spec>\n{content}\n</skill_spec>\n\n"
-                        "按照上述规范，"
-                    )
-                return m.group(0)  # 找不到文件则保持原样
-
-            return _re.sub(pattern, _replace, task_str, flags=_re.DOTALL)
-
         def _run_one(idx_task):
             idx, task_dict = idx_task
-            task_str = _inject_skill(task_dict.get("task", ""))
+            task_str = self._inject_skill_content(task_dict.get("task", ""))
             ctx = task_dict.get("context", "")
             result = self.run_subagent(
                 task=task_str, context=ctx, max_iterations=max_iterations
@@ -1469,16 +1753,17 @@ def tool_definitions() -> list:
         {
             "name": "run_python",
             "description": (
-                "在工作目录下运行一个 Python 脚本（用 write_file 先把脚本写好）。"
-                "返回 stdout / stderr / returncode。"
+                "运行一个 Python 脚本，返回 stdout / stderr / returncode。"
                 "timeout 默认 120 秒，可按需调大。"
+                "script_rel 可以是工作目录下的相对路径，也可以是技能目录/可读目录下的绝对路径（直接传，无需先 write_file 复制）。"
+                "只有需要临时生成逻辑时才用 write_file 先写脚本，调用已有的 skills 脚本时直接传绝对路径即可。"
             ),
             "input_schema": {
                 "type": "object",
                 "properties": {
                     "script_rel": {
                         "type": "string",
-                        "description": "工作目录下脚本的相对路径，如 process.py",
+                        "description": "脚本路径：工作目录下的相对路径（如 process.py）或技能目录下的绝对路径（如 /path/to/skills/scripts/xxx.py）",
                     },
                     "args": {
                         "type": "array",
@@ -1759,6 +2044,83 @@ def tool_definitions() -> list:
                     "script_id": {"type": "string"},
                 },
                 "required": ["file_path", "name", "display_name"],
+            },
+        },
+        {
+            "name": "ws_create_block",
+            "description": (
+                "按 block define 创建一个结构正确的 block dict（纯内存，不写文件）。"
+                "返回的 block 可传入 ws_append_block / ws_insert_block_child / ws_add_fragment。"
+                "parameters 传 {参数名: 值} 字典，未传的参数使用 block 定义中的默认值。"
+                "先用 ws_get_block_doc 确认参数名称后再调用。"
+            ),
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "block_define": {"type": "string", "description": "block 的 define 名称，如 'SetVar'、'Repeat'、'BroadcastMessage'"},
+                    "parameters": {"type": "object", "description": "参数 {名: 值} 字典，可省略（使用默认值）"},
+                },
+                "required": ["block_define"],
+            },
+        },
+        {
+            "name": "ws_modify_block_parameter",
+            "description": (
+                "在 .ws 文件中按 JSON 路径定位 block，将第 parameter_index 个参数改为 value，写回文件。"
+                "适合精确修改 SetVar 值、Repeat 次数、BroadcastMessage 事件名等。"
+                "使用前：先用 ws_find_blocks 或 ws_find_value 找到 block 的路径，"
+                "再用 ws_get_block_doc 确认参数顺序，改完后必须调用 ws_validate 校验。"
+                "json_path 精确到含 define 字段的 block，如 scene.children.0.fragments.1.head"
+            ),
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "file_path": {"type": "string", "description": ".ws 文件路径"},
+                    "json_path": {"type": "string", "description": "用 . 分隔的路径，精确到 block dict，如 scene.children.0.fragments.1.head"},
+                    "parameter_index": {"type": "integer", "description": "参数索引（从 0 开始），由 ws_get_block_doc 的参数列表顺序决定"},
+                    "value": {
+                        "description": "新参数值（字符串或数字）",
+                        "oneOf": [{"type": "string"}, {"type": "number"}],
+                    },
+                },
+                "required": ["file_path", "json_path", "parameter_index", "value"],
+            },
+        },
+        {
+            "name": "ws_append_block",
+            "description": (
+                "在 .ws 文件中按 JSON 路径定位 block，将 new_block 追加到其 next 链或 children，写回文件。"
+                "有 children 的 block（Repeat / If 等）追加到 children 末尾；普通 block 追加到 next 链末尾。"
+                "new_block 可由 ws_create_block 生成，也可手写完整 block dict。"
+                "改完必须调用 ws_validate 校验。"
+            ),
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "file_path": {"type": "string"},
+                    "json_path": {"type": "string", "description": "目标 block 的路径（含 define 字段），如 scene.children.0.fragments.0.head"},
+                    "new_block": {"type": "object", "description": "要追加的 block dict，需包含 define 字段"},
+                },
+                "required": ["file_path", "json_path", "new_block"],
+            },
+        },
+        {
+            "name": "ws_insert_block_child",
+            "description": (
+                "在 .ws 文件中按 JSON 路径定位 block，将 child_block 插入到指定 section 的 children，写回文件。"
+                "section_index: 0 = 主体 / If-then，1 = else 分支。"
+                "child_block 可由 ws_create_block 生成，也可手写完整 block dict。"
+                "改完必须调用 ws_validate 校验。"
+            ),
+            "input_schema": {
+                "type": "object",
+                "properties": {
+                    "file_path": {"type": "string"},
+                    "json_path": {"type": "string", "description": "目标 block（容器 block）的路径，如 scene.children.0.fragments.0.head"},
+                    "section_index": {"type": "integer", "description": "section 索引：0 = 主体，1 = else（If 块）"},
+                    "child_block": {"type": "object", "description": "要插入的 block dict，需包含 define 字段"},
+                },
+                "required": ["file_path", "json_path", "section_index", "child_block"],
             },
         },
         {

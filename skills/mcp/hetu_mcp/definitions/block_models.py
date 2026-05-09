@@ -595,6 +595,12 @@ class BlockModel:
             index: 参数索引
             value: 参数值（字符串或嵌套 Block）
         """
+        if isinstance(value, list):
+            raise ValueError(
+                "Block parameters do not support JSON array values; write arrays through "
+                "typed workspace fields such as props2 SimpleList.value or res."
+            )
+
         if not self.sections:
             self.sections.append({"columns": []})
         

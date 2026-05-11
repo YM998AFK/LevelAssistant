@@ -9,12 +9,12 @@ import logging
 _cfg_log = logging.getLogger("levelassistant.config")
 
 APP_NAME = "关卡助手"
-APP_VERSION = "1.0.8"
+APP_VERSION = "1.0.9"
 
 # ── 热更新配置 ────────────────────────────────────────────────────────────────
-# 填入你的 GitHub 仓库 raw 地址，留空则禁用热更新
-# 示例：https://raw.githubusercontent.com/你的用户名/LevelAssistant/main/version.json
-UPDATE_VERSION_URL = "https://cdn.jsdelivr.net/gh/YM998AFK/LevelAssistant@master/version.json"
+# version.json 检测：GitHub raw（无缓存，永远返回最新版本）
+# zip 下载：version.json 里的 exe_url 指向阿里云 OSS（国内高速）
+UPDATE_VERSION_URL = "https://raw.githubusercontent.com/YM998AFK/LevelAssistant/master/version.json"
 
 # 国内加速代理（推荐保留，访问 GitHub 更稳定）
 # 留空则直连 GitHub

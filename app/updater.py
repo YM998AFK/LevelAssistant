@@ -82,7 +82,7 @@ def get_local_version(fallback: str) -> str:
     f = _local_version_file()
     try:
         if f.exists():
-            return json.loads(f.read_text(encoding="utf-8")).get("version", fallback)
+            return json.loads(f.read_text(encoding="utf-8-sig")).get("version", fallback)
     except Exception:
         pass
     return fallback
@@ -190,10 +190,11 @@ def apply_dir_update(zip_path: Path, new_version: str = "") -> tuple[bool, str]:
             new_dir = tmp_extract
 
         # 写 bat：等程序退出 → robocopy 整目录替换 → 重启
+        # /E 只覆盖新增/改动的文件，不删除目标目录里多余的内容
         script = (
             "@echo off\n"
             "timeout /t 5 /nobreak >nul\n"
-            f'robocopy "{new_dir}" "{install_dir}" /MIR /NFL /NDL /NJH /NJS >nul\n'
+            f'robocopy "{new_dir}" "{install_dir}" /E /NFL /NDL /NJH /NJS >nul\n'
             f'start "" "{current_exe}"\n'
             'del "%~f0"\n'
         )

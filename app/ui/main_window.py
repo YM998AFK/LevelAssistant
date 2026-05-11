@@ -870,7 +870,7 @@ class MainWindow(QMainWindow):
             if self.current_ai_message:
                 self.current_ai_message.seal_thinking()
                 self.current_ai_message.set_active(False)
-                if final_text and mode == "free_chat":
+                if final_text:
                     self.current_ai_message.set_text(final_text)
             if archive_paths:
                 ai = self.current_ai_message or self.chat.add_message("assistant")

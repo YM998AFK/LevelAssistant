@@ -13,7 +13,7 @@ import anthropic
 from .config import (
     ANTHROPIC_API_KEY, ANTHROPIC_BASE_URL, CLAUDE_USER_AGENT, get_anthropic_api_version,
     NEW_API_KEY, NEW_API_BASE_URL, NEW_API_MODEL,
-    DEFAULT_MODEL, MAX_TOOL_ITERATIONS, MAX_TOKENS_PER_TURN,
+    DEFAULT_MODEL, MAX_TOOL_ITERATIONS, MAX_TOKENS_PER_TURN, THINKING_BUDGET_TOKENS,
     make_new_api_http_client,
     skills_dir, cursor_skills_dir, mcp_dir, output_dir,
     channel_health,
@@ -143,6 +143,7 @@ def build_review_prompt(
 class ReviewWorker(QThread):
     """独立审查 Agent，与主 AgentWorker 上下文隔离，仅用于验证产出。"""
     text_chunk = Signal(str)
+    thinking_chunk = Signal(str)
     tool_call_start = Signal(str, dict)
     tool_call_end = Signal(str, dict)
     iteration_update = Signal(int)
@@ -236,6 +237,7 @@ class ReviewWorker(QThread):
                                 system=system_prompt,
                                 tools=tools,
                                 messages=messages,
+                                thinking={"type": "enabled", "budget_tokens": min(THINKING_BUDGET_TOKENS, 6000)},
                             ) as stream:
                                 for event in stream:
                                     if self._stop:
@@ -243,9 +245,12 @@ class ReviewWorker(QThread):
                                     etype = getattr(event, "type", "")
                                     if etype == "content_block_delta":
                                         delta = getattr(event, "delta", None)
-                                        if delta and delta.type == "text_delta":
-                                            self.text_chunk.emit(delta.text)
-                                            full_ai_text.append(delta.text)
+                                        if delta:
+                                            if delta.type == "text_delta":
+                                                self.text_chunk.emit(delta.text)
+                                                full_ai_text.append(delta.text)
+                                            elif delta.type == "thinking_delta":
+                                                self.thinking_chunk.emit(delta.thinking)
                                 final_message = stream.get_final_message()
                             channel_health.mark_success(ch)
                             success = True
@@ -332,6 +337,7 @@ class ReviewWorker(QThread):
 
 class AgentWorker(QThread):
     text_chunk = Signal(str)
+    thinking_chunk = Signal(str)
     tool_call_start = Signal(str, dict)
     tool_call_end = Signal(str, dict)
     iteration_update = Signal(int)   # 当前轮次
@@ -441,6 +447,7 @@ class AgentWorker(QThread):
                                 system=self.system_prompt,
                                 tools=tools,
                                 messages=self.messages,
+                                thinking={"type": "enabled", "budget_tokens": THINKING_BUDGET_TOKENS},
                             ) as stream:
                                 for event in stream:
                                     if self._stop:
@@ -448,9 +455,12 @@ class AgentWorker(QThread):
                                     etype = getattr(event, "type", "")
                                     if etype == "content_block_delta":
                                         delta = getattr(event, "delta", None)
-                                        if delta and delta.type == "text_delta":
-                                            self.text_chunk.emit(delta.text)
-                                            full_ai_text.append(delta.text)
+                                        if delta:
+                                            if delta.type == "text_delta":
+                                                self.text_chunk.emit(delta.text)
+                                                full_ai_text.append(delta.text)
+                                            elif delta.type == "thinking_delta":
+                                                self.thinking_chunk.emit(delta.thinking)
                                 final_message = stream.get_final_message()
                             channel_health.mark_success(ch)
                             self.log.info("轮次 %d 通道[%s]成功", iteration + 1, channel_labels[ch])
@@ -504,6 +514,8 @@ class AgentWorker(QThread):
                 for block in final_message.content:
                     if block.type == "text":
                         assistant_blocks.append({"type": "text", "text": block.text})
+                    elif block.type == "thinking":
+                        assistant_blocks.append({"type": "thinking", "thinking": block.thinking})
                     elif block.type == "tool_use":
                         assistant_blocks.append({
                             "type": "tool_use", "id": block.id,

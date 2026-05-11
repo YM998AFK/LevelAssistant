@@ -108,6 +108,7 @@ AVAILABLE_MODELS = [
 
 MAX_TOOL_ITERATIONS = 100
 MAX_TOKENS_PER_TURN = 32000
+THINKING_BUDGET_TOKENS = 10000   # 扩展思考 token 预算（含在 max_tokens 内）
 
 
 def base_dir() -> Path:

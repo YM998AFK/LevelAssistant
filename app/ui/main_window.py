@@ -710,6 +710,8 @@ class MainWindow(QMainWindow):
         # ── 信号路由：捕获 mode + sess_idx，用于跨 session 分发 ──
         worker.text_chunk.connect(
             lambda chunk, m=mode, i=sess_idx: self._route_text_chunk(m, i, chunk))
+        worker.thinking_chunk.connect(
+            lambda chunk, m=mode, i=sess_idx: self._route_thinking_chunk(m, i, chunk))
         worker.tool_call_start.connect(
             lambda name, params, m=mode, i=sess_idx: self._route_tool_start(m, i, name, params))
         worker.tool_call_end.connect(
@@ -760,12 +762,24 @@ class MainWindow(QMainWindow):
             if self.current_ai_message is None:
                 self.current_ai_message = self.chat.add_message("assistant")
                 self.current_ai_message.set_active(True)
+            self.current_ai_message.append_text(chunk)
+            self.chat._scroll_to_bottom()
+        else:
+            self._update_bg_status_bar(sess, thinking=chunk)
+            self._refresh_session_bar()   # 刷新后台活动条
+
+    def _route_thinking_chunk(self, mode: str, sess_idx: int, chunk: str):
+        sess = self.mode_state[mode]["sessions"][sess_idx]
+        if self._is_active_session(mode, sess_idx):
+            if self.current_ai_message is None:
+                self.current_ai_message = self.chat.add_message("assistant")
+                self.current_ai_message.set_active(True)
             self.current_ai_message.append_thinking(chunk)
             self.chat._status_bar.add_thinking(chunk)
             self.chat._scroll_to_bottom()
         else:
             self._update_bg_status_bar(sess, thinking=chunk)
-            self._refresh_session_bar()   # 刷新后台活动条
+            self._refresh_session_bar()
 
     def _route_iteration(self, mode: str, sess_idx: int, n: int):
         if self._is_active_session(mode, sess_idx):
@@ -870,8 +884,6 @@ class MainWindow(QMainWindow):
             if self.current_ai_message:
                 self.current_ai_message.seal_thinking()
                 self.current_ai_message.set_active(False)
-                if final_text:
-                    self.current_ai_message.set_text(final_text)
             if archive_paths:
                 ai = self.current_ai_message or self.chat.add_message("assistant")
                 for fp in archive_paths:
@@ -1012,6 +1024,8 @@ class MainWindow(QMainWindow):
 
         review_worker.text_chunk.connect(
             lambda chunk, m=mode, i=sess_idx: self._route_review_chunk(m, i, chunk))
+        review_worker.thinking_chunk.connect(
+            lambda chunk, m=mode, i=sess_idx: self._route_review_thinking_chunk(m, i, chunk))
         review_worker.tool_call_start.connect(
             lambda name, params, m=mode, i=sess_idx: self._route_review_tool_start(m, i, name))
         review_worker.tool_call_end.connect(
@@ -1034,6 +1048,14 @@ class MainWindow(QMainWindow):
     def _route_review_chunk(self, mode: str, sess_idx: int, chunk: str):
         sess = self.mode_state[mode]["sessions"][sess_idx]
         sess["review_buf"].append(chunk)
+        if self._is_active_session(mode, sess_idx):
+            if self.review_message is None:
+                self.review_message = self.chat.add_message("reviewer")
+                self.review_message.set_active(True)
+            self.review_message.append_text(chunk)
+            self.chat._scroll_to_bottom()
+
+    def _route_review_thinking_chunk(self, mode: str, sess_idx: int, chunk: str):
         if self._is_active_session(mode, sess_idx):
             if self.review_message is None:
                 self.review_message = self.chat.add_message("reviewer")
@@ -1179,6 +1201,8 @@ class MainWindow(QMainWindow):
 
         worker.text_chunk.connect(
             lambda chunk, m=mode, i=sess_idx: self._route_text_chunk(m, i, chunk))
+        worker.thinking_chunk.connect(
+            lambda chunk, m=mode, i=sess_idx: self._route_thinking_chunk(m, i, chunk))
         worker.tool_call_start.connect(
             lambda name, params, m=mode, i=sess_idx: self._route_tool_start(m, i, name, params))
         worker.tool_call_end.connect(

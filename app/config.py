@@ -9,15 +9,14 @@ import logging
 _cfg_log = logging.getLogger("levelassistant.config")
 
 APP_NAME = "关卡助手"
-APP_VERSION = "1.0.9"
+APP_VERSION = "1.0.10"
 
 # ── 热更新配置 ────────────────────────────────────────────────────────────────
-# version.json 检测：GitHub raw（无缓存，永远返回最新版本）
-# zip 下载：version.json 里的 exe_url 指向阿里云 OSS（国内高速）
-UPDATE_VERSION_URL = "https://raw.githubusercontent.com/YM998AFK/LevelAssistant/master/version.json"
+# version.json 检测：阿里云 OSS（无缓存，永远返回最新版本，国内访问快）
+# zip 下载：version.json 里的 exe_url / skills_url 也指向 OSS
+UPDATE_VERSION_URL = "https://gongsi-files-hz-8821.oss-cn-hangzhou.aliyuncs.com/version.json"
 
-# 国内加速代理（推荐保留，访问 GitHub 更稳定）
-# 留空则直连 GitHub
+# 国内加速代理（OSS 已是国内节点，留空即可）
 UPDATE_PROXY_PREFIX = ""
 
 # ── 主通道：新 LiteLLM 网关（TLS 1.2，Anthropic 格式，优先使用）──────────────

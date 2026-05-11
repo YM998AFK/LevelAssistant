@@ -9,7 +9,7 @@ import logging
 _cfg_log = logging.getLogger("levelassistant.config")
 
 APP_NAME = "关卡助手"
-APP_VERSION = "1.0.5"
+APP_VERSION = "1.0.6"
 
 # ── 热更新配置 ────────────────────────────────────────────────────────────────
 # 填入你的 GitHub 仓库 raw 地址，留空则禁用热更新
